@@ -144,7 +144,7 @@
   });
 
   // Version checking
-  const currentVersion = '1.0.1';
+  const currentVersion = '1.0.2';
   const githubRepo = 'Stevbreu/PWA_Sepsis'; // Ersetze mit deinem GitHub Repository
   
   async function checkForUpdates(isAutomatic = false) {
@@ -174,25 +174,28 @@
         const latestVersion = release.tag_name.replace('v', ''); // Entferne 'v' prefix falls vorhanden
         
         if (latestVersion !== currentVersion && isNewerVersion(latestVersion, currentVersion)) {
-          // Update verfügbar - Banner anzeigen
+          // Update verfügbar - PWA-Update anzeigen
           if (updateBanner) {
             updateBanner.classList.add('show');
-            bannerUpdateLink.href = release.html_url;
-            bannerUpdateLink.textContent = `Version ${latestVersion} herunterladen`;
+            bannerUpdateLink.href = '#';
+            bannerUpdateLink.textContent = `Version ${latestVersion} - PWA aktualisieren`;
+            bannerUpdateLink.onclick = () => triggerPWAUpdate(latestVersion);
           }
           
           // Dashboard Update anzeigen
           if (dashboardUpdateNotification) {
             dashboardUpdateNotification.style.display = 'block';
-            dashboardUpdateLink.href = release.html_url;
-            dashboardUpdateLink.textContent = `Version ${latestVersion} herunterladen`;
+            dashboardUpdateLink.href = '#';
+            dashboardUpdateLink.textContent = `Version ${latestVersion} - PWA aktualisieren`;
+            dashboardUpdateLink.onclick = () => triggerPWAUpdate(latestVersion);
           }
           
           // Auch in der Detailansicht anzeigen
           if (updateNotification) {
             updateNotification.style.display = 'block';
-            updateLink.href = release.html_url;
-            updateLink.textContent = `Version ${latestVersion} herunterladen`;
+            updateLink.href = '#';
+            updateLink.textContent = `Version ${latestVersion} - PWA aktualisieren`;
+            updateLink.onclick = () => triggerPWAUpdate(latestVersion);
           }
         } else if (!isAutomatic) {
           // Kurz "Aktuell" anzeigen
@@ -244,6 +247,40 @@
   document.getElementById('close-update-banner')?.addEventListener('click', () => {
     document.getElementById('update-banner').classList.remove('show');
   });
+
+  // PWA Update Funktion
+  async function triggerPWAUpdate(newVersion) {
+    if (confirm(`Neue Version ${newVersion} verfügbar!\n\nDie PWA wird aktualisiert und neu geladen.\nMöchten Sie fortfahren?`)) {
+      try {
+        // Service Worker aktualisieren
+        if ('serviceWorker' in navigator) {
+          const registration = await navigator.serviceWorker.getRegistration();
+          if (registration) {
+            await registration.update();
+            
+            // Warte auf neuen Service Worker
+            if (registration.waiting) {
+              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+            }
+            
+            // Cache leeren für komplettes Update
+            if ('caches' in window) {
+              const cacheNames = await caches.keys();
+              await Promise.all(cacheNames.map(name => caches.delete(name)));
+            }
+          }
+        }
+        
+        // App neu laden
+        alert(`Update auf Version ${newVersion} wird installiert...`);
+        window.location.reload(true);
+        
+      } catch (error) {
+        console.error('Update fehlgeschlagen:', error);
+        alert('Update fehlgeschlagen. Bitte versuchen Sie es später erneut.');
+      }
+    }
+  }
   
   // Automatische Versionsprüfung beim Start
   setTimeout(() => checkForUpdates(true), 2000);

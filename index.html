@@ -152,14 +152,22 @@
     .header-version-check{ background:rgba(255,255,255,0.2); border:none; color:#fff; padding:2px 6px; border-radius:4px; cursor:pointer; font-size:10px; }
     .header-version-check:hover{ background:rgba(255,255,255,0.3); }
     
-    /* NEWS2 Table */
-    .news2-table{ width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
-    .news2-table th, .news2-table td{ border:1px solid var(--border); padding:6px 8px; text-align:center; }
-    .news2-table th{ background:var(--bg); font-weight:600; }
+    /* NEWS2 Table - Responsive */
+    .news2-container{ overflow-x:auto; margin:12px 0; border:1px solid var(--border); border-radius:8px; }
+    .news2-table{ width:100%; min-width:600px; border-collapse:collapse; font-size:11px; }
+    .news2-table th, .news2-table td{ border:1px solid var(--border); padding:4px 6px; text-align:center; white-space:nowrap; }
+    .news2-table th{ background:var(--bg); font-weight:600; font-size:10px; }
+    .news2-table td:first-child{ background:var(--bg-light); font-weight:500; text-align:left; padding-left:8px; min-width:120px; }
     .news2-score-0{ background:#dcfce7; }
     .news2-score-1{ background:#fef3c7; }
     .news2-score-2{ background:#fed7aa; }
     .news2-score-3{ background:#fee2e2; }
+    
+    /* Mobile Anpassungen */
+    @media (max-width: 768px) {
+      .news2-table{ font-size:10px; }
+      .news2-table th, .news2-table td{ padding:3px 4px; }
+    }
     
     /* Responsive */
     @media(max-width:640px){
@@ -173,6 +181,45 @@
       .timeline-marker{ min-width:auto; }
       .sub-tabs{ gap:2px; }
       .sub-tab{ font-size:10px; padding:4px 8px; }
+      
+      /* Screening-spezifische Anpassungen */
+      #pane-screening .grid{ gap:12px; }
+      #pane-screening .card{ padding:16px; }
+    }
+    
+    /* Spezielle Screening-Layout Regeln */
+    #pane-screening .grid{ 
+      display: flex; 
+      flex-direction: column; 
+      gap: 20px; 
+    }
+    
+    #pane-screening .screening-top{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    #pane-screening .screening-news2{
+      grid-column: 1/-1;
+    }
+    
+    #pane-screening .screening-bottom{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    /* Tablet Anpassungen */
+    @media(max-width:1024px) and (min-width:641px){
+      #pane-screening .screening-top{ grid-template-columns: 1fr; }
+      #pane-screening .screening-bottom{ grid-template-columns: 1fr; }
+    }
+    
+    /* Mobile Anpassungen für Screening */
+    @media(max-width:640px){
+      #pane-screening .screening-top{ grid-template-columns: 1fr; }
+      #pane-screening .screening-bottom{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -287,12 +334,19 @@
       <!-- Screening & Alarmierung -->
       <section class="pane" id="pane-screening" aria-label="Screening & Alarmierung">
         <div class="grid">
-          <div class="card">
-            <h2>Screening als Klinikstandard</h2>
-            <p>Qualitätssicherungsprogramm mit Sepsis‑Screening für akut erkrankte Hochrisikopatient*innen und strukturierte SOPs vorhalten</p>
+          <div class="screening-top">
+            <div class="card">
+              <h2>Screening als Klinikstandard</h2>
+              <p>Qualitätssicherungsprogramm mit Sepsis‑Screening für akut erkrankte Hochrisikopatient*innen und strukturierte SOPs vorhalten</p>
+            </div>
+            
+            <div class="card">
+              <h2>Sofortmaßnahmen (0-15 Min)</h2>
+              <p><strong>Bei positivem Screening:</strong> Sepsis‑Alarm (interdisziplinäres Team), Monitoring (EKG, SpO₂, RR, ggf. A‑Kanal), 2 großlumige i.v.-Zugänge, Blutentnahme inkl. Laktat/BGA, Laktat seriell zur Verlaufskontrolle</p>
+            </div>
           </div>
           
-          <div class="card">
+          <div class="card screening-news2">
             <h2>Screening‑Instrumente</h2>
             <p><strong>Außerhalb der ITS:</strong> Bei Verdacht auf Infektion regelmäßig screenen mit <strong>NEWS2/MEWS</strong> (qSOFA allein ist <strong>nicht empfohlen</strong>). <strong>Laktatmessung</strong> bei Sepsisverdacht. Sofort ärztliche Eskalation bei Auffälligkeit.</p>
             
@@ -302,7 +356,8 @@
             </div>
             
             <h3>NEWS2 (National Early Warning Score 2)</h3>
-            <table class="news2-table">
+            <div class="news2-container">
+              <table class="news2-table">
               <tr>
                 <th>Parameter</th>
                 <th>3</th>
@@ -373,16 +428,14 @@
                 <td class="news2-score-2">≥39.1</td>
                 <td class="news2-score-3">-</td>
               </tr>
-            </table>
+              </table>
+            </div>
           </div>
           
-          <div class="card">
-            <h2>Sofortmaßnahmen (0-15 Min)</h2>
-            <p><strong>Bei positivem Screening:</strong> Sepsis‑Alarm (interdisziplinäres Team), Monitoring (EKG, SpO₂, RR, ggf. A‑Kanal), 2 großlumige i.v.-Zugänge, Blutentnahme inkl. Laktat/BGA, Laktat seriell zur Verlaufskontrolle</p>
-          </div>
-          
-          <div class="card note">
-            <strong>Bedside-Diagnostik:</strong> Blutgasanalyse kann bettseitig durchgeführt werden für schnelle Ergebnisse.
+          <div class="screening-bottom">
+            <div class="card note">
+              <strong>Bedside-Diagnostik:</strong> Blutgasanalyse kann bettseitig durchgeführt werden für schnelle Ergebnisse.
+            </div>
           </div>
         </div>
       </section>

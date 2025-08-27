@@ -31,3 +31,10 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(fetch(event.request).catch(() => new Response('', {status: 200})));
   }
 });
+
+// PWA Update Message Handler
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
