@@ -245,8 +245,8 @@
     document.getElementById('update-banner').classList.remove('show');
   });
   
-  // Automatische Versionsprüfung beim Start (deaktiviert bis Repository existiert)
-  // setTimeout(() => checkForUpdates(true), 2000);
+  // Automatische Versionsprüfung beim Start
+  setTimeout(() => checkForUpdates(true), 2000);
 
   // Install prompt (still available via browser menu)
   let deferredPrompt = null;
