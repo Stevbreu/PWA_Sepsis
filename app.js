@@ -144,17 +144,27 @@
   });
 
   // Version checking
-  const currentVersion = '1.0.0';
+  const currentVersion = '1.0.1';
   const githubRepo = 'Stevbreu/SOP_WPA'; // Ersetze mit deinem GitHub Repository
   
-  async function checkForUpdates() {
+  async function checkForUpdates(isAutomatic = false) {
     const checkBtn = document.getElementById('check-version');
+    const headerCheckBtn = document.getElementById('header-check-version');
+    const dashboardCheckBtn = document.getElementById('dashboard-check-version');
     const updateNotification = document.getElementById('update-notification');
     const updateLink = document.getElementById('update-link');
+    const dashboardUpdateNotification = document.getElementById('dashboard-update-notification');
+    const dashboardUpdateLink = document.getElementById('dashboard-update-link');
+    const updateBanner = document.getElementById('update-banner');
+    const bannerUpdateLink = document.getElementById('banner-update-link');
+    
+    const activeBtn = dashboardCheckBtn || headerCheckBtn || checkBtn;
     
     try {
-      checkBtn.disabled = true;
-      checkBtn.textContent = 'Prüfe...';
+      if (activeBtn && !isAutomatic) {
+        activeBtn.disabled = true;
+        activeBtn.textContent = 'Prüfe...';
+      }
       
       // GitHub API Aufruf für die neueste Version
       const response = await fetch(`https://api.github.com/repos/${githubRepo}/releases/latest`);
@@ -164,27 +174,50 @@
         const latestVersion = release.tag_name.replace('v', ''); // Entferne 'v' prefix falls vorhanden
         
         if (latestVersion !== currentVersion && isNewerVersion(latestVersion, currentVersion)) {
-          updateNotification.style.display = 'block';
-          updateLink.href = release.html_url;
-          updateLink.textContent = `Version ${latestVersion} herunterladen`;
-        } else {
+          // Update verfügbar - Banner anzeigen
+          if (updateBanner) {
+            updateBanner.classList.add('show');
+            bannerUpdateLink.href = release.html_url;
+            bannerUpdateLink.textContent = `Version ${latestVersion} herunterladen`;
+          }
+          
+          // Dashboard Update anzeigen
+          if (dashboardUpdateNotification) {
+            dashboardUpdateNotification.style.display = 'block';
+            dashboardUpdateLink.href = release.html_url;
+            dashboardUpdateLink.textContent = `Version ${latestVersion} herunterladen`;
+          }
+          
+          // Auch in der Detailansicht anzeigen
+          if (updateNotification) {
+            updateNotification.style.display = 'block';
+            updateLink.href = release.html_url;
+            updateLink.textContent = `Version ${latestVersion} herunterladen`;
+          }
+        } else if (!isAutomatic) {
           // Kurz "Aktuell" anzeigen
-          checkBtn.textContent = 'Aktuell ✓';
-          setTimeout(() => {
-            checkBtn.textContent = 'Updates prüfen';
-          }, 2000);
+          if (activeBtn) {
+            activeBtn.textContent = 'Aktuell ✓';
+            setTimeout(() => {
+              activeBtn.textContent = 'Updates';
+            }, 2000);
+          }
         }
       } else {
         throw new Error('GitHub API nicht erreichbar');
       }
     } catch (error) {
       console.error('Versionsprüfung fehlgeschlagen:', error);
-      checkBtn.textContent = 'Fehler';
-      setTimeout(() => {
-        checkBtn.textContent = 'Updates prüfen';
-      }, 2000);
+      if (activeBtn && !isAutomatic) {
+        activeBtn.textContent = 'Fehler';
+        setTimeout(() => {
+          activeBtn.textContent = 'Updates';
+        }, 2000);
+      }
     } finally {
-      checkBtn.disabled = false;
+      if (activeBtn && !isAutomatic) {
+        activeBtn.disabled = false;
+      }
     }
   }
   
@@ -203,10 +236,17 @@
   }
   
   // Event Listener für Versionsprüfung
-  document.getElementById('check-version')?.addEventListener('click', checkForUpdates);
+  document.getElementById('check-version')?.addEventListener('click', () => checkForUpdates(false));
+  document.getElementById('header-check-version')?.addEventListener('click', () => checkForUpdates(false));
+  document.getElementById('dashboard-check-version')?.addEventListener('click', () => checkForUpdates(false));
   
-  // Automatische Versionsprüfung beim Start (optional)
-  // setTimeout(checkForUpdates, 2000);
+  // Banner schließen
+  document.getElementById('close-update-banner')?.addEventListener('click', () => {
+    document.getElementById('update-banner').classList.remove('show');
+  });
+  
+  // Automatische Versionsprüfung beim Start
+  setTimeout(() => checkForUpdates(true), 2000);
 
   // Install prompt (still available via browser menu)
   let deferredPrompt = null;

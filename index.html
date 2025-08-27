@@ -139,6 +139,19 @@
     .update-available a{ color:#166534; text-decoration:none; font-weight:500; }
     .update-available a:hover{ text-decoration:underline; }
     
+    /* Update Banner */
+    .update-banner{ background:#dcfce7; color:#166534; border-bottom:1px solid #4ade80; padding:8px 16px; display:none; align-items:center; justify-content:space-between; font-size:13px; }
+    .update-banner.show{ display:flex; }
+    .update-banner-content{ display:flex; align-items:center; gap:8px; }
+    .update-banner-close{ background:none; border:none; color:#166534; cursor:pointer; font-size:16px; padding:0; }
+    .update-banner-close:hover{ opacity:0.7; }
+    
+    /* Header Version Info */
+    .header-version{ display:flex; align-items:center; gap:8px; font-size:11px; opacity:0.8; }
+    .header-version-current{ font-family:monospace; background:rgba(255,255,255,0.2); padding:2px 6px; border-radius:4px; }
+    .header-version-check{ background:rgba(255,255,255,0.2); border:none; color:#fff; padding:2px 6px; border-radius:4px; cursor:pointer; font-size:10px; }
+    .header-version-check:hover{ background:rgba(255,255,255,0.3); }
+    
     /* NEWS2 Table */
     .news2-table{ width:100%; border-collapse:collapse; margin:12px 0; font-size:12px; }
     .news2-table th, .news2-table td{ border:1px solid var(--border); padding:6px 8px; text-align:center; }
@@ -164,6 +177,15 @@
   </style>
 </head>
 <body>
+  <!-- Update Banner -->
+  <div class="update-banner" id="update-banner">
+    <div class="update-banner-content">
+      <strong>Update verfügbar!</strong>
+      <a href="#" id="banner-update-link" target="_blank">Neue Version herunterladen</a>
+    </div>
+    <button class="update-banner-close" id="close-update-banner">×</button>
+  </div>
+
   <header class="app">
     <div>
       <h1 id="app-title">AKH Celle · Medizinische Leitlinien</h1>
@@ -171,6 +193,10 @@
     </div>
     <div class="row">
       <button id="btn-back" class="back-btn" style="display:none;">← Zurück</button>
+      <div class="header-version">
+        <span class="header-version-current" id="header-version">v1.0.1</span>
+        <button class="header-version-check" id="header-check-version">Updates</button>
+      </div>
     </div>
   </header>
 
@@ -180,6 +206,16 @@
       <div class="dashboard-title">
         <h2>Medizinische Leitlinien</h2>
         <p>Wählen Sie einen Bereich für detaillierte Informationen und Rechner</p>
+        
+        <div class="version-info" style="justify-content:center; margin-top:16px;">
+          <span>App Version:</span>
+          <span class="version-current">v1.0.1</span>
+          <button class="version-check-btn" id="dashboard-check-version">Updates prüfen</button>
+        </div>
+        <div id="dashboard-update-notification" class="update-available" style="display:none; max-width:400px; margin:8px auto;">
+          <strong>Update verfügbar!</strong> 
+          <a href="#" id="dashboard-update-link" target="_blank">Neue Version herunterladen</a>
+        </div>
       </div>
       
       <div class="tile-grid">
@@ -694,7 +730,7 @@
             
             <div class="version-info">
               <span>Version:</span>
-              <span class="version-current" id="current-version">1.0.0</span>
+              <span class="version-current" id="current-version">1.0.1</span>
               <button class="version-check-btn" id="check-version">Updates prüfen</button>
             </div>
             <div id="update-notification" class="update-available" style="display:none;">
