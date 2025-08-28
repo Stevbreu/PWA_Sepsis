@@ -1496,6 +1496,151 @@
   
   window.showModule=showModule;
 })();
+
+/* KORRIGIERTE Therapie-Navigation */
+
+let therapyCurrentView = 'overview'; // State tracking
+
+const therapyTab=document.querySelector('[data-tab="antibiotika-therapie"]');
+if(therapyTab){
+  therapyTab.addEventListener('click',()=>{
+    setTimeout(()=>{
+      const pane=$('pane-antibiotika-therapie');
+      if(pane){
+        therapyCurrentView = 'overview';
+        renderTherapyView(pane);
+      }
+    },100);
+  });
+}
+
+function renderTherapyView(pane){
+  if(therapyCurrentView === 'overview'){
+    renderOverview(pane);
+  }
+}
+
+function renderOverview(pane){
+  const loading=pane.querySelector('.therapy-loading');
+  if(loading) loading.remove();
+  
+  pane.innerHTML='<div class="therapy-navigator">'+
+  '<div class="therapy-search"><input type="text" id="therapy-search" placeholder="🔍 Therapie suchen..." class="therapy-search-input"></div>'+
+  '<div class="therapy-categories">'+
+  '<div class="therapy-category-card" data-category="abdominal" style="border-left: 4px solid #dc2626"><h3>🏥 1.1 Abdominalinfektionen</h3>'+
+  '<div class="therapy-subcategories" style="display:none">'+
+  '<div class="therapy-subcategory" data-therapy="appendizitis"><h4>1.1.1 Akute Appendizitis</h4></div>'+
+  '<div class="therapy-subcategory" data-therapy="cholangitis"><h4>1.1.2 Akute Cholangitis</h4></div>'+
+  '<div class="therapy-subcategory" data-therapy="peritonitis"><h4>1.1.3 Peritonitis</h4></div>'+
+  '</div></div>'+
+  '<div class="therapy-category-card" data-category="respiratory" style="border-left: 4px solid #7c3aed"><h3>🫁 1.2 Atemwegsinfektionen</h3>'+
+  '<div class="therapy-subcategories" style="display:none">'+
+  '<div class="therapy-subcategory" data-therapy="cap"><h4>1.2.1 Ambulant erworbene Pneumonie</h4></div>'+
+  '<div class="therapy-subcategory" data-therapy="copd"><h4>1.2.2 COPD-Exazerbation</h4></div>'+
+  '</div></div>'+
+  '<div class="therapy-category-card" data-category="urinary" style="border-left: 4px solid #059669"><h3>🫘 1.3 Harnwegsinfektionen</h3>'+
+  '<div class="therapy-subcategories" style="display:none">'+
+  '<div class="therapy-subcategory" data-therapy="cystitis"><h4>1.3.1 Unkomplizierte Zystitis</h4></div>'+
+  '<div class="therapy-subcategory" data-therapy="pyelonephritis"><h4>1.3.2 Akute Pyelonephritis</h4></div>'+
+  '</div></div>'+
+  '<div class="therapy-category-card" data-category="skin" style="border-left: 4px solid #f59e0b"><h3>🩹 1.4 Haut- und Weichteilinfektionen</h3>'+
+  '<div class="therapy-subcategories" style="display:none">'+
+  '<div class="therapy-subcategory" data-therapy="cellulitis"><h4>1.4.1 Zellulitis/Erysipel</h4></div>'+
+  '<div class="therapy-subcategory" data-therapy="abscess"><h4>1.4.2 Abszess</h4></div>'+
+  '</div></div>'+
+  '</div></div>';
+  
+  // Event Listeners JEDES MAL NEU setzen
+  setupTherapyEvents(pane);
+}
+
+function setupTherapyEvents(pane){
+  // Kategorie-Klicks (Ausklappen)
+  pane.querySelectorAll('.therapy-category-card').forEach(card=>{
+    card.addEventListener('click',e=>{
+      if(e.target.closest('.therapy-subcategory')) return;
+      e.preventDefault();
+      const sub=card.querySelector('.therapy-subcategories');
+      const isHidden = sub.style.display==='none';
+      
+      // Alle zuklappen
+      pane.querySelectorAll('.therapy-subcategories').forEach(s=>s.style.display='none');
+      // Diese aufklappen wenn sie zu war
+      if(isHidden) sub.style.display='block';
+    });
+  });
+  
+  // Therapie-Detail Klicks
+  pane.querySelectorAll('.therapy-subcategory').forEach(sub=>{
+    sub.addEventListener('click',e=>{
+      e.stopPropagation();
+      const therapy = sub.dataset.therapy;
+      const title = sub.querySelector('h4').textContent;
+      showTherapyDetail(pane, therapy, title);
+    });
+  });
+  
+  // Suchfunktion
+  const search = pane.querySelector('#therapy-search');
+  if(search){
+    search.addEventListener('input',e=>{
+      const term=e.target.value.toLowerCase();
+      pane.querySelectorAll('.therapy-category-card').forEach(card=>{
+        card.style.display = card.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+      });
+    });
+  }
+}
+
+function showTherapyDetail(pane, therapy, title){
+  therapyCurrentView = 'detail';
+  
+  // Therapie-spezifische Inhalte
+  const therapyData = {
+    appendizitis: {
+      title: '1.1.1 Akute Appendizitis', 
+      icon: '🏥',
+      first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. (5-7 Tage)', 'Cefuroxim 1,5g 3x + Metronidazol 500mg 3x täglich i.v.'],
+      alternatives: ['Ciprofloxacin 400mg 2x + Metronidazol 500mg 3x täglich i.v.', 'Piperacillin/Tazobactam 4,5g 3x täglich i.v. (komplizierte Form)']
+    },
+    copd: {
+      title: '1.2.2 COPD-Exazerbation',
+      icon: '🫁', 
+      first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. (5-7 Tage)', 'Ceftriaxon 2g 1x täglich i.v. (5-7 Tage)'],
+      alternatives: ['Levofloxacin 500mg 1x täglich i.v. (5-7 Tage)', 'Moxifloxacin 400mg 1x täglich i.v. (5-7 Tage)']
+    }
+  };
+  
+  const data = therapyData[therapy] || {
+    title: title,
+    icon: '💊',
+    first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v.', 'Therapiedauer: 5-7 Tage'],
+    alternatives: ['Ciprofloxacin 400mg 2x täglich i.v.', 'Dosisanpassung bei Niereninsuffizienz']
+  };
+  
+  pane.innerHTML='<div class="therapy-navigator">'+
+  '<div class="therapy-detail-header">'+
+  '<button class="btn" id="therapy-back-btn">← Zurück zur Übersicht</button>'+
+  '<h2>'+data.icon+' '+data.title+'</h2>'+
+  '</div>'+
+  '<div class="card">'+
+  '<h3>💊 Erstlinientherapie:</h3>'+
+  '<ul>'+data.first.map(item=>'<li>'+item+'</li>').join('')+'</ul>'+
+  '<h3>🔄 Alternative Therapien:</h3>'+
+  '<ul>'+data.alternatives.map(item=>'<li>'+item+'</li>').join('')+'</ul>'+
+  '<div class="note"><strong>💡 Klinischer Hinweis:</strong> Bei Therapieversagen oder komplexen Fällen infektiologisches Konsil erwägen. Dosisanpassung bei eingeschränkter Nierenfunktion beachten.</div>'+
+  '</div></div>';
+  
+  // Zurück-Button Event Listener
+  const backBtn = pane.querySelector('#therapy-back-btn');
+  if(backBtn){
+    backBtn.addEventListener('click',e=>{
+      e.preventDefault();
+      therapyCurrentView = 'overview';
+      renderOverview(pane); // Komplett neu rendern!
+    });
+  }
+}
   </script>
 </body>
 </html>
