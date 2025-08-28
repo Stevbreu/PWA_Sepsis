@@ -1,0 +1,79 @@
+name: PWA Deployment
+on:
+  push:
+    branches: ["main"]
+  #pull_request:
+  #  branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # <-- Erlaubt GHCR-Zugriff
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push the Docker image
+        run: |
+          IMAGE_NAME=ghcr.io/stevbreu/pwa-sepsis/image
+          TAG=$(date +%s)
+
+          docker build . \
+            --file Dockerfile \
+            --tag $IMAGE_NAME:$TAG \
+            --tag $IMAGE_NAME:latest
+
+          docker push $IMAGE_NAME:$TAG
+          docker push $IMAGE_NAME:latest
+
+          echo "IMAGE_TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: 23.88.11.69
+          username: steven01
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 122
+          script: |
+            set -e  # Exit on error
+            
+            echo "🔍 Checking current container status..."
+            docker ps -a | grep pwa-sepsis || echo "No existing container found"
+            
+            echo "🛑 Gracefully stopping existing container..."
+            docker stop pwa-sepsis || true
+            sleep 5
+            docker rm pwa-sepsis || true
+            
+            echo "🧹 Cleaning up old images..."
+            docker image prune -f
+            
+            echo "📥 Pulling new image..."
+            docker login ghcr.io -u stevbreu -p ${{ secrets.GITHUB_TOKEN }}
+            docker pull ghcr.io/stevbreu/pwa-sepsis/image:${{ env.IMAGE_TAG }}
+            
+            echo "🚀 Starting new PWA container..."
+            docker run -d --restart=unless-stopped --name pwa-sepsis \
+              -p 3306:80 \
+              --health-cmd="curl -f http://localhost:80/ || exit 1" \
+              --health-interval=30s \
+              --health-timeout=10s \
+              --health-retries=3 \
+              --health-start-period=10s \
+              ghcr.io/stevbreu/pwa-sepsis/image:${{ env.IMAGE_TAG }}
+            
+            echo "⏳ Waiting for container to be healthy..."
+            timeout 60 bash -c 'until docker inspect --format="{{.State.Health.Status}}" pwa-sepsis | grep -q "healthy"; do sleep 2; done'
+            
+            echo "✅ PWA is healthy and running!"
+            docker ps | grep pwa-sepsis
+            
+            echo "📊 Container stats:"
+            docker stats pwa-sepsis --no-stream
+            
+            echo "🌐 PWA verfügbar unter: http://23.88.11.69:3306"

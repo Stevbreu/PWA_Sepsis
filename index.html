@@ -241,7 +241,7 @@
     <div class="row">
       <button id="btn-back" class="back-btn" style="display:none;">← Zurück</button>
       <div class="header-version">
-        <span class="header-version-current" id="header-version">v1.0.1</span>
+        <span class="header-version-current" id="header-version">v1.0.2</span>
         <button class="header-version-check" id="header-check-version">Updates</button>
       </div>
     </div>
@@ -256,7 +256,7 @@
         
         <div class="version-info" style="justify-content:center; margin-top:16px;">
           <span>App Version:</span>
-          <span class="version-current">v1.0.1</span>
+          <span class="version-current">v1.0.2</span>
           <button class="version-check-btn" id="dashboard-check-version">Updates prüfen</button>
         </div>
         <div id="dashboard-update-notification" class="update-available" style="display:none; max-width:400px; margin:8px auto;">
@@ -274,10 +274,10 @@
         </div>
         
         <!-- Pneumonie Kachel -->
-        <div class="tile pneumonia disabled" data-module="pneumonia">
+        <div class="tile pneumonia" data-module="pneumonia">
           <h3>Pneumonie Leitlinie</h3>
-          <p>Leitlinien für Diagnostik und Therapie der ambulant erworbenen Pneumonie</p>
-          <span class="tile-status coming-soon">In Entwicklung</span>
+          <p>Case Map und Leitlinien für Diagnostik und Therapie der ambulant erworbenen Pneumonie</p>
+          <span class="tile-status active">Verfügbar</span>
         </div>
         
         <!-- Weitere Kacheln für zukünftige Module -->
@@ -783,7 +783,7 @@
             
             <div class="version-info">
               <span>Version:</span>
-              <span class="version-current" id="current-version">1.0.1</span>
+              <span class="version-current" id="current-version">1.0.2</span>
               <button class="version-check-btn" id="check-version">Updates prüfen</button>
             </div>
             <div id="update-notification" class="update-available" style="display:none;">
@@ -797,21 +797,298 @@
       </section>
     </div>
 
-    <!-- Pneumonie Modul (Platzhalter) -->
+    <!-- Pneumonie Modul -->
     <div class="module" id="pneumonia-module">
-      <div class="card">
-        <h2>🫁 Pneumonie Leitlinie</h2>
-        <p class="muted">Dieses Modul befindet sich noch in der Entwicklung. Hier werden zukünftig Leitlinien für die Diagnostik und Therapie der ambulant erworbenen Pneumonie verfügbar sein.</p>
-        <div class="note">
-          <strong>Geplante Inhalte:</strong>
-          <ul>
-            <li>Diagnostik-Algorithmus</li>
-            <li>Risikostratifizierung (CRB-65, CURB-65)</li>
-            <li>Antibiotikatherapie-Empfehlungen</li>
-            <li>Verlaufskontrolle und Prognose</li>
-          </ul>
+      <nav class="tabs" role="tablist" aria-label="Pneumonie Register">
+        <button class="tab active" data-tab="definition-pneu" role="tab" aria-selected="true">Definition</button>
+        <button class="tab" data-tab="diagnostik" role="tab">Diagnostik</button>
+        <button class="tab" data-tab="risiko" role="tab">Risikostratifizierung</button>
+        <button class="tab" data-tab="therapie-pneu" role="tab">Therapie</button>
+        <button class="tab" data-tab="casemap" role="tab">Case Map</button>
+        <button class="tab" data-tab="rechner-pneu" role="tab">Rechner</button>
+        <button class="tab" data-tab="verlauf" role="tab">Verlauf</button>
+      </nav>
+
+      <!-- Definition -->
+      <section class="pane active" id="pane-definition-pneu" aria-label="Definition">
+        <div class="grid">
+          <div class="card">
+            <h2>Ambulant erworbene Pneumonie (CAP)</h2>
+            <p><strong>Definition:</strong> Akute Infektion des Lungenparenchyms, die außerhalb des Krankenhauses erworben wurde. Klinische Symptome + radiologischer Nachweis von Infiltraten.</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🫁</span>
+              CAP ist die häufigste zum Tode führende Infektionskrankheit
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Leitsymptome</h2>
+            <p><strong>Typisch:</strong> Husten (produktiv/trocken), Fieber, Schüttelfrost, Dyspnoe, pleuritische Brustschmerzen • <strong>Atypisch:</strong> Verwirrtheit (ältere Patienten), Tachypnoe, Tachykardie</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">⚠️</span>
+              Bei älteren Patienten oft atypische Präsentation!
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Häufige Erreger</h2>
+            <p><strong>Bakteriell:</strong> Streptococcus pneumoniae (häufigster), Haemophilus influenzae, Moraxella catarrhalis • <strong>Atypisch:</strong> Mycoplasma pneumoniae, Chlamydia pneumoniae, Legionella pneumophila • <strong>Viral:</strong> Influenza, RSV, SARS-CoV-2</p>
+          </div>
+          
+          <div class="card note">
+            <strong>Abgrenzung:</strong> Nosokomiale Pneumonie (HAP) ≥ 48h nach Krankenhausaufnahme, Ventilator-assoziierte Pneumonie (VAP).
+          </div>
         </div>
-      </div>
+      </section>
+
+      <!-- Diagnostik -->
+      <section class="pane" id="pane-diagnostik" aria-label="Diagnostik">
+        <div class="grid">
+          <div class="card">
+            <h2>Basisdiagnostik</h2>
+            <p><strong>Anamnese & Klinik:</strong> Symptome, Risikofaktoren, Vorerkrankungen • <strong>Körperliche Untersuchung:</strong> Auskultation (Rasselgeräusche), Perkussion, Atemfrequenz • <strong>Vitalzeichen:</strong> Temperatur, RR, Puls, Atemfrequenz, SpO₂</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🩺</span>
+              Klinische Diagnose hat Priorität vor Bildgebung
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Bildgebung</h2>
+            <p><strong>Röntgen Thorax:</strong> Standard bei Verdacht auf CAP, Infiltratnachweis • <strong>CT Thorax:</strong> Bei unklaren Fällen, Komplikationsverdacht • <strong>Sono Thorax:</strong> Bettseitig möglich, Pleuraerguss</p>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">📸</span>
+              Sonographie kann Röntgen oft ersetzen
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Labordiagnostik</h2>
+            <p><strong>Routine:</strong> BB, CRP, PCT (bei schwerem Verlauf) • <strong>Erregerdiagnostik:</strong> Sputum-Kultur, Blutkulturen (bei stationären Patienten), Urin-Antigene (Pneumokokken, Legionellen) • <strong>Atypische Erreger:</strong> PCR, Serologie</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🧪</span>
+              Erregerdiagnostik vor Antibiotika-Gabe!
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Zusatzdiagnostik</h2>
+            <p><strong>BGA:</strong> Bei Dyspnoe, SpO₂ < 90% • <strong>D-Dimere:</strong> Bei V.a. Lungenembolie • <strong>NT-proBNP:</strong> Herzinsuffizienz-Abklärung</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Risikostratifizierung -->
+      <section class="pane" id="pane-risiko" aria-label="Risikostratifizierung">
+        <div class="grid">
+          <div class="card">
+            <h2>CRB-65 Score (ambulant)</h2>
+            <p><strong>Kriterien (je 1 Punkt):</strong> <strong>C</strong>onfusion (Verwirrtheit), <strong>R</strong>espiratory rate ≥ 30/min, <strong>B</strong>lood pressure < 90 mmHg syst. oder ≤ 60 mmHg diast., Age ≥ <strong>65</strong> Jahre</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">📊</span>
+              <a href="#" class="calc-link" data-calc="crb65">CRB-65 berechnen</a>
+            </div>
+            
+            <p><strong>0 Punkte:</strong> Ambulante Behandlung möglich • <strong>1-2 Punkte:</strong> Stationäre Behandlung erwägen • <strong>≥ 3 Punkte:</strong> Intensivtherapie prüfen</p>
+          </div>
+          
+          <div class="card">
+            <h2>CURB-65 Score (stationär)</h2>
+            <p><strong>Zusätzlich zu CRB-65:</strong> <strong>U</strong>rea > 7 mmol/l (> 42 mg/dl)</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🏥</span>
+              <a href="#" class="calc-link" data-calc="curb65">CURB-65 berechnen</a>
+            </div>
+            
+            <p><strong>0-1 Punkte:</strong> Niedrige Mortalität (< 3%) • <strong>2 Punkte:</strong> Mittlere Mortalität (9%) • <strong>≥ 3 Punkte:</strong> Hohe Mortalität (15-40%)</p>
+          </div>
+          
+          <div class="card">
+            <h2>Behandlungsort</h2>
+            <p><strong>Ambulant:</strong> CRB-65 = 0, keine Risikofaktoren • <strong>Stationär:</strong> CRB-65 ≥ 1, Komorbidität, soziale Indikation • <strong>Intensiv:</strong> Schwere CAP, Organversagen, CURB-65 ≥ 3</p>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">⚡</span>
+              Immunsuppression erhöht Risiko erheblich!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Therapie -->
+      <section class="pane" id="pane-therapie-pneu" aria-label="Therapie">
+        <div class="grid">
+          <div class="card">
+            <h2>Ambulante Therapie</h2>
+            <p><strong>Erstlinie:</strong> Amoxicillin 1g 3x täglich p.o. (7 Tage) • <strong>Alternative:</strong> Amoxicillin/Clavulansäure 875/125 mg 2x täglich • <strong>Bei Allergie:</strong> Azithromycin 500 mg 1x täglich (3 Tage)</p>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">💊</span>
+              Amoxicillin ist Mittel der ersten Wahl
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Stationäre Therapie</h2>
+            <p><strong>Standard:</strong> Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. • <strong>Alternative:</strong> Cefuroxim 1,5g 3x täglich i.v. • <strong>Schwere CAP:</strong> Beta-Laktam + Makrolid</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🏥</span>
+              Bei schwerer CAP Kombinationstherapie erwägen
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Intensivtherapie</h2>
+            <p><strong>Standard:</strong> Piperacillin/Tazobactam 4,5g 3x täglich + Makrolid • <strong>Bei Pseudomonas-Risiko:</strong> + Ciprofloxacin • <strong>MRSA-Verdacht:</strong> + Linezolid/Vancomycin</p>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">🚨</span>
+              Immer Kombinationstherapie auf der Intensivstation
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Map -->
+      <section class="pane" id="pane-casemap" aria-label="Case Map">
+        <div class="grid">
+          <div class="card">
+            <h2>📋 Case Map Pneumonie</h2>
+            <p><strong>Strukturierter Behandlungspfad</strong> für die ambulant erworbene Pneumonie basierend auf aktuellen Leitlinien und klinischer Erfahrung.</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">📄</span>
+              Case Map als PDF in der App verfügbar
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🎯 Behandlungsziele</h2>
+            <ul>
+              <li><strong>Primär:</strong> Erregerelimination und klinische Heilung</li>
+              <li><strong>Sekundär:</strong> Komplikationsvermeidung</li>
+              <li><strong>Tertiär:</strong> Funktionserhalt und Lebensqualität</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>🚨 Red Flags</h2>
+            <ul>
+              <li><strong>Vital:</strong> Schock, schwere Hypoxämie, Bewusstseinseintrübung</li>
+              <li><strong>Klinisch:</strong> Therapieversagen nach 48-72h</li>
+              <li><strong>Radiologisch:</strong> Multilobärer Befall, Cavitation</li>
+            </ul>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">⚠️</span>
+              Bei Red Flags sofortige Intensivierung der Therapie!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rechner -->
+      <section class="pane" id="pane-rechner-pneu" aria-label="Rechner">
+        <div class="grid">
+          <div class="card">
+            <h2>CRB-65 Score</h2>
+            <div class="stack">
+              <label class="row">
+                <input type="checkbox" id="crb-confusion"> <span>Confusion (Verwirrtheit)</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="crb-respiratory"> <span>Respiratory rate ≥ 30/min</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="crb-bloodpressure"> <span>Blood pressure < 90/60 mmHg</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="crb-age"> <span>Age ≥ 65 Jahre</span>
+              </label>
+              <div class="row">
+                <button class="btn primary" id="btn-crb65">CRB-65 berechnen</button>
+              </div>
+              <div class="row">
+                <span class="pill">Score: <strong id="crb65-result">0</strong> Punkte</span>
+                <span class="pill" id="crb65-recommendation">Ambulante Behandlung möglich</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>CURB-65 Score</h2>
+            <div class="stack">
+              <div class="row">
+                <label for="curb-urea" class="muted">Harnstoff (mg/dl)</label>
+                <input id="curb-urea" type="number" min="0" step="1" value="30" />
+              </div>
+              <label class="row">
+                <input type="checkbox" id="curb-confusion"> <span>Confusion (Verwirrtheit)</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="curb-respiratory"> <span>Respiratory rate ≥ 30/min</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="curb-bloodpressure"> <span>Blood pressure < 90/60 mmHg</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="curb-age"> <span>Age ≥ 65 Jahre</span>
+              </label>
+              <div class="row">
+                <button class="btn primary" id="btn-curb65">CURB-65 berechnen</button>
+              </div>
+              <div class="row">
+                <span class="pill">Score: <strong id="curb65-result">0</strong> Punkte</span>
+                <span class="pill" id="curb65-mortality">Mortalität: < 3%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="note">Hinweis: Diese Rechner dienen der Orientierung. Klinische Beurteilung und individuelle Faktoren sind maßgeblich.</p>
+      </section>
+
+      <!-- Verlauf -->
+      <section class="pane" id="pane-verlauf" aria-label="Verlauf & Prognose">
+        <div class="grid">
+          <div class="card">
+            <h2>Verlaufskontrolle</h2>
+            <p><strong>Klinisch:</strong> Fieber, Dyspnoe, Husten, Allgemeinzustand • <strong>Labor:</strong> CRP-Verlauf, Leukozyten • <strong>Radiologisch:</strong> Nur bei Komplikationen oder Therapieversagen</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">📈</span>
+              Klinische Besserung meist vor radiologischer Aufklärung
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Therapieversagen</h2>
+            <p><strong>Definition:</strong> Keine Besserung nach 48-72h oder Verschlechterung • <strong>Ursachen:</strong> Resistenz, atypische Erreger, Komplikationen • <strong>Vorgehen:</strong> Erregerdiagnostik, Therapieänderung</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🔄</span>
+              Bei Therapieversagen Behandlungsort überdenken
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Nachsorge & Prävention</h2>
+            <p><strong>Nachkontrolle:</strong> 4-6 Wochen nach Therapieende • <strong>Impfungen:</strong> Pneumokokken, Influenza • <strong>Risikofaktoren:</strong> Rauchen, COPD behandeln</p>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">💉</span>
+              Pneumokokken-Impfung reduziert Rezidivrisiko erheblich
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 

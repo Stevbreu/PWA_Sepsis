@@ -51,6 +51,7 @@
   // Main tabs within modules
   const tabs = document.querySelectorAll('.tab');
   const panes = {
+    // Sepsis panes
     definition: document.getElementById('pane-definition'),
     screening: document.getElementById('pane-screening'),
     akut: document.getElementById('pane-akut'),
@@ -58,6 +59,14 @@
     timeline: document.getElementById('pane-timeline'),
     rechner: document.getElementById('pane-rechner'),
     nachsorge: document.getElementById('pane-nachsorge'),
+    // Pneumonie panes
+    'definition-pneu': document.getElementById('pane-definition-pneu'),
+    diagnostik: document.getElementById('pane-diagnostik'),
+    risiko: document.getElementById('pane-risiko'),
+    'therapie-pneu': document.getElementById('pane-therapie-pneu'),
+    casemap: document.getElementById('pane-casemap'),
+    'rechner-pneu': document.getElementById('pane-rechner-pneu'),
+    verlauf: document.getElementById('pane-verlauf'),
   };
   tabs.forEach(btn => btn.addEventListener('click', () => {
     tabs.forEach(b => {
@@ -132,6 +141,12 @@
               break;
             case 'ibw':
               targetElement = document.getElementById('sex');
+              break;
+            case 'crb65':
+              targetElement = document.getElementById('crb-confusion');
+              break;
+            case 'curb65':
+              targetElement = document.getElementById('curb-urea');
               break;
           }
           if (targetElement) {
@@ -339,5 +354,50 @@
     document.getElementById('ibw').textContent = ibw;
     document.getElementById('vt6').textContent = vt6;
     document.getElementById('vt48').textContent = vt4 + '–' + vt8;
+  });
+
+  // Pneumonie Rechner
+  // CRB-65 Score
+  document.getElementById('btn-crb65')?.addEventListener('click', () => {
+    let score = 0;
+    if (document.getElementById('crb-confusion').checked) score++;
+    if (document.getElementById('crb-respiratory').checked) score++;
+    if (document.getElementById('crb-bloodpressure').checked) score++;
+    if (document.getElementById('crb-age').checked) score++;
+    
+    document.getElementById('crb65-result').textContent = score;
+    
+    let recommendation = '';
+    if (score === 0) {
+      recommendation = 'Ambulante Behandlung möglich';
+    } else if (score <= 2) {
+      recommendation = 'Stationäre Behandlung erwägen';
+    } else {
+      recommendation = 'Intensivtherapie prüfen';
+    }
+    document.getElementById('crb65-recommendation').textContent = recommendation;
+  });
+
+  // CURB-65 Score
+  document.getElementById('btn-curb65')?.addEventListener('click', () => {
+    let score = 0;
+    const urea = parseFloat(document.getElementById('curb-urea').value || '0');
+    if (urea > 42) score++; // > 42 mg/dl entspricht > 7 mmol/l
+    if (document.getElementById('curb-confusion').checked) score++;
+    if (document.getElementById('curb-respiratory').checked) score++;
+    if (document.getElementById('curb-bloodpressure').checked) score++;
+    if (document.getElementById('curb-age').checked) score++;
+    
+    document.getElementById('curb65-result').textContent = score;
+    
+    let mortality = '';
+    if (score <= 1) {
+      mortality = 'Mortalität: < 3%';
+    } else if (score === 2) {
+      mortality = 'Mortalität: ~9%';
+    } else {
+      mortality = 'Mortalität: 15-40%';
+    }
+    document.getElementById('curb65-mortality').textContent = mortality;
   });
 })();
