@@ -1,0 +1,355 @@
+<!-- Antibiotikatherapie Modul -->
+<div class="module" id="antibiotika-module">
+  <nav class="tabs" role="tablist" aria-label="Antibiotikatherapie Register">
+    <button class="tab active" data-tab="antibiotika-grundlagen" role="tab" aria-selected="true">Grundlagen</button>
+    <button class="tab" data-tab="antibiotika-therapie" role="tab">Therapie</button>
+    <button class="tab" data-tab="antibiotika-resistenzen" role="tab">Resistenzen</button>
+    <button class="tab" data-tab="antibiotika-prophylaxe" role="tab">Prophylaxe</button>
+    <button class="tab" data-tab="antibiotika-tdm" role="tab">TDM</button>
+    <button class="tab" data-tab="antibiotika-leitlinien" role="tab">Leitlinien</button>
+  </nav>
+
+  <!-- Grundlagen -->
+  <section class="pane active" id="pane-antibiotika-grundlagen" aria-label="Grundlagen">
+    <div class="grid">
+      <div class="card">
+        <h2>🦠 Antiinfektiva-Leitfaden</h2>
+        <p><strong>Ziel:</strong> Rationale Antibiotikatherapie zur Verbesserung der Patientenversorgung und Reduktion von Resistenzentwicklungen</p>
+        
+        <div class="badge badge-info">
+          <span class="badge-icon">ℹ️</span>
+          Leitfaden basiert auf aktuellen AWMF-Leitlinien und klinischer Erfahrung
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>⚖️ Allgemeine Prinzipien</h2>
+        <ul>
+          <li><strong>Indikation:</strong> Strenge Indikationsstellung für Antibiotika</li>
+          <li><strong>Diagnostik:</strong> Erregerdiagnostik vor Therapiebeginn wenn möglich</li>
+          <li><strong>Zielgerichtet:</strong> Fokussierte Therapie nach Antibiogramm</li>
+          <li><strong>De-Eskalation:</strong> Spektrum einengen sobald möglich</li>
+          <li><strong>Dauer:</strong> So kurz wie möglich, so lange wie nötig</li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <h2>🔬 Diagnostik vor Therapie</h2>
+        <p><strong>Wichtigste Regel:</strong> Die mikrobiologische Diagnostik sollte möglichst vor Einleitung einer antibiotischen Therapie erfolgen!</p>
+        
+        <div class="badge badge-warning">
+          <span class="badge-icon">⚠️</span>
+          Bei schweren Infektionen Therapie nicht durch Diagnostik verzögern
+        </div>
+        
+        <ul>
+          <li><strong>Blutkulturen:</strong> Bei Sepsisverdacht ≥2 Sets</li>
+          <li><strong>Urinkultur:</strong> Bei Harnwegsinfektionen</li>
+          <li><strong>Sputumkultur:</strong> Bei Pneumonie</li>
+          <li><strong>Wundabstriche:</strong> Bei Weichteilinfektionen</li>
+        </ul>
+      </div>
+      
+      <div class="card note">
+        <strong>Hinweis:</strong> Die Sepsis ist eine schwere Erkrankung – der Beginn einer (antibiotischen) Therapie sollte durch die Diagnostik nicht verzögert werden!
+      </div>
+    </div>
+  </section>
+
+  <!-- Therapie -->
+  <section class="pane" id="pane-antibiotika-therapie" aria-label="Therapie">
+    <div class="grid">
+      <div class="card">
+        <h2>💊 Therapieprinzipien</h2>
+        <ul>
+          <li><strong>Kalkuliert:</strong> Breitspektrum bei unklarem Erreger</li>
+          <li><strong>Zielgerichtet:</strong> Nach Erregernachweis fokussieren</li>
+          <li><strong>Kombinationstherapie:</strong> Bei schweren Infektionen initial</li>
+          <li><strong>Monotherapie:</strong> Anstreben nach Stabilisierung</li>
+        </ul>
+        
+        <div class="badge badge-success">
+          <span class="badge-icon">🎯</span>
+          Ziel: Maximale Wirksamkeit bei minimaler Resistenzentwicklung
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>⏰ Zeitfenster</h2>
+        <p><strong>Kritische Infektionen:</strong></p>
+        <ul>
+          <li><strong>Sepsis/Septischer Schock:</strong> Antibiotika innerhalb 1 Stunde</li>
+          <li><strong>Meningitis:</strong> Antibiotika innerhalb 30 Minuten</li>
+          <li><strong>Schwere Pneumonie:</strong> Antibiotika innerhalb 1-3 Stunden</li>
+        </ul>
+        
+        <div class="badge badge-danger">
+          <span class="badge-icon">⚡</span>
+          Zeit ist ein kritischer Faktor bei schweren Infektionen
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>📏 Dosierung & Applikation</h2>
+        <p><strong>Beta-Laktame:</strong> Prolongierte oder kontinuierliche Infusion bevorzugt</p>
+        <ul>
+          <li><strong>Vorteile:</strong> Bessere Gewebepenetration, optimierte PK/PD</li>
+          <li><strong>Indikationen:</strong> Schwere Infektionen, kritisch kranke Patienten</li>
+          <li><strong>Monitoring:</strong> TDM bei enger therapeutischer Breite</li>
+        </ul>
+        
+        <div class="badge badge-info">
+          <span class="badge-icon">💉</span>
+          Kontinuierliche Infusion verbessert Therapieerfolg
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>🔄 De-Eskalation</h2>
+        <p><strong>Tägliche Evaluation:</strong> Ist Vereinfachung der Therapie möglich?</p>
+        <ul>
+          <li>Spektrum einengen nach Antibiogramm</li>
+          <li>Kombination → Monotherapie</li>
+          <li>Intravenös → Oral (bei geeigneten Substanzen)</li>
+          <li>Therapiedauer begrenzen</li>
+        </ul>
+        
+        <div class="badge badge-success">
+          <span class="badge-icon">🎯</span>
+          Procalcitonin zur Steuerung der Therapiedauer nutzen
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resistenzen -->
+  <section class="pane" id="pane-antibiotika-resistenzen" aria-label="Resistenzen">
+    <div class="grid">
+      <div class="card">
+        <h2>🛡️ Multiresistente Erreger (MRE)</h2>
+        <p><strong>Häufige MRE:</strong></p>
+        <ul>
+          <li><strong>MRSA:</strong> Methicillin-resistenter Staph. aureus</li>
+          <li><strong>VRE:</strong> Vancomycin-resistente Enterokokken</li>
+          <li><strong>ESBL:</strong> Extended Spectrum Beta-Lactamase</li>
+          <li><strong>3MRGN/4MRGN:</strong> Multiresistente gramnegative Bakterien</li>
+          <li><strong>CRE:</strong> Carbapenem-resistente Enterobacteriaceae</li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <h2>⚠️ Risikofaktoren für MRE</h2>
+        <ul>
+          <li>Vorherige Antibiotikatherapie (letzten 3 Monate)</li>
+          <li>Krankenhausaufenthalt (letzten 6 Monate)</li>
+          <li>Bekannte MRE-Kolonisation</li>
+          <li>Immunsuppression</li>
+          <li>Invasive Devices (ZVK, Blasenkatheter)</li>
+          <li>Intensivstation</li>
+        </ul>
+        
+        <div class="badge badge-warning">
+          <span class="badge-icon">🚨</span>
+          Bei MRE-Risiko empirische Therapie anpassen
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>💉 MRE-wirksame Substanzen</h2>
+        <p><strong>MRSA:</strong> Vancomycin, Linezolid, Daptomycin, Ceftarolin</p>
+        <p><strong>VRE:</strong> Linezolid, Daptomycin, Tigecyclin</p>
+        <p><strong>ESBL:</strong> Carbapeneme, Colistin (Reserve)</p>
+        <p><strong>CRE:</strong> Colistin, Fosfomycin, Tigecyclin (Kombination)</p>
+        
+        <div class="badge badge-danger">
+          <span class="badge-icon">⚠️</span>
+          Reserve-Antibiotika nur bei gesicherter Indikation
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prophylaxe -->
+  <section class="pane" id="pane-antibiotika-prophylaxe" aria-label="Prophylaxe">
+    <div class="grid">
+      <div class="card">
+        <h2>🏥 Perioperative Prophylaxe</h2>
+        <p><strong>Indikationen:</strong></p>
+        <ul>
+          <li>Saubere Operationen mit Implantat</li>
+          <li>Sauber-kontaminierte Operationen</li>
+          <li>Kontaminierte Operationen</li>
+          <li>Hohes Infektionsrisiko</li>
+        </ul>
+        
+        <div class="badge badge-info">
+          <span class="badge-icon">🕐</span>
+          Single-Shot 30-60 Min vor Hautschnitt
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>🦠 Endokarditisprophylaxe</h2>
+        <p><strong>Hochrisikopatienten:</strong></p>
+        <ul>
+          <li>Klappenersatz (mechanisch/biologisch)</li>
+          <li>Frühere Endokarditis</li>
+          <li>Komplexe angeborene Herzfehler</li>
+          <li>Herztransplantation mit Klappenfehler</li>
+        </ul>
+        
+        <div class="badge badge-warning">
+          <span class="badge-icon">🦷</span>
+          Nur bei zahnärztlichen Eingriffen mit Bakteriämie-Risiko
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>💉 Postexpositionsprophylaxe</h2>
+        <p><strong>Indikationen:</strong></p>
+        <ul>
+          <li>Nadelstichverletzung (HIV, HBV, HCV)</li>
+          <li>Meningokokken-Kontakt</li>
+          <li>Pertussis-Kontakt</li>
+          <li>Milzbrand-Exposition</li>
+        </ul>
+        
+        <div class="badge badge-success">
+          <span class="badge-icon">⏱️</span>
+          Schneller Beginn entscheidend für Wirksamkeit
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TDM -->
+  <section class="pane" id="pane-antibiotika-tdm" aria-label="Therapeutisches Drug Monitoring">
+    <div class="grid">
+      <div class="card">
+        <h2>📊 Therapeutisches Drug Monitoring (TDM)</h2>
+        <p><strong>Indikationen für TDM:</strong></p>
+        <ul>
+          <li>Enge therapeutische Breite</li>
+          <li>Schwere Infektionen</li>
+          <li>Kritisch kranke Patienten</li>
+          <li>Niereninsuffizienz</li>
+          <li>Therapieversagen</li>
+        </ul>
+        
+        <div class="badge badge-info">
+          <span class="badge-icon">🎯</span>
+          TDM optimiert Wirksamkeit und reduziert Toxizität
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>💊 TDM-pflichtige Substanzen</h2>
+        <p><strong>Vancomycin:</strong></p>
+        <ul>
+          <li><strong>Talspiegel:</strong> 15-20 mg/l (schwere Infektionen)</li>
+          <li><strong>AUC/MIC:</strong> >400 (optimal)</li>
+          <li><strong>Monitoring:</strong> Initial nach 3. Dosis</li>
+        </ul>
+        
+        <p><strong>Aminoglykoside:</strong></p>
+        <ul>
+          <li><strong>Peak:</strong> Substanzabhängig</li>
+          <li><strong>Tal:</strong> <1-2 mg/l</li>
+          <li><strong>Monitoring:</strong> Nach 3. Dosis</li>
+        </ul>
+        
+        <div class="badge badge-warning">
+          <span class="badge-icon">⚠️</span>
+          Nephrotoxizität und Ototoxizität beachten
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>🔬 Beta-Laktam TDM</h2>
+        <p><strong>Indikationen:</strong></p>
+        <ul>
+          <li>Kritisch kranke Patienten</li>
+          <li>Verändertes Verteilungsvolumen</li>
+          <li>Niereninsuffizienz</li>
+          <li>Schwere Infektionen mit "schwierigen" Erregern</li>
+        </ul>
+        
+        <p><strong>Zielwerte:</strong> fT>MIC 100% (Meropenem), 70% (Piperacillin)</p>
+        
+        <div class="badge badge-success">
+          <span class="badge-icon">📈</span>
+          Kontinuierliche Infusion erleichtert Zielwert-Erreichung
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leitlinien -->
+  <section class="pane" id="pane-antibiotika-leitlinien" aria-label="Leitlinien & Ressourcen">
+    <div class="grid">
+      <div class="card">
+        <h2>📚 Wichtige Leitlinien</h2>
+        <ul>
+          <li><strong>AWMF:</strong> S3-Leitlinie Sepsis 2025</li>
+          <li><strong>AWMF:</strong> S3-Leitlinie ambulant erworbene Pneumonie</li>
+          <li><strong>AWMF:</strong> S3-Leitlinie Harnwegsinfektionen</li>
+          <li><strong>PEG:</strong> Perioperative Antibiotikaprophylaxe</li>
+          <li><strong>RKI:</strong> Hygienemaßnahmen bei MRE</li>
+        </ul>
+        
+        <div class="badge badge-info">
+          <span class="badge-icon">🌐</span>
+          Aktuelle Leitlinien unter <a href="https://aileitfaden.on-air-appbuilder.com" target="_blank">aileitfaden.on-air-appbuilder.com</a>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>🎓 One Minute Wonder (OMW)</h2>
+        <p><strong>Kurze Fortbildungseinheiten:</strong></p>
+        <ul>
+          <li>Rationale Antibiotikatherapie</li>
+          <li>Fixe Antibiotikakombinationen</li>
+          <li>Asymptomatische Bakteriurie</li>
+          <li>Therapeutisches Drug Monitoring</li>
+          <li>Klinisch relevante Interaktionen</li>
+        </ul>
+        
+        <div class="badge badge-success">
+          <span class="badge-icon">⏱️</span>
+          Schnelle Updates für den klinischen Alltag
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>🏥 Klinikspezifische Empfehlungen</h2>
+        <p><strong>Stabsstelle AMS (Antimicrobial Stewardship):</strong></p>
+        <ul>
+          <li>Lokale Resistenzstatistiken beachten</li>
+          <li>Hausstandard-Empfehlungen befolgen</li>
+          <li>Bei Problemen: Infektiologie konsultieren</li>
+          <li>Interdisziplinäre Visiten nutzen</li>
+        </ul>
+        
+        <div class="badge badge-warning">
+          <span class="badge-icon">🤝</span>
+          Bei komplexen Fällen frühzeitig Expertise hinzuziehen
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>📞 Kontakte</h2>
+        <ul>
+          <li><strong>Infektiologie:</strong> Tel. 5778</li>
+          <li><strong>Mikrobiologie:</strong> Labor-Hotline</li>
+          <li><strong>Apotheke:</strong> Medikamentenberatung</li>
+          <li><strong>Hygiene:</strong> MRE-Beratung</li>
+        </ul>
+        
+        <div class="version-info">
+          <span>Leitfaden Stand:</span>
+          <span class="version-current">Januar 2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

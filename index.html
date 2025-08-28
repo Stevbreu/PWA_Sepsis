@@ -8,220 +8,8 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" sizes="192x192" href="icons/icon-192.png">
   <link rel="icon" sizes="512x512" href="icons/icon-512.png">
-  <style>
-    :root{
-      --brand:#0ea5e9; --ink:#0f172a; --muted:#475569; --bg:#f6f7f9; --card:#ffffff; --border:#e5e7eb;
-      --accent:#22c55e; --warn:#f59e0b; --danger:#ef4444; --sepsis:#dc2626; --pneumonia:#7c3aed;
-    }
-    *{ box-sizing: border-box; }
-    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif; background:var(--bg); color:var(--ink); }
-    
-    /* Header */
-    header.app{ background:var(--brand); color:#fff; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
-    header.app h1{ margin:0; font-size:18px; letter-spacing: .2px; font-weight:600; }
-    header.app .sub{ font-size:11px; opacity:.9; }
-    header.app .back-btn{ background:rgba(255,255,255,0.2); border:none; color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; font-size:13px; }
-    header.app .back-btn:hover{ background:rgba(255,255,255,0.3); }
-    
-    .container{ max-width:1200px; margin:0 auto; padding:20px; }
-    
-    /* Main Dashboard */
-    .dashboard{ display:none; }
-    .dashboard.active{ display:block; }
-    .dashboard-title{ text-align:center; margin-bottom:40px; }
-    .dashboard-title h2{ font-size:28px; font-weight:700; margin:0 0 8px; color:var(--ink); }
-    .dashboard-title p{ color:var(--muted); font-size:16px; margin:0; }
-    
-    /* Tile Grid */
-    .tile-grid{ display:grid; gap:24px; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); margin-bottom:40px; }
-    .tile{ background:#fff; border:1px solid var(--border); border-radius:16px; padding:24px; cursor:pointer; transition:all 0.3s ease; position:relative; overflow:hidden; }
-    .tile:hover{ transform:translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,0.1); border-color:var(--brand); }
-    .tile.disabled{ cursor:not-allowed; opacity:0.7; }
-    .tile.disabled:hover{ transform:none; box-shadow:none; border-color:var(--border); }
-    .tile::before{ content:''; position:absolute; top:0; left:0; right:0; height:4px; }
-    .tile.sepsis::before{ background:var(--sepsis); }
-    .tile.pneumonia::before{ background:var(--pneumonia); }
-    .tile.coming-soon::before{ background:var(--muted); }
-    
-    .tile h3{ font-size:20px; font-weight:600; margin:0 0 8px; }
-    .tile p{ color:var(--muted); margin:0 0 16px; line-height:1.5; }
-    .tile-status{ display:inline-block; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:500; }
-    .tile-status.active{ background:#dcfce7; color:#166534; }
-    .tile-status.coming-soon{ background:#f1f5f9; color:var(--muted); }
-    
-    /* Module Views */
-    .module{ display:none; }
-    .module.active{ display:block; }
-    
-    /* Existing Sepsis Styles */
-    .tabs{ display:flex; gap:6px; flex-wrap:wrap; border-bottom:1px solid var(--border); padding-bottom:8px; margin-bottom:20px; }
-    .tab{ font-size:12px; padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:999px; cursor:pointer; transition:all 0.2s; }
-    .tab:hover{ background:var(--bg); }
-    .tab.active{ background:var(--brand); color:#fff; border-color:transparent; }
-    .pane{ display:none; }
-    .pane.active{ display:block; }
-    .grid{ display:grid; gap:16px; grid-template-columns: 1fr; }
-    @media(min-width:800px){ .grid{ grid-template-columns: 1fr 1fr; } }
-    .card{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px; }
-    .card h2{ font-size:16px; margin:0 0 12px; font-weight:600; }
-    ul{ margin:0; padding-left:20px; }
-    li{ margin:6px 0; line-height:1.4; }
-    .note{ background:#fff7ed; border:1px solid #fed7aa; color:#7c2d12; border-radius:12px; padding:12px; font-size:13px; }
-    .muted{ color:var(--muted); }
-    .kbd{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:11px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:6px; padding:2px 6px; }
-    .row{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-    .stack{ display:flex; flex-direction:column; gap:12px; }
-    input[type="number"], input[type="text"], select{
-      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font-size:14px; }
-    .btn{ padding:10px 16px; border:1px solid var(--border); border-radius:10px; background:#fff; cursor:pointer; font-size:13px; transition:all 0.2s; }
-    .btn:hover{ background:var(--bg); }
-    .btn.primary{ background:var(--brand); color:#fff; border-color:transparent; }
-    .btn.primary:hover{ background:#0284c7; }
-    .footer{ color:var(--muted); padding:40px 16px 30px; text-align:center; font-size:12px; }
-    .pill{ display:inline-block; padding:4px 10px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; font-size:11px; margin:2px; }
-    
-    /* Sub-Tabs für detaillierte Navigation */
-    .sub-tabs{ display:flex; gap:4px; flex-wrap:wrap; margin-bottom:20px; }
-    .sub-tab{ font-size:11px; padding:6px 10px; background:#f8fafc; border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s; color:var(--muted); }
-    .sub-tab:hover{ background:#f1f5f9; }
-    .sub-tab.active{ background:var(--brand); color:#fff; border-color:transparent; }
-    .sub-pane{ display:none; }
-    .sub-pane.active{ display:block; }
-    
-    /* Timeline Styles */
-    .timeline-container{ display:flex; flex-direction:column; gap:20px; }
-    .timeline-item{ display:flex; align-items:flex-start; gap:16px; opacity:0.7; transition:all 0.3s; cursor:pointer; }
-    .timeline-item.active{ opacity:1; }
-    .timeline-item:hover{ opacity:1; }
-    .timeline-marker{ 
-      background:var(--brand); color:#fff; padding:8px 12px; border-radius:8px; 
-      font-size:12px; font-weight:600; min-width:80px; text-align:center;
-      box-shadow:0 2px 4px rgba(14,165,233,0.2);
-    }
-    .timeline-item .card{ flex:1; margin:0; }
-    .timeline-item .card h3{ font-size:16px; margin:0 0 8px; }
-    
-    /* Enhanced Cards */
-    .card h2{ display:flex; align-items:center; gap:8px; }
-    .card p{ margin:8px 0; }
-    .card ul li{ position:relative; }
-    .card ul li strong{ color:var(--ink); }
-    
-    /* Status Indicators */
-    .status-indicator{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
-    .status-indicator.active{ background:var(--accent); }
-    .status-indicator.warning{ background:var(--warn); }
-    .status-indicator.danger{ background:var(--danger); }
-    
-    /* Interactive Elements */
-    .interactive-card{ cursor:pointer; transition:all 0.2s; }
-    .interactive-card:hover{ background:#f8fafc; border-color:var(--brand); }
-    
-    /* Medical Badges */
-    .badge{ display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:8px; font-size:12px; font-weight:500; margin:8px 0; }
-    .badge-info{ background:#dbeafe; color:#1e40af; border:1px solid #93c5fd; }
-    .badge-warning{ background:#fef3c7; color:#d97706; border:1px solid #fbbf24; }
-    .badge-danger{ background:#fee2e2; color:#dc2626; border:1px solid #f87171; }
-    .badge-success{ background:#dcfce7; color:#16a34a; border:1px solid #4ade80; }
-    .badge-icon{ font-size:14px; }
-    
-    /* Links */
-    .calc-link{ color:var(--brand); text-decoration:none; font-weight:500; cursor:pointer; }
-    .calc-link:hover{ text-decoration:underline; }
-    
-    /* Version Check */
-    .version-info{ display:flex; align-items:center; gap:8px; margin-top:12px; }
-    .version-current{ font-family:monospace; background:var(--bg); padding:2px 6px; border-radius:4px; font-size:11px; }
-    .version-check-btn{ background:none; border:1px solid var(--border); padding:4px 8px; border-radius:6px; font-size:11px; cursor:pointer; color:var(--muted); }
-    .version-check-btn:hover{ background:var(--bg); }
-    .version-check-btn:disabled{ opacity:0.5; cursor:not-allowed; }
-    .update-available{ background:#dcfce7; color:#166534; border:1px solid #4ade80; padding:8px 12px; border-radius:8px; font-size:12px; margin-top:8px; }
-    .update-available a{ color:#166534; text-decoration:none; font-weight:500; }
-    .update-available a:hover{ text-decoration:underline; }
-    
-    /* Update Banner */
-    .update-banner{ background:#dcfce7; color:#166534; border-bottom:1px solid #4ade80; padding:8px 16px; display:none; align-items:center; justify-content:space-between; font-size:13px; }
-    .update-banner.show{ display:flex; }
-    .update-banner-content{ display:flex; align-items:center; gap:8px; }
-    .update-banner-close{ background:none; border:none; color:#166534; cursor:pointer; font-size:16px; padding:0; }
-    .update-banner-close:hover{ opacity:0.7; }
-    
-    /* Header Version Info */
-    .header-version{ display:flex; align-items:center; gap:8px; font-size:11px; opacity:0.8; }
-    .header-version-current{ font-family:monospace; background:rgba(255,255,255,0.2); padding:2px 6px; border-radius:4px; }
-    .header-version-check{ background:rgba(255,255,255,0.2); border:none; color:#fff; padding:2px 6px; border-radius:4px; cursor:pointer; font-size:10px; }
-    .header-version-check:hover{ background:rgba(255,255,255,0.3); }
-    
-    /* NEWS2 Table - Responsive */
-    .news2-container{ overflow-x:auto; margin:12px 0; border:1px solid var(--border); border-radius:8px; }
-    .news2-table{ width:100%; min-width:600px; border-collapse:collapse; font-size:11px; }
-    .news2-table th, .news2-table td{ border:1px solid var(--border); padding:4px 6px; text-align:center; white-space:nowrap; }
-    .news2-table th{ background:var(--bg); font-weight:600; font-size:10px; }
-    .news2-table td:first-child{ background:var(--bg-light); font-weight:500; text-align:left; padding-left:8px; min-width:120px; }
-    .news2-score-0{ background:#dcfce7; }
-    .news2-score-1{ background:#fef3c7; }
-    .news2-score-2{ background:#fed7aa; }
-    .news2-score-3{ background:#fee2e2; }
-    
-    /* Mobile Anpassungen */
-    @media (max-width: 768px) {
-      .news2-table{ font-size:10px; }
-      .news2-table th, .news2-table td{ padding:3px 4px; }
-    }
-    
-    /* Responsive */
-    @media(max-width:640px){
-      .container{ padding:16px; }
-      .tile-grid{ grid-template-columns:1fr; gap:16px; }
-      .tile{ padding:20px; }
-      .dashboard-title h2{ font-size:24px; }
-      header.app h1{ font-size:16px; }
-      .timeline-container{ gap:16px; }
-      .timeline-item{ flex-direction:column; gap:8px; }
-      .timeline-marker{ min-width:auto; }
-      .sub-tabs{ gap:2px; }
-      .sub-tab{ font-size:10px; padding:4px 8px; }
-      
-      /* Screening-spezifische Anpassungen */
-      #pane-screening .grid{ gap:12px; }
-      #pane-screening .card{ padding:16px; }
-    }
-    
-    /* Spezielle Screening-Layout Regeln */
-    #pane-screening .grid{ 
-      display: flex; 
-      flex-direction: column; 
-      gap: 20px; 
-    }
-    
-    #pane-screening .screening-top{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    
-    #pane-screening .screening-news2{
-      grid-column: 1/-1;
-    }
-    
-    #pane-screening .screening-bottom{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    
-    /* Tablet Anpassungen */
-    @media(max-width:1024px) and (min-width:641px){
-      #pane-screening .screening-top{ grid-template-columns: 1fr; }
-      #pane-screening .screening-bottom{ grid-template-columns: 1fr; }
-    }
-    
-    /* Mobile Anpassungen für Screening */
-    @media(max-width:640px){
-      #pane-screening .screening-top{ grid-template-columns: 1fr; }
-      #pane-screening .screening-bottom{ grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
   <!-- Update Banner -->
@@ -241,7 +29,7 @@
     <div class="row">
       <button id="btn-back" class="back-btn" style="display:none;">← Zurück</button>
       <div class="header-version">
-        <span class="header-version-current" id="header-version">v1.0.3</span>
+        <span class="header-version-current" id="header-version">v1.0.4</span>
         <button class="header-version-check" id="header-check-version">Updates</button>
       </div>
     </div>
@@ -256,7 +44,7 @@
         
         <div class="version-info" style="justify-content:center; margin-top:16px;">
           <span>App Version:</span>
-          <span class="version-current">v1.0.3</span>
+          <span class="version-current">v1.0.4</span>
           <button class="version-check-btn" id="dashboard-check-version">Updates prüfen</button>
         </div>
         <div id="dashboard-update-notification" class="update-available" style="display:none; max-width:400px; margin:8px auto;">
@@ -277,6 +65,13 @@
         <div class="tile pneumonia" data-module="pneumonia">
           <h3>Pneumonie Leitlinie</h3>
           <p>Case Map und Leitlinien für Diagnostik und Therapie der ambulant erworbenen Pneumonie</p>
+          <span class="tile-status active">Verfügbar</span>
+        </div>
+        
+        <!-- Antibiotikatherapie Kachel -->
+        <div class="tile antibiotika" data-module="antibiotika">
+          <h3>Antibiotikatherapie</h3>
+          <p>Antiinfektiva-Leitfaden mit Therapieprinzipien, Resistenzen und TDM für rationale Antibiose</p>
           <span class="tile-status active">Verfügbar</span>
         </div>
         
@@ -783,7 +578,7 @@
             
             <div class="version-info">
               <span>Version:</span>
-              <span class="version-current" id="current-version">1.0.3</span>
+              <span class="version-current" id="current-version">1.0.4</span>
               <button class="version-check-btn" id="check-version">Updates prüfen</button>
             </div>
             <div id="update-notification" class="update-available" style="display:none;">
@@ -1090,10 +885,327 @@
         </div>
       </section>
     </div>
+
+    <!-- Antibiotikatherapie Modul -->
+    <div class="module" id="antibiotika-module">
+      <nav class="tabs" role="tablist" aria-label="Antibiotikatherapie Register">
+        <button class="tab active" data-tab="antibiotika-grundlagen" role="tab" aria-selected="true">Grundlagen</button>
+        <button class="tab" data-tab="antibiotika-therapie" role="tab">Therapie</button>
+        <button class="tab" data-tab="antibiotika-resistenzen" role="tab">Resistenzen</button>
+        <button class="tab" data-tab="antibiotika-prophylaxe" role="tab">Prophylaxe</button>
+        <button class="tab" data-tab="antibiotika-tdm" role="tab">TDM</button>
+        <button class="tab" data-tab="antibiotika-leitlinien" role="tab">Leitlinien</button>
+      </nav>
+
+      <!-- Grundlagen -->
+      <section class="pane active" id="pane-antibiotika-grundlagen" aria-label="Grundlagen">
+        <div class="grid">
+          <div class="card">
+            <h2>🦠 Antiinfektiva-Leitfaden</h2>
+            <p><strong>Ziel:</strong> Rationale Antibiotikatherapie zur Verbesserung der Patientenversorgung und Reduktion von Resistenzentwicklungen</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">ℹ️</span>
+              Leitfaden basiert auf aktuellen AWMF-Leitlinien und klinischer Erfahrung
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>⚖️ Allgemeine Prinzipien</h2>
+            <ul>
+              <li><strong>Indikation:</strong> Strenge Indikationsstellung für Antibiotika</li>
+              <li><strong>Diagnostik:</strong> Erregerdiagnostik vor Therapiebeginn wenn möglich</li>
+              <li><strong>Zielgerichtet:</strong> Fokussierte Therapie nach Antibiogramm</li>
+              <li><strong>De-Eskalation:</strong> Spektrum einengen sobald möglich</li>
+              <li><strong>Dauer:</strong> So kurz wie möglich, so lange wie nötig</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>🔬 Diagnostik vor Therapie</h2>
+            <p><strong>Wichtigste Regel:</strong> Die mikrobiologische Diagnostik sollte möglichst vor Einleitung einer antibiotischen Therapie erfolgen!</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">⚠️</span>
+              Bei schweren Infektionen Therapie nicht durch Diagnostik verzögern
+            </div>
+            
+            <ul>
+              <li><strong>Blutkulturen:</strong> Bei Sepsisverdacht ≥2 Sets</li>
+              <li><strong>Urinkultur:</strong> Bei Harnwegsinfektionen</li>
+              <li><strong>Sputumkultur:</strong> Bei Pneumonie</li>
+              <li><strong>Wundabstriche:</strong> Bei Weichteilinfektionen</li>
+            </ul>
+          </div>
+          
+          <div class="card note">
+            <strong>Hinweis:</strong> Die Sepsis ist eine schwere Erkrankung – der Beginn einer (antibiotischen) Therapie sollte durch die Diagnostik nicht verzögert werden!
+          </div>
+        </div>
+      </section>
+
+      <!-- Therapie -->
+      <section class="pane" id="pane-antibiotika-therapie" aria-label="Spezifische Therapien">
+        <div class="therapy-loading">
+          <div class="card">
+            <h2>🔄 Lade strukturierte Therapieempfehlungen...</h2>
+            <p>Die detaillierten Therapieempfehlungen werden geladen. Falls dieser Text bestehen bleibt, überprüfen Sie bitte Ihre JavaScript-Einstellungen.</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">💡</span>
+              Diese Sektion wird durch den Therapy-Navigator ersetzt
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fallback für deaktiviertes JavaScript -->
+        <noscript>
+          <div class="card note">
+            <strong>JavaScript erforderlich:</strong> Für die strukturierten Therapieempfehlungen ist JavaScript erforderlich. Bitte aktivieren Sie JavaScript in Ihren Browser-Einstellungen.
+          </div>
+        </noscript>
+      </section>
+
+      <!-- Resistenzen -->
+      <section class="pane" id="pane-antibiotika-resistenzen" aria-label="Resistenzen">
+        <div class="grid">
+          <div class="card">
+            <h2>🛡️ Multiresistente Erreger (MRE)</h2>
+            <p><strong>Häufige MRE:</strong></p>
+            <ul>
+              <li><strong>MRSA:</strong> Methicillin-resistenter Staph. aureus</li>
+              <li><strong>VRE:</strong> Vancomycin-resistente Enterokokken</li>
+              <li><strong>ESBL:</strong> Extended Spectrum Beta-Lactamase</li>
+              <li><strong>3MRGN/4MRGN:</strong> Multiresistente gramnegative Bakterien</li>
+              <li><strong>CRE:</strong> Carbapenem-resistente Enterobacteriaceae</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>⚠️ Risikofaktoren für MRE</h2>
+            <ul>
+              <li>Vorherige Antibiotikatherapie (letzten 3 Monate)</li>
+              <li>Krankenhausaufenthalt (letzten 6 Monate)</li>
+              <li>Bekannte MRE-Kolonisation</li>
+              <li>Immunsuppression</li>
+              <li>Invasive Devices (ZVK, Blasenkatheter)</li>
+              <li>Intensivstation</li>
+            </ul>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🚨</span>
+              Bei MRE-Risiko empirische Therapie anpassen
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>💉 MRE-wirksame Substanzen</h2>
+            <p><strong>MRSA:</strong> Vancomycin, Linezolid, Daptomycin, Ceftarolin</p>
+            <p><strong>VRE:</strong> Linezolid, Daptomycin, Tigecyclin</p>
+            <p><strong>ESBL:</strong> Carbapeneme, Colistin (Reserve)</p>
+            <p><strong>CRE:</strong> Colistin, Fosfomycin, Tigecyclin (Kombination)</p>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">⚠️</span>
+              Reserve-Antibiotika nur bei gesicherter Indikation
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prophylaxe -->
+      <section class="pane" id="pane-antibiotika-prophylaxe" aria-label="Prophylaxe">
+        <div class="grid">
+          <div class="card">
+            <h2>🏥 Perioperative Prophylaxe</h2>
+            <p><strong>Indikationen:</strong></p>
+            <ul>
+              <li>Saubere Operationen mit Implantat</li>
+              <li>Sauber-kontaminierte Operationen</li>
+              <li>Kontaminierte Operationen</li>
+              <li>Hohes Infektionsrisiko</li>
+            </ul>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🕐</span>
+              Single-Shot 30-60 Min vor Hautschnitt
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🦠 Endokarditisprophylaxe</h2>
+            <p><strong>Hochrisikopatienten:</strong></p>
+            <ul>
+              <li>Klappenersatz (mechanisch/biologisch)</li>
+              <li>Frühere Endokarditis</li>
+              <li>Komplexe angeborene Herzfehler</li>
+              <li>Herztransplantation mit Klappenfehler</li>
+            </ul>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🦷</span>
+              Nur bei zahnärztlichen Eingriffen mit Bakteriämie-Risiko
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>💉 Postexpositionsprophylaxe</h2>
+            <p><strong>Indikationen:</strong></p>
+            <ul>
+              <li>Nadelstichverletzung (HIV, HBV, HCV)</li>
+              <li>Meningokokken-Kontakt</li>
+              <li>Pertussis-Kontakt</li>
+              <li>Milzbrand-Exposition</li>
+            </ul>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">⏱️</span>
+              Schneller Beginn entscheidend für Wirksamkeit
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TDM -->
+      <section class="pane" id="pane-antibiotika-tdm" aria-label="Therapeutisches Drug Monitoring">
+        <div class="grid">
+          <div class="card">
+            <h2>📊 Therapeutisches Drug Monitoring (TDM)</h2>
+            <p><strong>Indikationen für TDM:</strong></p>
+            <ul>
+              <li>Enge therapeutische Breite</li>
+              <li>Schwere Infektionen</li>
+              <li>Kritisch kranke Patienten</li>
+              <li>Niereninsuffizienz</li>
+              <li>Therapieversagen</li>
+            </ul>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🎯</span>
+              TDM optimiert Wirksamkeit und reduziert Toxizität
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>💊 TDM-pflichtige Substanzen</h2>
+            <p><strong>Vancomycin:</strong></p>
+            <ul>
+              <li><strong>Talspiegel:</strong> 15-20 mg/l (schwere Infektionen)</li>
+              <li><strong>AUC/MIC:</strong> >400 (optimal)</li>
+              <li><strong>Monitoring:</strong> Initial nach 3. Dosis</li>
+            </ul>
+            
+            <p><strong>Aminoglykoside:</strong></p>
+            <ul>
+              <li><strong>Peak:</strong> Substanzabhängig</li>
+              <li><strong>Tal:</strong> <1-2 mg/l</li>
+              <li><strong>Monitoring:</strong> Nach 3. Dosis</li>
+            </ul>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">⚠️</span>
+              Nephrotoxizität und Ototoxizität beachten
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🔬 Beta-Laktam TDM</h2>
+            <p><strong>Indikationen:</strong></p>
+            <ul>
+              <li>Kritisch kranke Patienten</li>
+              <li>Verändertes Verteilungsvolumen</li>
+              <li>Niereninsuffizienz</li>
+              <li>Schwere Infektionen mit "schwierigen" Erregern</li>
+            </ul>
+            
+            <p><strong>Zielwerte:</strong> fT>MIC 100% (Meropenem), 70% (Piperacillin)</p>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">📈</span>
+              Kontinuierliche Infusion erleichtert Zielwert-Erreichung
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leitlinien -->
+      <section class="pane" id="pane-antibiotika-leitlinien" aria-label="Leitlinien & Ressourcen">
+        <div class="grid">
+          <div class="card">
+            <h2>📚 Wichtige Leitlinien</h2>
+            <ul>
+              <li><strong>AWMF:</strong> S3-Leitlinie Sepsis 2025</li>
+              <li><strong>AWMF:</strong> S3-Leitlinie ambulant erworbene Pneumonie</li>
+              <li><strong>AWMF:</strong> S3-Leitlinie Harnwegsinfektionen</li>
+              <li><strong>PEG:</strong> Perioperative Antibiotikaprophylaxe</li>
+              <li><strong>RKI:</strong> Hygienemaßnahmen bei MRE</li>
+            </ul>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🌐</span>
+              Aktuelle Leitlinien unter <a href="https://aileitfaden.on-air-appbuilder.com" target="_blank">aileitfaden.on-air-appbuilder.com</a>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🎓 One Minute Wonder (OMW)</h2>
+            <p><strong>Kurze Fortbildungseinheiten:</strong></p>
+            <ul>
+              <li>Rationale Antibiotikatherapie</li>
+              <li>Fixe Antibiotikakombinationen</li>
+              <li>Asymptomatische Bakteriurie</li>
+              <li>Therapeutisches Drug Monitoring</li>
+              <li>Klinisch relevante Interaktionen</li>
+            </ul>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">⏱️</span>
+              Schnelle Updates für den klinischen Alltag
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🏥 Klinikspezifische Empfehlungen</h2>
+            <p><strong>Stabsstelle AMS (Antimicrobial Stewardship):</strong></p>
+            <ul>
+              <li>Lokale Resistenzstatistiken beachten</li>
+              <li>Hausstandard-Empfehlungen befolgen</li>
+              <li>Bei Problemen: Infektiologie konsultieren</li>
+              <li>Interdisziplinäre Visiten nutzen</li>
+            </ul>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🤝</span>
+              Bei komplexen Fällen frühzeitig Expertise hinzuziehen
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>📞 Kontakte</h2>
+            <ul>
+              <li><strong>Infektiologie:</strong> Tel. 5778</li>
+              <li><strong>Mikrobiologie:</strong> Labor-Hotline</li>
+              <li><strong>Apotheke:</strong> Medikamentenberatung</li>
+              <li><strong>Hygiene:</strong> MRE-Beratung</li>
+            </ul>
+            
+            <div class="version-info">
+              <span>Leitfaden Stand:</span>
+              <span class="version-current">Januar 2025</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 
   <div class="footer">Keine Speicherung personenbezogener Daten · Keine Telemetrie · Lokal im Browser</div>
 
-  <script src="app.js"></script>
+  <!-- Modulare JavaScript-Dateien -->
+  <script src="js/navigation.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/calculators.js"></script>
+  <script src="js/therapy-navigator.js"></script>
+  <script src="js/pwa.js"></script>
 </body>
 </html>
