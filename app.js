@@ -69,10 +69,22 @@
     verlauf: document.getElementById('pane-verlauf'),
   };
   tabs.forEach(btn => btn.addEventListener('click', () => {
-    tabs.forEach(b => {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
+    // Find the parent module to only affect tabs within the same module
+    const parentModule = btn.closest('.module');
+    if (parentModule) {
+      const moduleTabs = parentModule.querySelectorAll('.tab');
+      moduleTabs.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+    } else {
+      // Fallback to global tab handling if no parent module found
+      tabs.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+    }
+    
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
     Object.values(panes).forEach(p => p.classList.remove('active'));
@@ -113,45 +125,79 @@
       e.preventDefault();
       const calcType = e.target.dataset.calc;
       
-      // Switch to calculator tab
-      const rechnerTab = document.querySelector('[data-tab="rechner"]');
-      if (rechnerTab) {
-        // Activate rechner tab
-        tabs.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        rechnerTab.classList.add('active');
-        rechnerTab.setAttribute('aria-selected', 'true');
-        Object.values(panes).forEach(p => p.classList.remove('active'));
-        panes.rechner.classList.add('active');
+      // Determine which module and tab to activate
+      let targetModule = null;
+      let targetTabQuery = null;
+      let targetPane = null;
+      
+      // Sepsis calculators
+      if (['fluid', 'map', 'lactate', 'ibw'].includes(calcType)) {
+        targetModule = 'sepsis';
+        targetTabQuery = '[data-tab="rechner"]';
+        targetPane = 'rechner';
+      }
+      // Pneumonia calculators  
+      else if (['crb65', 'curb65'].includes(calcType)) {
+        targetModule = 'pneumonia';
+        targetTabQuery = '[data-tab="rechner-pneu"]';
+        targetPane = 'rechner-pneu';
+      }
+      
+      if (targetModule && targetTabQuery && targetPane) {
+        // First ensure we're in the correct module
+        showModule(targetModule);
         
-        // Scroll to specific calculator
+        // Then switch to the correct calculator tab within that module
         setTimeout(() => {
-          let targetElement = null;
-          switch(calcType) {
-            case 'fluid':
-              targetElement = document.getElementById('kg');
-              break;
-            case 'map':
-              targetElement = document.getElementById('map');
-              break;
-            case 'lactate':
-              targetElement = document.getElementById('l0');
-              break;
-            case 'ibw':
-              targetElement = document.getElementById('sex');
-              break;
-            case 'crb65':
-              targetElement = document.getElementById('crb-confusion');
-              break;
-            case 'curb65':
-              targetElement = document.getElementById('curb-urea');
-              break;
-          }
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            targetElement.focus();
+          const activeModule = document.getElementById(`${targetModule}-module`);
+          if (activeModule) {
+            const rechnerTab = activeModule.querySelector(targetTabQuery);
+            const moduleSpecificTabs = activeModule.querySelectorAll('.tab');
+            
+            if (rechnerTab) {
+              // Activate rechner tab within the specific module
+              moduleSpecificTabs.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+              });
+              rechnerTab.classList.add('active');
+              rechnerTab.setAttribute('aria-selected', 'true');
+              
+              // Activate the correct pane
+              Object.values(panes).forEach(p => p.classList.remove('active'));
+              if (panes[targetPane]) {
+                panes[targetPane].classList.add('active');
+              }
+              
+              // Scroll to specific calculator
+              setTimeout(() => {
+                let targetElement = null;
+                switch(calcType) {
+                  case 'fluid':
+                    targetElement = document.getElementById('kg');
+                    break;
+                  case 'map':
+                    targetElement = document.getElementById('map');
+                    break;
+                  case 'lactate':
+                    targetElement = document.getElementById('l0');
+                    break;
+                  case 'ibw':
+                    targetElement = document.getElementById('sex');
+                    break;
+                  case 'crb65':
+                    targetElement = document.getElementById('crb-confusion');
+                    break;
+                  case 'curb65':
+                    targetElement = document.getElementById('curb-urea');
+                    break;
+                }
+                if (targetElement) {
+                  targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  targetElement.focus();
+                }
+              }, 100);
+            }
           }
         }, 100);
       }
@@ -159,7 +205,7 @@
   });
 
   // Version checking
-  const currentVersion = '1.0.2';
+  const currentVersion = '1.0.3';
   const githubRepo = 'Stevbreu/PWA_Sepsis'; // Ersetze mit deinem GitHub Repository
   
   async function checkForUpdates(isAutomatic = false) {
