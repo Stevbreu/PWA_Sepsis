@@ -70,31 +70,399 @@
 
     <!-- Sepsis Modul -->
     <div class="module" id="sepsis-module">
-      <nav class="tabs">
-        <button class="tab active" data-tab="definition">Definition</button>
-        <button class="tab" data-tab="screening">Screening</button>
-        <button class="tab" data-tab="rechner">Rechner</button>
+      <nav class="tabs" role="tablist" aria-label="Sepsis Register">
+        <button class="tab active" data-tab="definition" role="tab" aria-selected="true">Definition</button>
+        <button class="tab" data-tab="screening" role="tab">Screening</button>
+        <button class="tab" data-tab="akut" role="tab">Akutphase</button>
+        <button class="tab" data-tab="therapie" role="tab">Therapie</button>
+        <button class="tab" data-tab="timeline" role="tab">Timeline</button>
+        <button class="tab" data-tab="rechner" role="tab">Rechner</button>
+        <button class="tab" data-tab="nachsorge" role="tab">Nachsorge</button>
       </nav>
 
-      <section class="pane active" id="pane-definition">
+      <!-- Definition & Trigger -->
+      <section class="pane active" id="pane-definition" aria-label="Definition & Trigger">
         <div class="grid">
           <div class="card">
             <h2>Sepsis Definition</h2>
             <p><strong>Sepsis:</strong> Lebensbedrohliche Organdysfunktion durch dysregulierte Wirtsantwort auf Infektion (klinischer Verdacht auf Infektion <strong>plus</strong> Organdysfunktion mit SOFA‑Anstieg ≥ 2)</p>
           </div>
-        </div>
-      </section>
-
-      <section class="pane" id="pane-screening">
-        <div class="grid">
+          
           <div class="card">
-            <h2>Screening als Klinikstandard</h2>
-            <p>Qualitätssicherungsprogramm mit Sepsis‑Screening für akut erkrankte Hochrisikopatient*innen und strukturierte SOPs vorhalten</p>
+            <h2>Septischer Schock</h2>
+            <p><strong>Sepsis mit:</strong> Persistierender Hypotonie (Vasopressoren nötig für MAP ≥ 65 mmHg) und <strong>Laktat > 2 mmol/l</strong> trotz adäquater Flüssigkeitsgabe</p>
+          </div>
+          
+          <div class="card">
+            <h2>Organdysfunktion (SOFA)</h2>
+            <p><strong>Respiratorisch:</strong> Hypoxämie (PaO₂/FiO₂) • <strong>Renal:</strong> Oligurie/Anurie, AKI • <strong>Neurologisch:</strong> Bewusstseinsstörung (GCS) • <strong>Hämatologisch:</strong> Thrombozytopenie • <strong>Hepatisch:</strong> Hyperbilirubinämie • <strong>Kardiovaskulär:</strong> Hypotonie, Vasopressorbedarf</p>
+          </div>
+          
+          <div class="card note">
+            <strong>Leitlinienumfang:</strong> Screening, antiinfektive Therapie, Kreislauf‑ und Beatmungstherapie, RRT, weitere Maßnahmen und Nachsorge.
           </div>
         </div>
       </section>
 
-      <section class="pane" id="pane-rechner">
+      <!-- Screening & Alarmierung -->
+      <section class="pane" id="pane-screening" aria-label="Screening & Alarmierung">
+        <div class="grid">
+          <div class="screening-top">
+            <div class="card">
+              <h2>Screening als Klinikstandard</h2>
+              <p>Qualitätssicherungsprogramm mit Sepsis‑Screening für akut erkrankte Hochrisikopatient*innen und strukturierte SOPs vorhalten</p>
+            </div>
+            
+            <div class="card">
+              <h2>Sofortmaßnahmen (0-15 Min)</h2>
+              <p><strong>Bei positivem Screening:</strong> Sepsis‑Alarm (interdisziplinäres Team), Monitoring (EKG, SpO₂, RR, ggf. A‑Kanal), 2 großlumige i.v.-Zugänge, Blutentnahme inkl. Laktat/BGA, Laktat seriell zur Verlaufskontrolle</p>
+            </div>
+          </div>
+          
+          <div class="card screening-news2">
+            <h2>Screening‑Instrumente</h2>
+            <p><strong>Außerhalb der ITS:</strong> Bei Verdacht auf Infektion regelmäßig screenen mit <strong>NEWS2/MEWS</strong> (qSOFA allein ist <strong>nicht empfohlen</strong>). <strong>Laktatmessung</strong> bei Sepsisverdacht. Sofort ärztliche Eskalation bei Auffälligkeit.</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">ℹ️</span>
+              NEWS2 ≥ 5 oder Einzelparameter ≥ 3: Sepsisverdacht
+            </div>
+            
+            <h3>NEWS2 (National Early Warning Score 2)</h3>
+            <div class="news2-container">
+              <table class="news2-table">
+              <tr>
+                <th>Parameter</th>
+                <th>3</th>
+                <th>2</th>
+                <th>1</th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+              </tr>
+              <tr>
+                <td><strong>AF (/min)</strong></td>
+                <td class="news2-score-3">≤8</td>
+                <td class="news2-score-2">9-11</td>
+                <td class="news2-score-1">12-20</td>
+                <td class="news2-score-0">21-24</td>
+                <td class="news2-score-1">25-30</td>
+                <td class="news2-score-2">31-40</td>
+                <td class="news2-score-3">≥41</td>
+              </tr>
+              <tr>
+                <td><strong>SpO₂ (%)</strong></td>
+                <td class="news2-score-3">≤83</td>
+                <td class="news2-score-2">84-85</td>
+                <td class="news2-score-1">86-87</td>
+                <td class="news2-score-0">≥88</td>
+                <td class="news2-score-1">93-94 (O₂)</td>
+                <td class="news2-score-2">91-92 (O₂)</td>
+                <td class="news2-score-3">≤90 (O₂)</td>
+              </tr>
+              <tr>
+                <td><strong>RR syst. (mmHg)</strong></td>
+                <td class="news2-score-3">≤70</td>
+                <td class="news2-score-2">71-80</td>
+                <td class="news2-score-1">81-100</td>
+                <td class="news2-score-0">101-199</td>
+                <td class="news2-score-1">200-219</td>
+                <td class="news2-score-2">220-239</td>
+                <td class="news2-score-3">≥240</td>
+              </tr>
+              <tr>
+                <td><strong>Puls (/min)</strong></td>
+                <td class="news2-score-3">≤40</td>
+                <td class="news2-score-2">41-50</td>
+                <td class="news2-score-1">51-90</td>
+                <td class="news2-score-0">91-110</td>
+                <td class="news2-score-1">111-130</td>
+                <td class="news2-score-2">131-150</td>
+                <td class="news2-score-3">≥151</td>
+              </tr>
+              <tr>
+                <td><strong>Bewusstsein</strong></td>
+                <td class="news2-score-3">-</td>
+                <td class="news2-score-2">-</td>
+                <td class="news2-score-1">-</td>
+                <td class="news2-score-0">Wach</td>
+                <td class="news2-score-1">-</td>
+                <td class="news2-score-2">-</td>
+                <td class="news2-score-3">Verändert</td>
+              </tr>
+              <tr>
+                <td><strong>Temperatur (°C)</strong></td>
+                <td class="news2-score-3">≤35.0</td>
+                <td class="news2-score-2">-</td>
+                <td class="news2-score-1">35.1-36.0</td>
+                <td class="news2-score-0">36.1-38.0</td>
+                <td class="news2-score-1">38.1-39.0</td>
+                <td class="news2-score-2">≥39.1</td>
+                <td class="news2-score-3">-</td>
+              </tr>
+              </table>
+            </div>
+          </div>
+          
+          <div class="screening-bottom">
+            <div class="card note">
+              <strong>Bedside-Diagnostik:</strong> Blutgasanalyse kann bettseitig durchgeführt werden für schnelle Ergebnisse.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Akutphase -->
+      <section class="pane" id="pane-akut" aria-label="Akutphase">
+        <div class="grid">
+          <div class="card">
+            <h2>T = 0–15 Min – Sofortmaßnahmen</h2>
+            <p>Alarmieren, Monitoring, 2 i.v. Zugänge, <strong>Laktat/Blutgas</strong>, Grundlabore (BB, CRP, PCT), <strong>Blutkulturen ≥ 2 Sets</strong>, Fokusproben, <a href="#" class="calc-link" data-calc="fluid">250–500 ml Kristalloid‑Bolus</a> (wiederholt nach Dynamik), O₂ (Ziel SpO₂ 92–96 %), frühe Bildgebung/Fokussuche</p>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">⚠️</span>
+              Blutkulturen VOR Antibiotika – aber Therapie nicht verzögern!
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>T = 15–60 Min – Zeitkritisches Bündel</h2>
+            <p><strong>Bei septischem Schock (≤ 1h):</strong> <strong>i.v. Antibiotika so schnell wie möglich</strong>, Blutkulturen vor ABX – aber nicht verzögern! <a href="#" class="calc-link" data-calc="fluid">Flüssigkeitsresuscitation</a> (balancierte Kristalloide), <strong>Noradrenalin früh</strong> (peripher möglich), <a href="#" class="calc-link" data-calc="map">Ziel‑MAP ≥ 65 mmHg</a>, invasive RR‑Messung früh</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">⏱️</span>
+              Goldene Stunde: Antibiotika bei Schock innerhalb 60 Min!
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>T = 1–3 h – Sepsis ohne Schock</h2>
+            <p>Zügige weitere Diagnostik (Bildgebung/Labore), Fokusdiagnostik intensivieren, <strong>Antibiotika innerhalb von 3 Stunden</strong>, kontinuierliche Reevaluation</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">ℹ️</span>
+              Ohne Schock: 3h-Fenster für Antibiotika nach Diagnostik
+            </div>
+          </div>
+          
+          <div class="card note">
+            <strong>Wichtig:</strong> 1‑h‑Fenster beim Schock, periphere Vasopressor-Gabe zulässig, MAP‑Ziel 65 mmHg.
+          </div>
+        </div>
+      </section>
+
+      <!-- Therapie -->
+      <section class="pane" id="pane-therapie" aria-label="Detaillierte Therapie">
+        <div class="sub-tabs">
+          <button class="sub-tab active" data-subtab="haemo">Hämodynamik</button>
+          <button class="sub-tab" data-subtab="antibiotika">Antibiotika</button>
+          <button class="sub-tab" data-subtab="beatmung">Beatmung</button>
+          <button class="sub-tab" data-subtab="zusatz">Zusatztherapien</button>
+        </div>
+
+        <!-- Hämodynamik -->
+        <div class="sub-pane active" id="sub-haemo">
+          <div class="grid">
+            <div class="card">
+              <h2>Initiale Volumentherapie</h2>
+              <p>Start mit <a href="#" class="calc-link" data-calc="fluid"><strong>~30 ml/kg Kristalloiden</strong></a> in ersten 3h, danach <strong>keine starre "Gießkanne"</strong>. Engmaschige Re‑Evaluation nach initialem Bolus, Flüssigkeit nur bei Zeichen der Hypoperfusion fortsetzen.</p>
+              
+              <div class="badge badge-info">
+                <span class="badge-icon">💧</span>
+                Richtwert: 30 ml/kg in ersten 3h, dann nach Bedarf
+              </div>
+            </div>
+            
+            <div class="card">
+              <h2>Steuerung und Ziele</h2>
+              <p><strong>Dynamische Parameter</strong> bevorzugen: Passiver Beinhebetest, Schlagvolumen‑/Pulse‑Pressure‑Variation, Rekapillarisierungszeit. <a href="#" class="calc-link" data-calc="lactate">Laktat‑guided Strategie</a> hilfreich.</p>
+            </div>
+            
+            <div class="card">
+              <h2>Flüssigkeitsarten</h2>
+              <p><strong>Balancierte Kristalloide</strong> als Standard. <strong>Gelatine NICHT</strong> anwenden. <strong>Albumin</strong> additiv bei sehr großen Volumina erwägen.</p>
+              
+              <div class="badge badge-danger">
+                <span class="badge-icon">❌</span>
+                Gelatine ist kontraindiziert!
+              </div>
+            </div>
+            
+            <div class="card">
+              <h2>Vasopressoren & Inotropika</h2>
+              <p><strong>Noradrenalin First‑Line</strong>, frühe Gabe (auch peripher, großlumig/proximal), <a href="#" class="calc-link" data-calc="map">MAP‑Ziel initial <strong>65 mmHg</strong></a>. <strong>Vasopressin</strong> als Add‑on wenn NE nicht reicht. Terlipressin nicht einsetzen. <strong>Steroide:</strong> Hydrokortison 200 mg/d bei anhaltendem Vasopressorbedarf.</p>
+              
+              <div class="badge badge-warning">
+                <span class="badge-icon">⚡</span>
+                Noradrenalin peripher nur kurzzeitig, großlumig/proximal!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Antibiotika -->
+        <div class="sub-pane" id="sub-antibiotika">
+          <div class="grid">
+            <div class="card">
+              <h2>Zeitfenster</h2>
+              <p><strong>Schock:</strong> i.v. Antiinfektiva ≤ 1 h • <strong>Sepsis ohne Schock:</strong> nach Diagnostik ≤ 3 h</p>
+              
+              <div class="badge badge-danger">
+                <span class="badge-icon">⏰</span>
+                Bei Schock: Jede Stunde Verzögerung erhöht Mortalität um 7,6%!
+              </div>
+            </div>
+            
+            <div class="card">
+              <h2>Auswahl & Applikation</h2>
+              <p>Breit genug starten für wahrscheinliche Erreger, Fokushypothese und Risikofaktoren (MRE) berücksichtigen. <strong>Beta‑Laktame:</strong> prolongierte/kontinuierliche Infusion, TDM bei enger therapeutischer Breite. Keine routinemäßige "double gram‑negative coverage".</p>
+              
+              <div class="badge badge-success">
+                <span class="badge-icon">ℹ️</span>
+                Die mikrobiologische Diagnostik sollte möglichst vor Einleitung einer antibiotischen Therapie erfolgen!
+              </div>
+            </div>
+            
+            <div class="card">
+              <h2>De‑eskalation & Dauer</h2>
+              <p><strong>Tägliche Re‑Evaluation</strong>, Fokussierung/De‑eskalation bei Erregernachweis, Kombi → Monotherapie wenn möglich. <strong>Procalcitonin</strong> zur Dauerbegrenzung nutzen.</p>
+              
+              <div class="badge badge-warning">
+                <span class="badge-icon">⚠️</span>
+                Die Sepsis ist eine schwere Erkrankung – der Beginn einer (antibiotischen) Therapie sollte durch die Diagnostik nicht verzögert werden!
+              </div>
+            </div>
+            
+            <div class="card">
+              <h2>Fokuskontrolle (Source Control)</h2>
+              <p>Zeitnah fachärztlich prüfen und früh umsetzen wenn indiziert: Drainage, Entfernung infizierter Fremdkörper, Chirurgie</p>
+              
+              <div class="badge badge-info">
+                <span class="badge-icon">🔧</span>
+                Source Control ist oft entscheidend für den Therapieerfolg
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beatmung -->
+        <div class="sub-pane" id="sub-beatmung">
+          <div class="grid">
+            <div class="card">
+              <h2>Invasive Beatmung & ARDS</h2>
+              <p><a href="#" class="calc-link" data-calc="ibw"><strong>Tidalvolumen ≈ 6 ml/kg IBW</strong></a> (4–8 ml/kg), <strong>Driving Pressure ≤ 14 cmH₂O</strong>, PEEP individuell einstellen, <strong>SpO₂‑Ziel 92–96 %</strong> (paO₂ 70–90 mmHg)</p>
+              
+              <div class="badge badge-info">
+                <span class="badge-icon">🫁</span>
+                Lungenprotektive Beatmung reduziert Mortalität
+              </div>
+            </div>
+            
+            <div class="card">
+              <h2>Nichtinvasive Unterstützung</h2>
+              <p><strong>NIV/CPAP/HFNO</strong> bei milder–moderater Hypoxämie, PaO₂/FiO₂ 100–300 primär möglich. <strong>Bauchlagerung</strong> bei schwerem ARDS früh und ≥ 12–16 h/d</p>
+              
+              <div class="badge badge-success">
+                <span class="badge-icon">💨</span>
+                HFNO kann Intubation oft vermeiden
+              </div>
+            </div>
+            
+            <div class="card">
+              <h2>Rekrutierung & ECMO</h2>
+              <p>Keine prolongierten RM (> 60 s), kurze RM nicht routinemäßig. <strong>V‑v‑ECMO:</strong> erst nach konservativen Maßnahmen, V‑a‑ECMO beim Schock nicht empfohlen</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zusatztherapien -->
+        <div class="sub-pane" id="sub-zusatz">
+          <div class="grid">
+            <div class="card">
+              <h2>🩸 Blutprodukte</h2>
+              <ul>
+                <li><strong>Erythrozyten:</strong> Hb < 7,0 g/dl oder physiologische Kriterien</li>
+                <li>Restriktive Strategie ist Standard</li>
+                <li><strong>Plasma:</strong> nicht zur Volumentherapie</li>
+                <li><strong>Thrombozyten:</strong> bei Blutung oder < 10.000/µl</li>
+              </ul>
+            </div>
+            
+            <div class="card">
+              <h2>🛡 Prophylaxen</h2>
+              <ul>
+                <li><strong>VTE:</strong> NMH bevorzugt</li>
+                <li><strong>Blutzucker:</strong> Insulin ab ≥ 180 mg/dl</li>
+                <li><strong>Stressulkus:</strong> PPI bei Risikofaktoren</li>
+                <li><strong>Delir:</strong> Regelmäßiges Screening</li>
+              </ul>
+            </div>
+            
+            <div class="card">
+              <h2>🏥 Nierenersatztherapie (RRT)</h2>
+              <ul>
+                <li>Sofortiger Start bei lebensbedrohlichen Störungen</li>
+                <li>CRRT oder konvektive/diffusive Verfahren gleichwertig</li>
+                <li><strong>Dosis:</strong> 20–25 ml/kg/h (mittlere Dosis)</li>
+                <li>Keine "high‑volume"‑Hämofiltration</li>
+              </ul>
+            </div>
+            
+            <div class="card note">
+              <strong>Nicht empfohlen:</strong> i.v. Immunglobuline, hochdosiertes Vitamin C, EPO bringen keinen belegten Nutzen.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="pane" id="pane-timeline" aria-label="Praktisches Ablauf-Schema">
+        <div class="timeline-container">
+          <div class="timeline-item active" data-time="0-15">
+            <div class="timeline-marker">0-15 Min</div>
+            <div class="card">
+              <h3>Sofortmaßnahmen</h3>
+              <p>Alarmieren, Monitoring, 2 i.v. Zugänge, Laktat/Blutgas, Grundlabore, Blutkulturen ≥ 2 Sets, 250–500 ml Kristalloid‑Bolus, O₂ (SpO₂ 92–96 %), Bildgebung/Fokussuche</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-time="15-60">
+            <div class="timeline-marker">15-60 Min</div>
+            <div class="card">
+              <h3>Antibiotika & Kreislauf</h3>
+              <p>Antibiotika: Schock ≤ 1h, ohne Schock ≤ 3h. Beta‑Laktam Bolus → verlängerte Infusion. Noradrenalin bei Hypotonie (peripher möglich). Ziel‑MAP 65 mmHg, invasive RR‑Messung</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-time="1-3">
+            <div class="timeline-marker">1-3 h</div>
+            <div class="card">
+              <h3>Fokuskontrolle & Vasopressoren</h3>
+              <p>Fokuskontrolle planen (Drainage, OP, Katheter), Vasopressin add‑on wenn NE nicht reicht, Steroid bei anhaltendem Vasopressorbedarf</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-time="3-6">
+            <div class="timeline-marker">3-6 h</div>
+            <div class="card">
+              <h3>Monitoring & Beatmung</h3>
+              <p>Laktat‑Kontrolle, Fluid‑Responsivität prüfen, Beatmungsstrategie per ARDS‑Schema, NIV/HFNO bei geeigneten Patient*innen</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-time="6-24">
+            <div class="timeline-marker">6-24 h</div>
+            <div class="card">
+              <h3>De-eskalation & Prophylaxen</h3>
+              <p>De‑eskalation täglich planen, PCT zur Dauerbegrenzung nutzen, Prophylaxen (VTE, Stressulkus), Glukose‑Ziel, Transfusionsstrategie restriktiv</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rechner -->
+      <section class="pane" id="pane-rechner" aria-label="Rechner">
         <div class="grid">
           <div class="card">
             <h2>Flüssigkeit (30 ml/kg)</h2>
@@ -109,27 +477,299 @@
               </div>
             </div>
           </div>
+
+          <div class="card">
+            <h2>Laktat‑Clearance</h2>
+            <div class="stack">
+              <div class="row">
+                <label for="l0" class="muted">Laktat T0</label><input id="l0" type="number" step="0.1" value="4.0"/>
+                <label for="l1" class="muted">Laktat T1</label><input id="l1" type="number" step="0.1" value="2.8"/>
+                <button class="btn primary" id="btn-lac">Clearance</button>
+              </div>
+              <div class="row">
+                <span class="pill">Δ: <strong id="lac-delta">-1.2</strong> mmol/l</span>
+                <span class="pill">Clearance: <strong id="lac-pct">30</strong>%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>MAP‑Ziel</h2>
+            <div class="stack">
+              <div class="row">
+                <label for="map" class="muted">akt. MAP</label><input id="map" type="number" step="1" value="58"/>
+                <button class="btn primary" id="btn-map">Delta</button>
+              </div>
+              <div class="row">
+                <span class="pill">Ziel: 65 mmHg</span>
+                <span class="pill">Δ zu 65: <strong id="map-delta">7</strong> mmHg</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>IBW & Tidalvolumen</h2>
+            <div class="stack">
+              <div class="row">
+                <label for="sex" class="muted">Geschlecht</label>
+                <select id="sex">
+                  <option value="m">m</option>
+                  <option value="f">w</option>
+                </select>
+                <label for="cm" class="muted">Größe (cm)</label>
+                <input id="cm" type="number" value="175" min="120" max="220" step="1" />
+                <button class="btn primary" id="btn-ibw">Berechnen</button>
+              </div>
+              <div class="row">
+                <span class="pill">IBW: <strong id="ibw">–</strong> kg</span>
+                <span class="pill">VT 6 ml/kg: <strong id="vt6">–</strong> ml</span>
+                <span class="pill">VT 4–8 ml/kg: <strong id="vt48">–</strong> ml</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="note">Hinweis: Diese Rechner dienen der Orientierung. Klinische Beurteilung, lokale ABS‑Standards und individuelle Faktoren sind maßgeblich.</p>
+      </section>
+
+      <!-- Nachsorge -->
+      <section class="pane" id="pane-nachsorge" aria-label="Nachsorge & Behandlungsziele">
+        <div class="grid">
+          <div class="card">
+            <h2>Behandlungsziele</h2>
+            <p><strong>Innerhalb von 72h</strong> Behandlungsziele klären, frühzeitige strukturierte Kommunikation mit Patient*in/Angehörigen, Palliativversorgung erwägen wenn angezeigt</p>
+          </div>
+          
+          <div class="card">
+            <h2>Sepsis‑Überlebende</h2>
+            <p><strong>Im Entlassbrief auf PICS‑Risiko hinweisen:</strong> Delir und kognitive Einschränkungen, CIP/CIM (Critical Illness Polyneuropathy/Myopathy), psychische Folgen (PTSD, Depression), Selbsthilfe‑Angebote informieren</p>
+          </div>
+          
+          <div class="card">
+            <h2>QS‑Kernpunkte</h2>
+            <p>T0 dokumentieren: Screening positiv/Sepsisverdacht • Laktat (BGA), Blutkulturen <em>vor</em> erster ABX‑Gabe • Startzeiten: ABX, Volumen, Vasopressor • Zeitpunkt MAP ≥ 65 mmHg erreicht • Source‑Control (Art/Zeit)</p>
+          </div>
+          
+          <div class="card">
+            <h2>Quellen & Hinweise</h2>
+            <p>S3‑Leitlinie Sepsis – Update 2025 (AWMF 079‑001) • QS‑Sepsis (G‑BA / IQTIG) – Start 01.01.2026</p>
+            <p class="muted">Diese App ersetzt nicht die ärztliche Beurteilung und lokale SOPs.</p>
+            
+            <div class="version-info">
+              <span>Version:</span>
+              <span class="version-current" id="current-version">1.0.4</span>
+              <button class="version-check-btn" id="check-version">Updates prüfen</button>
+            </div>
+            <div id="update-notification" class="update-available" style="display:none;">
+              <strong>Update verfügbar!</strong> 
+              <a href="#" id="update-link" target="_blank">Neue Version herunterladen</a>
+            </div>
+            
+            <div class="note"><strong>Datenschutz:</strong> Keine Speicherung personenbezogener Daten, alles läuft lokal im Browser.</div>
+          </div>
         </div>
       </section>
     </div>
 
-    <!-- Pneumonie Modul -->  
+    <!-- Pneumonie Modul -->
     <div class="module" id="pneumonia-module">
-      <nav class="tabs">
-        <button class="tab active" data-tab="definition-pneu">Definition</button>
-        <button class="tab" data-tab="rechner-pneu">Rechner</button>
+      <nav class="tabs" role="tablist" aria-label="Pneumonie Register">
+        <button class="tab active" data-tab="definition-pneu" role="tab" aria-selected="true">Definition</button>
+        <button class="tab" data-tab="diagnostik" role="tab">Diagnostik</button>
+        <button class="tab" data-tab="risiko" role="tab">Risikostratifizierung</button>
+        <button class="tab" data-tab="therapie-pneu" role="tab">Therapie</button>
+        <button class="tab" data-tab="casemap" role="tab">Case Map</button>
+        <button class="tab" data-tab="rechner-pneu" role="tab">Rechner</button>
+        <button class="tab" data-tab="verlauf" role="tab">Verlauf</button>
       </nav>
 
-      <section class="pane active" id="pane-definition-pneu">
+      <!-- Definition -->
+      <section class="pane active" id="pane-definition-pneu" aria-label="Definition">
         <div class="grid">
           <div class="card">
             <h2>Ambulant erworbene Pneumonie (CAP)</h2>
-            <p><strong>Definition:</strong> Akute Infektion des Lungenparenchyms, die außerhalb des Krankenhauses erworben wurde.</p>
+            <p><strong>Definition:</strong> Akute Infektion des Lungenparenchyms, die außerhalb des Krankenhauses erworben wurde. Klinische Symptome + radiologischer Nachweis von Infiltraten.</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🫁</span>
+              CAP ist die häufigste zum Tode führende Infektionskrankheit
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Leitsymptome</h2>
+            <p><strong>Typisch:</strong> Husten (produktiv/trocken), Fieber, Schüttelfrost, Dyspnoe, pleuritische Brustschmerzen • <strong>Atypisch:</strong> Verwirrtheit (ältere Patienten), Tachypnoe, Tachykardie</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">⚠️</span>
+              Bei älteren Patienten oft atypische Präsentation!
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Häufige Erreger</h2>
+            <p><strong>Bakteriell:</strong> Streptococcus pneumoniae (häufigster), Haemophilus influenzae, Moraxella catarrhalis • <strong>Atypisch:</strong> Mycoplasma pneumoniae, Chlamydia pneumoniae, Legionella pneumophila • <strong>Viral:</strong> Influenza, RSV, SARS-CoV-2</p>
+          </div>
+          
+          <div class="card note">
+            <strong>Abgrenzung:</strong> Nosokomiale Pneumonie (HAP) ≥ 48h nach Krankenhausaufnahme, Ventilator-assoziierte Pneumonie (VAP).
           </div>
         </div>
       </section>
 
-      <section class="pane" id="pane-rechner-pneu">
+      <!-- Diagnostik -->
+      <section class="pane" id="pane-diagnostik" aria-label="Diagnostik">
+        <div class="grid">
+          <div class="card">
+            <h2>Basisdiagnostik</h2>
+            <p><strong>Anamnese & Klinik:</strong> Symptome, Risikofaktoren, Vorerkrankungen • <strong>Körperliche Untersuchung:</strong> Auskultation (Rasselgeräusche), Perkussion, Atemfrequenz • <strong>Vitalzeichen:</strong> Temperatur, RR, Puls, Atemfrequenz, SpO₂</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🩺</span>
+              Klinische Diagnose hat Priorität vor Bildgebung
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Bildgebung</h2>
+            <p><strong>Röntgen Thorax:</strong> Standard bei Verdacht auf CAP, Infiltratnachweis • <strong>CT Thorax:</strong> Bei unklaren Fällen, Komplikationsverdacht • <strong>Sono Thorax:</strong> Bettseitig möglich, Pleuraerguss</p>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">📸</span>
+              Sonographie kann Röntgen oft ersetzen
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Labordiagnostik</h2>
+            <p><strong>Routine:</strong> BB, CRP, PCT (bei schwerem Verlauf) • <strong>Erregerdiagnostik:</strong> Sputum-Kultur, Blutkulturen (bei stationären Patienten), Urin-Antigene (Pneumokokken, Legionellen) • <strong>Atypische Erreger:</strong> PCR, Serologie</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🧪</span>
+              Erregerdiagnostik vor Antibiotika-Gabe!
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Zusatzdiagnostik</h2>
+            <p><strong>BGA:</strong> Bei Dyspnoe, SpO₂ < 90% • <strong>D-Dimere:</strong> Bei V.a. Lungenembolie • <strong>NT-proBNP:</strong> Herzinsuffizienz-Abklärung</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Risikostratifizierung -->
+      <section class="pane" id="pane-risiko" aria-label="Risikostratifizierung">
+        <div class="grid">
+          <div class="card">
+            <h2>CRB-65 Score (ambulant)</h2>
+            <p><strong>Kriterien (je 1 Punkt):</strong> <strong>C</strong>onfusion (Verwirrtheit), <strong>R</strong>espiratory rate ≥ 30/min, <strong>B</strong>lood pressure < 90 mmHg syst. oder ≤ 60 mmHg diast., Age ≥ <strong>65</strong> Jahre</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">📊</span>
+              <a href="#" class="calc-link" data-calc="crb65">CRB-65 berechnen</a>
+            </div>
+            
+            <p><strong>0 Punkte:</strong> Ambulante Behandlung möglich • <strong>1-2 Punkte:</strong> Stationäre Behandlung erwägen • <strong>≥ 3 Punkte:</strong> Intensivtherapie prüfen</p>
+          </div>
+          
+          <div class="card">
+            <h2>CURB-65 Score (stationär)</h2>
+            <p><strong>Zusätzlich zu CRB-65:</strong> <strong>U</strong>rea > 7 mmol/l (> 42 mg/dl)</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🏥</span>
+              <a href="#" class="calc-link" data-calc="curb65">CURB-65 berechnen</a>
+            </div>
+            
+            <p><strong>0-1 Punkte:</strong> Niedrige Mortalität (< 3%) • <strong>2 Punkte:</strong> Mittlere Mortalität (9%) • <strong>≥ 3 Punkte:</strong> Hohe Mortalität (15-40%)</p>
+          </div>
+          
+          <div class="card">
+            <h2>Behandlungsort</h2>
+            <p><strong>Ambulant:</strong> CRB-65 = 0, keine Risikofaktoren • <strong>Stationär:</strong> CRB-65 ≥ 1, Komorbidität, soziale Indikation • <strong>Intensiv:</strong> Schwere CAP, Organversagen, CURB-65 ≥ 3</p>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">⚡</span>
+              Immunsuppression erhöht Risiko erheblich!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Therapie -->
+      <section class="pane" id="pane-therapie-pneu" aria-label="Therapie">
+        <div class="grid">
+          <div class="card">
+            <h2>Ambulante Therapie</h2>
+            <p><strong>Erstlinie:</strong> Amoxicillin 1g 3x täglich p.o. (7 Tage) • <strong>Alternative:</strong> Amoxicillin/Clavulansäure 875/125 mg 2x täglich • <strong>Bei Allergie:</strong> Azithromycin 500 mg 1x täglich (3 Tage)</p>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">💊</span>
+              Amoxicillin ist Mittel der ersten Wahl
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Stationäre Therapie</h2>
+            <p><strong>Standard:</strong> Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. • <strong>Alternative:</strong> Cefuroxim 1,5g 3x täglich i.v. • <strong>Schwere CAP:</strong> Beta-Laktam + Makrolid</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🏥</span>
+              Bei schwerer CAP Kombinationstherapie erwägen
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Intensivtherapie</h2>
+            <p><strong>Standard:</strong> Piperacillin/Tazobactam 4,5g 3x täglich + Makrolid • <strong>Bei Pseudomonas-Risiko:</strong> + Ciprofloxacin • <strong>MRSA-Verdacht:</strong> + Linezolid/Vancomycin</p>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">🚨</span>
+              Immer Kombinationstherapie auf der Intensivstation
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Map -->
+      <section class="pane" id="pane-casemap" aria-label="Case Map">
+        <div class="grid">
+          <div class="card">
+            <h2>📋 Case Map Pneumonie</h2>
+            <p><strong>Strukturierter Behandlungspfad</strong> für die ambulant erworbene Pneumonie basierend auf aktuellen Leitlinien und klinischer Erfahrung.</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">📄</span>
+              Case Map als PDF in der App verfügbar
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🎯 Behandlungsziele</h2>
+            <ul>
+              <li><strong>Primär:</strong> Erregerelimination und klinische Heilung</li>
+              <li><strong>Sekundär:</strong> Komplikationsvermeidung</li>
+              <li><strong>Tertiär:</strong> Funktionserhalt und Lebensqualität</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>🚨 Red Flags</h2>
+            <ul>
+              <li><strong>Vital:</strong> Schock, schwere Hypoxämie, Bewusstseinseintrübung</li>
+              <li><strong>Klinisch:</strong> Therapieversagen nach 48-72h</li>
+              <li><strong>Radiologisch:</strong> Multilobärer Befall, Cavitation</li>
+            </ul>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">⚠️</span>
+              Bei Red Flags sofortige Intensivierung der Therapie!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rechner -->
+      <section class="pane" id="pane-rechner-pneu" aria-label="Rechner">
         <div class="grid">
           <div class="card">
             <h2>CRB-65 Score</h2>
@@ -153,6 +793,71 @@
                 <span class="pill">Score: <strong id="crb65-result">0</strong> Punkte</span>
                 <span class="pill" id="crb65-recommendation">Ambulante Behandlung möglich</span>
               </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>CURB-65 Score</h2>
+            <div class="stack">
+              <div class="row">
+                <label for="curb-urea" class="muted">Harnstoff (mg/dl)</label>
+                <input id="curb-urea" type="number" min="0" step="1" value="30" />
+              </div>
+              <label class="row">
+                <input type="checkbox" id="curb-confusion"> <span>Confusion (Verwirrtheit)</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="curb-respiratory"> <span>Respiratory rate ≥ 30/min</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="curb-bloodpressure"> <span>Blood pressure < 90/60 mmHg</span>
+              </label>
+              <label class="row">
+                <input type="checkbox" id="curb-age"> <span>Age ≥ 65 Jahre</span>
+              </label>
+              <div class="row">
+                <button class="btn primary" id="btn-curb65">CURB-65 berechnen</button>
+              </div>
+              <div class="row">
+                <span class="pill">Score: <strong id="curb65-result">0</strong> Punkte</span>
+                <span class="pill" id="curb65-mortality">Mortalität: < 3%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="note">Hinweis: Diese Rechner dienen der Orientierung. Klinische Beurteilung und individuelle Faktoren sind maßgeblich.</p>
+      </section>
+
+      <!-- Verlauf -->
+      <section class="pane" id="pane-verlauf" aria-label="Verlauf & Prognose">
+        <div class="grid">
+          <div class="card">
+            <h2>Verlaufskontrolle</h2>
+            <p><strong>Klinisch:</strong> Fieber, Dyspnoe, Husten, Allgemeinzustand • <strong>Labor:</strong> CRP-Verlauf, Leukozyten • <strong>Radiologisch:</strong> Nur bei Komplikationen oder Therapieversagen</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">📈</span>
+              Klinische Besserung meist vor radiologischer Aufklärung
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Therapieversagen</h2>
+            <p><strong>Definition:</strong> Keine Besserung nach 48-72h oder Verschlechterung • <strong>Ursachen:</strong> Resistenz, atypische Erreger, Komplikationen • <strong>Vorgehen:</strong> Erregerdiagnostik, Therapieänderung</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">🔄</span>
+              Bei Therapieversagen Behandlungsort überdenken
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>Nachsorge & Prävention</h2>
+            <p><strong>Nachkontrolle:</strong> 4-6 Wochen nach Therapieende • <strong>Impfungen:</strong> Pneumokokken, Influenza • <strong>Risikofaktoren:</strong> Rauchen, COPD behandeln</p>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">💉</span>
+              Pneumokokken-Impfung reduziert Rezidivrisiko erheblich
             </div>
           </div>
         </div>
@@ -269,10 +974,12 @@
   });
   
   const panes={
-    definition:$('pane-definition'),screening:$('pane-screening'),rechner:$('pane-rechner'),
-    'definition-pneu':$('pane-definition-pneu'),'rechner-pneu':$('pane-rechner-pneu'),
-    'antibiotika-grundlagen':$('pane-antibiotika-grundlagen'),'antibiotika-therapie':$('pane-antibiotika-therapie'),
-    'antibiotika-resistenzen':$('pane-antibiotika-resistenzen')
+    // Sepsis Module
+    definition:$('pane-definition'),screening:$('pane-screening'),akut:$('pane-akut'),therapie:$('pane-therapie'),timeline:$('pane-timeline'),rechner:$('pane-rechner'),nachsorge:$('pane-nachsorge'),
+    // Pneumonia Module  
+    'definition-pneu':$('pane-definition-pneu'),diagnostik:$('pane-diagnostik'),risiko:$('pane-risiko'),'therapie-pneu':$('pane-therapie-pneu'),casemap:$('pane-casemap'),'rechner-pneu':$('pane-rechner-pneu'),verlauf:$('pane-verlauf'),
+    // Antibiotika Module
+    'antibiotika-grundlagen':$('pane-antibiotika-grundlagen'),'antibiotika-therapie':$('pane-antibiotika-therapie'),'antibiotika-resistenzen':$('pane-antibiotika-resistenzen'),'antibiotika-prophylaxe':$('pane-antibiotika-prophylaxe'),'antibiotika-tdm':$('pane-antibiotika-tdm'),'antibiotika-leitlinien':$('pane-antibiotika-leitlinien')
   };
   
   $$('.tab').forEach(btn=>btn.addEventListener('click',()=>{
@@ -285,6 +992,26 @@
     if(panes[btn.dataset.tab])panes[btn.dataset.tab].classList.add('active');
   }));
   
+  // Sub-Tab Funktionalität
+  $$('.sub-tab').forEach(btn=>btn.addEventListener('click',()=>{
+    const parent=btn.closest('.pane');
+    if(parent){
+      const subTabs=parent.querySelectorAll('.sub-tab');
+      const subPanes=parent.querySelectorAll('.sub-pane');
+      subTabs.forEach(t=>t.classList.remove('active'));
+      subPanes.forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      const targetPane=parent.querySelector('#sub-'+btn.dataset.subtab);
+      if(targetPane)targetPane.classList.add('active');
+    }
+  }));
+  
+  // Timeline Item Interaktivität  
+  $$('.timeline-item').forEach(item=>item.addEventListener('click',()=>{
+    $$('.timeline-item').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
+  }));
+  
   // Rechner Funktionen
   const setupCalc=(id,fn)=>{const b=$(id);if(b)b.addEventListener('click',fn);};
   
@@ -293,6 +1020,34 @@
     $('fluid').textContent=isFinite(w)?Math.round(w*30):'–';
   });
   
+  setupCalc('btn-lac',()=>{
+    const l0=parseFloat($('l0').value||'0');
+    const l1=parseFloat($('l1').value||'0');
+    const delta=(l1-l0).toFixed(1);
+    const clearance=l0>0?Math.round((l0-l1)/l0*100):0;
+    $('lac-delta').textContent=delta;
+    $('lac-pct').textContent=clearance;
+  });
+  
+  setupCalc('btn-map',()=>{
+    const current=parseFloat($('map').value||'0');
+    const delta=Math.max(0,65-current);
+    $('map-delta').textContent=delta;
+  });
+  
+  setupCalc('btn-ibw',()=>{
+    const height=parseFloat($('cm').value||'0');
+    const gender=$('sex').value;
+    if(height>0){
+      const ibw=gender==='m'?50+0.91*(height-152.4):45.5+0.91*(height-152.4);
+      const vt6=Math.round(ibw*6);
+      const vt48=Math.round(ibw*4)+'-'+Math.round(ibw*8);
+      $('ibw').textContent=Math.round(ibw);
+      $('vt6').textContent=vt6;
+      $('vt48').textContent=vt48;
+    }
+  });
+
   setupCalc('btn-crb65',()=>{
     let score=0;
     ['crb-confusion','crb-respiratory','crb-bloodpressure','crb-age'].forEach(id=>{
@@ -303,7 +1058,20 @@
     $('crb65-recommendation').textContent=rec[Math.min(score,3)];
   });
   
+  setupCalc('btn-curb65',()=>{
+    let score=0;
+    const urea=parseFloat($('curb-urea').value||'0');
+    if(urea>42)score++;
+    ['curb-confusion','curb-respiratory','curb-bloodpressure','curb-age'].forEach(id=>{
+      if($(id)&&$(id).checked)score++;
+    });
+    $('curb65-result').textContent=score;
+    const mortality=['< 3%','< 3%','9%','15-40%','15-40%'];
+    $('curb65-mortality').textContent='Mortalität: '+mortality[Math.min(score,4)];
+  });
+  
   // KORRIGIERTE Therapie-Navigation - IN der IIFE!
+  let therapyCurrentView = 'overview'; // State tracking
   const therapyTab=document.querySelector('[data-tab="antibiotika-therapie"]');
   if(therapyTab){
     therapyTab.addEventListener('click',()=>{
