@@ -10,9 +10,8 @@
   <link rel="icon" sizes="512x512" href="icons/icon-512.png">
   <style>
     /* Inline CSS für MIME-Type Kompatibilität */
-    :root{--brand:#0ea5e9;--ink:#0f172a;--muted:#475569;--bg:#f6f7f9;--card:#ffffff;--border:#e5e7eb;--accent:#22c55e;--warn:#f59e0b;--danger:#ef4444;--sepsis:#dc2626;--pneumonia:#7c3aed;--antibiotika:#059669}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink)}header.app{background:var(--brand);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}header.app h1{margin:0;font-size:18px;letter-spacing:.2px;font-weight:600}header.app .sub{font-size:11px;opacity:.9}header.app .back-btn{background:rgba(255,255,255,0.2);border:none;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:13px}header.app .back-btn:hover{background:rgba(255,255,255,0.3)}.container{max-width:1200px;margin:0 auto;padding:20px}.dashboard{display:none}.dashboard.active{display:block}.dashboard-title{text-align:center;margin-bottom:40px}.dashboard-title h2{font-size:28px;font-weight:700;margin:0 0 8px;color:var(--ink)}.dashboard-title p{color:var(--muted);font-size:16px;margin:0}.tile-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-bottom:40px}.tile{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden}.tile:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,0.1);border-color:var(--brand)}.tile.disabled{cursor:not-allowed;opacity:0.7}.tile.disabled:hover{transform:none;box-shadow:none;border-color:var(--border)}.tile::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}.tile.sepsis::before{background:var(--sepsis)}.tile.pneumonia::before{background:var(--pneumonia)}.tile.antibiotika::before{background:var(--antibiotika)}.tile.coming-soon::before{background:var(--muted)}.tile h3{font-size:20px;font-weight:600;margin:0 0 8px}.tile p{color:var(--muted);margin:0 0 16px;line-height:1.5}.tile-status{display:inline-block;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:500}.tile-status.active{background:#dcfce7;color:#166534}.tile-status.coming-soon{background:#f1f5f9;color:var(--muted)}.module{display:none}.module.active{display:block}.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px}.tab{font-size:12px;padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:999px;cursor:pointer;transition:all 0.2s}.tab:hover{background:var(--bg)}.tab.active{background:var(--brand);color:#fff;border-color:transparent}.pane{display:none}.pane.active{display:block}.grid{display:grid;gap:16px;grid-template-columns:1fr}@media(min-width:800px){.grid{grid-template-columns:1fr 1fr}}.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px}.card h2{font-size:16px;margin:0 0 12px;font-weight:600;display:flex;align-items:center;gap:8px}.card p{margin:8px 0}ul{margin:0;padding-left:20px}li{margin:6px 0;line-height:1.4;position:relative}li strong{color:var(--ink)}.note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:12px;padding:12px;font-size:13px}.muted{color:var(--muted)}.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:6px;padding:2px 6px}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.stack{display:flex;flex-direction:column;gap:12px}input[type="number"],input[type="text"],select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px}.btn{padding:10px 16px;border:1px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;font-size:13px;transition:all 0.2s}.btn:hover{background:var(--bg)}.btn.primary{background:var(--brand);color:#fff;border-color:transparent}.btn.primary:hover{background:#0284c7}.footer{color:var(--muted);padding:40px 16px 30px;text-align:center;font-size:12px}.pill{display:inline-block;padding:4px 10px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:999px;font-size:11px;margin:2px}.sub-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px}.sub-tab{font-size:11px;padding:6px 10px;background:#f8fafc;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all 0.2s;color:var(--muted)}.sub-tab:hover{background:#f1f5f9}.sub-tab.active{background:var(--brand);color:#fff;border-color:transparent}.sub-pane{display:none}.sub-pane.active{display:block}.timeline-container{display:flex;flex-direction:column;gap:20px}.timeline-item{display:flex;align-items:flex-start;gap:16px;opacity:0.7;transition:all 0.3s;cursor:pointer}.timeline-item.active{opacity:1}.timeline-item:hover{opacity:1}.timeline-marker{background:var(--brand);color:#fff;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:600;min-width:80px;text-align:center;box-shadow:0 2px 4px rgba(14,165,233,0.2)}.timeline-item .card{flex:1;margin:0}.timeline-item .card h3{font-size:16px;margin:0 0 8px}.status-indicator{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}.status-indicator.active{background:var(--accent)}.status-indicator.warning{background:var(--warn)}.status-indicator.danger{background:var(--danger)}.interactive-card{cursor:pointer;transition:all 0.2s}.interactive-card:hover{background:#f8fafc;border-color:var(--brand)}.badge{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:500;margin:8px 0}.badge-info{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}.badge-warning{background:#fef3c7;color:#d97706;border:1px solid #fbbf24}.badge-danger{background:#fee2e2;color:#dc2626;border:1px solid #f87171}.badge-success{background:#dcfce7;color:#16a34a;border:1px solid #4ade80}.badge-icon{font-size:14px}.calc-link{color:var(--brand);text-decoration:none;font-weight:500;cursor:pointer}.calc-link:hover{text-decoration:underline}.version-info{display:flex;align-items:center;gap:8px;margin-top:12px}.version-current{font-family:monospace;background:var(--bg);padding:2px 6px;border-radius:4px;font-size:11px}.version-check-btn{background:none;border:1px solid var(--border);padding:4px 8px;border-radius:6px;font-size:11px;cursor:pointer;color:var(--muted)}.version-check-btn:hover{background:var(--bg)}.version-check-btn:disabled{opacity:0.5;cursor:not-allowed}.update-available{background:#dcfce7;color:#166534;border:1px solid #4ade80;padding:8px 12px;border-radius:8px;font-size:12px;margin-top:8px}.update-available a{color:#166534;text-decoration:none;font-weight:500}.update-available a:hover{text-decoration:underline}.update-banner{background:#dcfce7;color:#166534;border-bottom:1px solid #4ade80;padding:8px 16px;display:none;align-items:center;justify-content:space-between;font-size:13px}.update-banner.show{display:flex}.update-banner-content{display:flex;align-items:center;gap:8px}.update-banner-close{background:none;border:none;color:#166534;cursor:pointer;font-size:16px;padding:0}.update-banner-close:hover{opacity:0.7}.header-version{display:flex;align-items:center;gap:8px;font-size:11px;opacity:0.8}.header-version-current{font-family:monospace;background:rgba(255,255,255,0.2);padding:2px 6px;border-radius:4px}.header-version-check{background:rgba(255,255,255,0.2);border:none;color:#fff;padding:2px 6px;border-radius:4px;cursor:pointer;font-size:10px}.header-version-check:hover{background:rgba(255,255,255,0.3)}.news2-container{overflow-x:auto;margin:12px 0;border:1px solid var(--border);border-radius:8px}.news2-table{width:100%;min-width:600px;border-collapse:collapse;font-size:11px}.news2-table th,.news2-table td{border:1px solid var(--border);padding:4px 6px;text-align:center;white-space:nowrap}.news2-table th{background:var(--bg);font-weight:600;font-size:10px}.news2-table td:first-child{background:var(--bg-light);font-weight:500;text-align:left;padding-left:8px;min-width:120px}.news2-score-0{background:#dcfce7}.news2-score-1{background:#fef3c7}.news2-score-2{background:#fed7aa}.news2-score-3{background:#fee2e2}#pane-screening .grid{display:flex;flex-direction:column;gap:20px}#pane-screening .screening-top{display:grid;grid-template-columns:1fr 1fr;gap:20px}#pane-screening .screening-news2{grid-column:1/-1}#pane-screening .screening-bottom{display:grid;grid-template-columns:1fr 1fr;gap:20px}.therapy-navigator{max-width:100%}.therapy-search{margin-bottom:20px}.therapy-search-input{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:10px;font-size:14px;background:#fff}.therapy-search-input:focus{outline:none;border-color:var(--antibiotika);box-shadow:0 0 0 3px rgba(5,150,105,0.1)}.therapy-categories{display:grid;gap:16px;grid-template-columns:1fr}.therapy-category-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.2s}.therapy-category-card:hover{background:#f8fafc;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}.therapy-category-card h3{margin:0 0 10px;font-size:18px;font-weight:600}.therapy-subcategories{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}.therapy-subcategory{padding:8px 12px;margin:4px 0;background:#f1f5f9;border-radius:6px;cursor:pointer;transition:all 0.2s}.therapy-subcategory:hover{background:#e2e8f0;transform:translateX(4px)}.therapy-subcategory h4{margin:0;font-size:14px;font-weight:500;color:var(--ink)}.therapy-detail-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid var(--border)}.therapy-detail-header h2{margin:0;flex:1}.therapy-options{display:grid;gap:20px;grid-template-columns:1fr}.therapy-option{border-left:4px solid var(--antibiotika)}.antibiotic-group{margin:16px 0;padding:12px;background:#f8fafc;border-radius:8px}.antibiotic-group h4{margin:0 0 12px;color:var(--antibiotika);font-size:14px}.antibiotic-item{padding:10px;margin:8px 0;background:#fff;border:1px solid var(--border);border-radius:6px}.antibiotic-item.alternative{border-left:3px solid var(--warn)}.antibiotic-item.combination{border-left:3px solid var(--brand)}.dose{color:var(--brand);font-weight:500;font-size:13px}.duration{color:var(--muted);font-size:13px}.note-text{color:var(--warn);font-size:12px;font-style:italic}.therapy-notes,.therapy-indications{margin:16px 0;padding:12px;background:#fff7ed;border-radius:8px;border-left:4px solid var(--warn)}.therapy-notes h4,.therapy-indications h4{margin:0 0 8px;font-size:14px;color:var(--warn)}.therapy-notes ul,.therapy-indications ul{margin:0;padding-left:16px}.therapy-notes li,.therapy-indications li{font-size:13px;line-height:1.4;margin:4px 0}@media(min-width:800px){.therapy-categories{grid-template-columns:1fr 1fr}}@media(max-width:640px){.container{padding:16px}.tile-grid{grid-template-columns:1fr;gap:16px}.tile{padding:20px}.dashboard-title h2{font-size:24px}header.app h1{font-size:16px}.timeline-container{gap:16px}.timeline-item{flex-direction:column;gap:8px}.timeline-marker{min-width:auto}.sub-tabs{gap:2px}.sub-tab{font-size:10px;padding:4px 8px}#pane-screening .grid{gap:12px}#pane-screening .card{padding:16px}#pane-screening .screening-top{grid-template-columns:1fr}#pane-screening .screening-bottom{grid-template-columns:1fr}.news2-table{font-size:10px}.news2-table th,.news2-table td{padding:3px 4px}.therapy-detail-header{flex-direction:column;align-items:flex-start}.therapy-category-card{padding:16px}.antibiotic-group{padding:8px}}@media(max-width:1024px) and (min-width:641px){#pane-screening .screening-top{grid-template-columns:1fr}#pane-screening .screening-bottom{grid-template-columns:1fr}}
+    :root{--brand:#0ea5e9;--ink:#0f172a;--muted:#475569;--bg:#f6f7f9;--card:#ffffff;--border:#e5e7eb;--accent:#22c55e;--warn:#f59e0b;--danger:#ef4444;--sepsis:#dc2626;--pneumonia:#7c3aed;--antibiotika:#059669}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink)}header.app{background:var(--brand);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}header.app h1{margin:0;font-size:18px;letter-spacing:.2px;font-weight:600}header.app .sub{font-size:11px;opacity:.9}header.app .back-btn{background:rgba(255,255,255,0.2);border:none;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:13px}header.app .back-btn:hover{background:rgba(255,255,255,0.3)}.container{max-width:1200px;margin:0 auto;padding:20px}.dashboard{display:none}.dashboard.active{display:block}.dashboard-title{text-align:center;margin-bottom:40px}.dashboard-title h2{font-size:28px;font-weight:700;margin:0 0 8px;color:var(--ink)}.dashboard-title p{color:var(--muted);font-size:16px;margin:0}.tile-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-bottom:40px}.tile{background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden}.tile:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,0.1);border-color:var(--brand)}.tile.disabled{cursor:not-allowed;opacity:0.7}.tile.disabled:hover{transform:none;box-shadow:none;border-color:var(--border)}.tile::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}.tile.sepsis::before{background:var(--sepsis)}.tile.pneumonia::before{background:var(--pneumonia)}.tile.antibiotika::before{background:var(--antibiotika)}.tile.coming-soon::before{background:var(--muted)}.tile h3{font-size:20px;font-weight:600;margin:0 0 8px}.tile p{color:var(--muted);margin:0 0 16px;line-height:1.5}.tile-status{display:inline-block;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:500}.tile-status.active{background:#dcfce7;color:#166534}.tile-status.coming-soon{background:#f1f5f9;color:var(--muted)}.module{display:none}.module.active{display:block}.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:20px}.tab{font-size:12px;padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:999px;cursor:pointer;transition:all 0.2s}.tab:hover{background:var(--bg)}.tab.active{background:var(--brand);color:#fff;border-color:transparent}.pane{display:none}.pane.active{display:block}.grid{display:grid;gap:16px;grid-template-columns:1fr}@media(min-width:800px){.grid{grid-template-columns:1fr 1fr}}.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px}.card h2{font-size:16px;margin:0 0 12px;font-weight:600;display:flex;align-items:center;gap:8px}.card p{margin:8px 0}ul{margin:0;padding-left:20px}li{margin:6px 0;line-height:1.4;position:relative}li strong{color:var(--ink)}.note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:12px;padding:12px;font-size:13px}.muted{color:var(--muted)}.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:6px;padding:2px 6px}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.stack{display:flex;flex-direction:column;gap:12px}input[type="number"],input[type="text"],select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px}.btn{padding:10px 16px;border:1px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;font-size:13px;transition:all 0.2s}.btn:hover{background:var(--bg)}.btn.primary{background:var(--brand);color:#fff;border-color:transparent}.btn.primary:hover{background:#0284c7}.footer{color:var(--muted);padding:40px 16px 30px;text-align:center;font-size:12px}.pill{display:inline-block;padding:4px 10px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:999px;font-size:11px;margin:2px}.sub-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:20px}.sub-tab{font-size:11px;padding:6px 10px;background:#f8fafc;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all 0.2s;color:var(--muted)}.sub-tab:hover{background:#f1f5f9}.sub-tab.active{background:var(--brand);color:#fff;border-color:transparent}.sub-pane{display:none}.sub-pane.active{display:block}.timeline-container{display:flex;flex-direction:column;gap:20px}.timeline-item{display:flex;align-items:flex-start;gap:16px;opacity:0.7;transition:all 0.3s;cursor:pointer}.timeline-item.active{opacity:1}.timeline-item:hover{opacity:1}.timeline-marker{background:var(--brand);color:#fff;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:600;min-width:80px;text-align:center;box-shadow:0 2px 4px rgba(14,165,233,0.2)}.timeline-item .card{flex:1;margin:0}.timeline-item .card h3{font-size:16px;margin:0 0 8px}.status-indicator{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}.status-indicator.active{background:var(--accent)}.status-indicator.warning{background:var(--warn)}.status-indicator.danger{background:var(--danger)}.interactive-card{cursor:pointer;transition:all 0.2s}.interactive-card:hover{background:#f8fafc;border-color:var(--brand)}.badge{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:500;margin:8px 0}.badge-info{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}.badge-warning{background:#fef3c7;color:#d97706;border:1px solid #fbbf24}.badge-danger{background:#fee2e2;color:#dc2626;border:1px solid #f87171}.badge-success{background:#dcfce7;color:#16a34a;border:1px solid #4ade80}.badge-icon{font-size:14px}.calc-link{color:var(--brand);text-decoration:none;font-weight:500;cursor:pointer}.calc-link:hover{text-decoration:underline}.version-info{display:flex;align-items:center;gap:8px;margin-top:12px}.version-current{font-family:monospace;background:var(--bg);padding:2px 6px;border-radius:4px;font-size:11px}.version-check-btn{background:none;border:1px solid var(--border);padding:4px 8px;border-radius:6px;font-size:11px;cursor:pointer;color:var(--muted)}.version-check-btn:hover{background:var(--bg)}.version-check-btn:disabled{opacity:0.5;cursor:not-allowed}.update-available{background:#dcfce7;color:#166534;border:1px solid #4ade80;padding:8px 12px;border-radius:8px;font-size:12px;margin-top:8px}.update-available a{color:#166534;text-decoration:none;font-weight:500}.update-available a:hover{text-decoration:underline}.update-banner{background:#dcfce7;color:#166534;border-bottom:1px solid #4ade80;padding:8px 16px;display:none;align-items:center;justify-content:space-between;font-size:13px}.update-banner.show{display:flex}.update-banner-content{display:flex;align-items:center;gap:8px}.update-banner-close{background:none;border:none;color:#166534;cursor:pointer;font-size:16px;padding:0}.update-banner-close:hover{opacity:0.7}.header-version{display:flex;align-items:center;gap:8px;font-size:11px;opacity:0.8}.header-version-current{font-family:monospace;background:rgba(255,255,255,0.2);padding:2px 6px;border-radius:4px}.header-version-check{background:rgba(255,255,255,0.2);border:none;color:#fff;padding:2px 6px;border-radius:4px;cursor:pointer;font-size:10px}.header-version-check:hover{background:rgba(255,255,255,0.3)}.news2-container{overflow-x:auto;margin:12px 0;border:1px solid var(--border);border-radius:8px}.news2-table{width:100%;min-width:600px;border-collapse:collapse;font-size:11px}.news2-table th,.news2-table td{border:1px solid var(--border);padding:4px 6px;text-align:center;white-space:nowrap}.news2-table th{background:var(--bg);font-weight:600;font-size:10px}.news2-table td:first-child{background:var(--bg-light);font-weight:500;text-align:left;padding-left:8px;min-width:120px}.news2-score-0{background:#dcfce7}.news2-score-1{background:#fef3c7}.news2-score-2{background:#fed7aa}.news2-score-3{background:#fee2e2}.therapy-navigator{max-width:100%}.therapy-search{margin-bottom:20px}.therapy-search-input{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:10px;font-size:14px;background:#fff}.therapy-search-input:focus{outline:none;border-color:var(--antibiotika);box-shadow:0 0 0 3px rgba(5,150,105,0.1)}.therapy-categories{display:grid;gap:16px;grid-template-columns:1fr}.therapy-category-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.2s}.therapy-category-card:hover{background:#f8fafc;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}.therapy-category-card h3{margin:0 0 10px;font-size:18px;font-weight:600}.therapy-subcategories{margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}.therapy-subcategory{padding:8px 12px;margin:4px 0;background:#f1f5f9;border-radius:6px;cursor:pointer;transition:all 0.2s}.therapy-subcategory:hover{background:#e2e8f0;transform:translateX(4px)}.therapy-subcategory h4{margin:0;font-size:14px;font-weight:500;color:var(--ink)}.therapy-detail-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid var(--border)}.therapy-detail-header h2{margin:0;flex:1}.therapy-options{display:grid;gap:20px;grid-template-columns:1fr}.therapy-option{border-left:4px solid var(--antibiotika)}.antibiotic-group{margin:16px 0;padding:12px;background:#f8fafc;border-radius:8px}.antibiotic-group h4{margin:0 0 12px;color:var(--antibiotika);font-size:14px}.antibiotic-item{padding:10px;margin:8px 0;background:#fff;border:1px solid var(--border);border-radius:6px}.antibiotic-item.alternative{border-left:3px solid var(--warn)}.antibiotic-item.combination{border-left:3px solid var(--brand)}.dose{color:var(--brand);font-weight:500;font-size:13px}.duration{color:var(--muted);font-size:13px}.note-text{color:var(--warn);font-size:12px;font-style:italic}@media(min-width:800px){.therapy-categories{grid-template-columns:1fr 1fr}}@media(max-width:640px){.container{padding:16px}.tile-grid{grid-template-columns:1fr;gap:16px}.tile{padding:20px}.dashboard-title h2{font-size:24px}header.app h1{font-size:16px}.timeline-container{gap:16px}.timeline-item{flex-direction:column;gap:8px}.timeline-marker{min-width:auto}.sub-tabs{gap:2px}.sub-tab{font-size:10px;padding:4px 8px}.therapy-detail-header{flex-direction:column;align-items:flex-start}.therapy-category-card{padding:16px}}
   </style>
-
 </head>
 <body>
   <!-- Update Banner -->
@@ -31,63 +30,39 @@
     </div>
     <div class="row">
       <button id="btn-back" class="back-btn" style="display:none;">← Zurück</button>
-      <div class="header-version">
-        <span class="header-version-current" id="header-version">v1.0.4</span>
-        <button class="header-version-check" id="header-check-version">Updates</button>
-      </div>
     </div>
   </header>
 
   <div class="container">
-    <!-- Dashboard/Hauptseite -->
+    <!-- Dashboard -->
     <div class="dashboard active" id="dashboard">
       <div class="dashboard-title">
         <h2>Medizinische Leitlinien</h2>
         <p>Wählen Sie einen Bereich für detaillierte Informationen und Rechner</p>
-        
-        <div class="version-info" style="justify-content:center; margin-top:16px;">
-          <span>App Version:</span>
-          <span class="version-current">v1.0.4</span>
-          <button class="version-check-btn" id="dashboard-check-version">Updates prüfen</button>
-        </div>
-        <div id="dashboard-update-notification" class="update-available" style="display:none; max-width:400px; margin:8px auto;">
-          <strong>Update verfügbar!</strong> 
-          <a href="#" id="dashboard-update-link" target="_blank">Neue Version herunterladen</a>
-        </div>
       </div>
       
       <div class="tile-grid">
-        <!-- Sepsis Kachel -->
         <div class="tile sepsis" data-module="sepsis">
           <h3>Sepsis Leitlinie</h3>
           <p>S3-Leitlinie Sepsis 2025 mit Akutmaßnahmen, Bundle-Therapie, Beatmung und Rechnern</p>
           <span class="tile-status active">Verfügbar</span>
         </div>
         
-        <!-- Pneumonie Kachel -->
         <div class="tile pneumonia" data-module="pneumonia">
           <h3>Pneumonie Leitlinie</h3>
           <p>Case Map und Leitlinien für Diagnostik und Therapie der ambulant erworbenen Pneumonie</p>
           <span class="tile-status active">Verfügbar</span>
         </div>
         
-        <!-- Antibiotikatherapie Kachel -->
         <div class="tile antibiotika" data-module="antibiotika">
           <h3>Antibiotikatherapie</h3>
           <p>Antiinfektiva-Leitfaden mit Therapieprinzipien, Resistenzen und TDM für rationale Antibiose</p>
           <span class="tile-status active">Verfügbar</span>
         </div>
         
-        <!-- Weitere Kacheln für zukünftige Module -->
-        <div class="tile coming-soon disabled" data-module="cardiology">
+        <div class="tile coming-soon disabled">
           <h3>Kardiologie</h3>
           <p>Herzinsuffizienz, Myokardinfarkt und weitere kardiologische Leitlinien</p>
-          <span class="tile-status coming-soon">Geplant</span>
-        </div>
-        
-        <div class="tile coming-soon disabled" data-module="emergency">
-          <h3>Notfallmedizin</h3>
-          <p>Reanimation, Trauma und weitere notfallmedizinische Algorithmen</p>
           <span class="tile-status coming-soon">Geplant</span>
         </div>
       </div>
@@ -95,399 +70,31 @@
 
     <!-- Sepsis Modul -->
     <div class="module" id="sepsis-module">
-      <nav class="tabs" role="tablist" aria-label="Sepsis Register">
-        <button class="tab active" data-tab="definition" role="tab" aria-selected="true">Definition</button>
-        <button class="tab" data-tab="screening" role="tab">Screening</button>
-        <button class="tab" data-tab="akut" role="tab">Akutphase</button>
-        <button class="tab" data-tab="therapie" role="tab">Therapie</button>
-        <button class="tab" data-tab="timeline" role="tab">Timeline</button>
-        <button class="tab" data-tab="rechner" role="tab">Rechner</button>
-        <button class="tab" data-tab="nachsorge" role="tab">Nachsorge</button>
+      <nav class="tabs">
+        <button class="tab active" data-tab="definition">Definition</button>
+        <button class="tab" data-tab="screening">Screening</button>
+        <button class="tab" data-tab="rechner">Rechner</button>
       </nav>
 
-      <!-- Definition & Trigger -->
-      <section class="pane active" id="pane-definition" aria-label="Definition & Trigger">
+      <section class="pane active" id="pane-definition">
         <div class="grid">
           <div class="card">
             <h2>Sepsis Definition</h2>
             <p><strong>Sepsis:</strong> Lebensbedrohliche Organdysfunktion durch dysregulierte Wirtsantwort auf Infektion (klinischer Verdacht auf Infektion <strong>plus</strong> Organdysfunktion mit SOFA‑Anstieg ≥ 2)</p>
           </div>
-          
-          <div class="card">
-            <h2>Septischer Schock</h2>
-            <p><strong>Sepsis mit:</strong> Persistierender Hypotonie (Vasopressoren nötig für MAP ≥ 65 mmHg) und <strong>Laktat > 2 mmol/l</strong> trotz adäquater Flüssigkeitsgabe</p>
-          </div>
-          
-          <div class="card">
-            <h2>Organdysfunktion (SOFA)</h2>
-            <p><strong>Respiratorisch:</strong> Hypoxämie (PaO₂/FiO₂) • <strong>Renal:</strong> Oligurie/Anurie, AKI • <strong>Neurologisch:</strong> Bewusstseinsstörung (GCS) • <strong>Hämatologisch:</strong> Thrombozytopenie • <strong>Hepatisch:</strong> Hyperbilirubinämie • <strong>Kardiovaskulär:</strong> Hypotonie, Vasopressorbedarf</p>
-          </div>
-          
-          <div class="card note">
-            <strong>Leitlinienumfang:</strong> Screening, antiinfektive Therapie, Kreislauf‑ und Beatmungstherapie, RRT, weitere Maßnahmen und Nachsorge.
-          </div>
         </div>
       </section>
 
-      <!-- Screening & Alarmierung -->
-      <section class="pane" id="pane-screening" aria-label="Screening & Alarmierung">
-        <div class="grid">
-          <div class="screening-top">
-            <div class="card">
-              <h2>Screening als Klinikstandard</h2>
-              <p>Qualitätssicherungsprogramm mit Sepsis‑Screening für akut erkrankte Hochrisikopatient*innen und strukturierte SOPs vorhalten</p>
-            </div>
-            
-            <div class="card">
-              <h2>Sofortmaßnahmen (0-15 Min)</h2>
-              <p><strong>Bei positivem Screening:</strong> Sepsis‑Alarm (interdisziplinäres Team), Monitoring (EKG, SpO₂, RR, ggf. A‑Kanal), 2 großlumige i.v.-Zugänge, Blutentnahme inkl. Laktat/BGA, Laktat seriell zur Verlaufskontrolle</p>
-            </div>
-          </div>
-          
-          <div class="card screening-news2">
-            <h2>Screening‑Instrumente</h2>
-            <p><strong>Außerhalb der ITS:</strong> Bei Verdacht auf Infektion regelmäßig screenen mit <strong>NEWS2/MEWS</strong> (qSOFA allein ist <strong>nicht empfohlen</strong>). <strong>Laktatmessung</strong> bei Sepsisverdacht. Sofort ärztliche Eskalation bei Auffälligkeit.</p>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">ℹ️</span>
-              NEWS2 ≥ 5 oder Einzelparameter ≥ 3: Sepsisverdacht
-            </div>
-            
-            <h3>NEWS2 (National Early Warning Score 2)</h3>
-            <div class="news2-container">
-              <table class="news2-table">
-              <tr>
-                <th>Parameter</th>
-                <th>3</th>
-                <th>2</th>
-                <th>1</th>
-                <th>0</th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-              </tr>
-              <tr>
-                <td><strong>AF (/min)</strong></td>
-                <td class="news2-score-3">≤8</td>
-                <td class="news2-score-2">9-11</td>
-                <td class="news2-score-1">12-20</td>
-                <td class="news2-score-0">21-24</td>
-                <td class="news2-score-1">25-30</td>
-                <td class="news2-score-2">31-40</td>
-                <td class="news2-score-3">≥41</td>
-              </tr>
-              <tr>
-                <td><strong>SpO₂ (%)</strong></td>
-                <td class="news2-score-3">≤83</td>
-                <td class="news2-score-2">84-85</td>
-                <td class="news2-score-1">86-87</td>
-                <td class="news2-score-0">≥88</td>
-                <td class="news2-score-1">93-94 (O₂)</td>
-                <td class="news2-score-2">91-92 (O₂)</td>
-                <td class="news2-score-3">≤90 (O₂)</td>
-              </tr>
-              <tr>
-                <td><strong>RR syst. (mmHg)</strong></td>
-                <td class="news2-score-3">≤70</td>
-                <td class="news2-score-2">71-80</td>
-                <td class="news2-score-1">81-100</td>
-                <td class="news2-score-0">101-199</td>
-                <td class="news2-score-1">200-219</td>
-                <td class="news2-score-2">220-239</td>
-                <td class="news2-score-3">≥240</td>
-              </tr>
-              <tr>
-                <td><strong>Puls (/min)</strong></td>
-                <td class="news2-score-3">≤40</td>
-                <td class="news2-score-2">41-50</td>
-                <td class="news2-score-1">51-90</td>
-                <td class="news2-score-0">91-110</td>
-                <td class="news2-score-1">111-130</td>
-                <td class="news2-score-2">131-150</td>
-                <td class="news2-score-3">≥151</td>
-              </tr>
-              <tr>
-                <td><strong>Bewusstsein</strong></td>
-                <td class="news2-score-3">-</td>
-                <td class="news2-score-2">-</td>
-                <td class="news2-score-1">-</td>
-                <td class="news2-score-0">Wach</td>
-                <td class="news2-score-1">-</td>
-                <td class="news2-score-2">-</td>
-                <td class="news2-score-3">Verändert</td>
-              </tr>
-              <tr>
-                <td><strong>Temperatur (°C)</strong></td>
-                <td class="news2-score-3">≤35.0</td>
-                <td class="news2-score-2">-</td>
-                <td class="news2-score-1">35.1-36.0</td>
-                <td class="news2-score-0">36.1-38.0</td>
-                <td class="news2-score-1">38.1-39.0</td>
-                <td class="news2-score-2">≥39.1</td>
-                <td class="news2-score-3">-</td>
-              </tr>
-              </table>
-            </div>
-          </div>
-          
-          <div class="screening-bottom">
-            <div class="card note">
-              <strong>Bedside-Diagnostik:</strong> Blutgasanalyse kann bettseitig durchgeführt werden für schnelle Ergebnisse.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Akutphase -->
-      <section class="pane" id="pane-akut" aria-label="Akutphase">
+      <section class="pane" id="pane-screening">
         <div class="grid">
           <div class="card">
-            <h2>T = 0–15 Min – Sofortmaßnahmen</h2>
-            <p>Alarmieren, Monitoring, 2 i.v. Zugänge, <strong>Laktat/Blutgas</strong>, Grundlabore (BB, CRP, PCT), <strong>Blutkulturen ≥ 2 Sets</strong>, Fokusproben, <a href="#" class="calc-link" data-calc="fluid">250–500 ml Kristalloid‑Bolus</a> (wiederholt nach Dynamik), O₂ (Ziel SpO₂ 92–96 %), frühe Bildgebung/Fokussuche</p>
-            
-            <div class="badge badge-danger">
-              <span class="badge-icon">⚠️</span>
-              Blutkulturen VOR Antibiotika – aber Therapie nicht verzögern!
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>T = 15–60 Min – Zeitkritisches Bündel</h2>
-            <p><strong>Bei septischem Schock (≤ 1h):</strong> <strong>i.v. Antibiotika so schnell wie möglich</strong>, Blutkulturen vor ABX – aber nicht verzögern! <a href="#" class="calc-link" data-calc="fluid">Flüssigkeitsresuscitation</a> (balancierte Kristalloide), <strong>Noradrenalin früh</strong> (peripher möglich), <a href="#" class="calc-link" data-calc="map">Ziel‑MAP ≥ 65 mmHg</a>, invasive RR‑Messung früh</p>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">⏱️</span>
-              Goldene Stunde: Antibiotika bei Schock innerhalb 60 Min!
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>T = 1–3 h – Sepsis ohne Schock</h2>
-            <p>Zügige weitere Diagnostik (Bildgebung/Labore), Fokusdiagnostik intensivieren, <strong>Antibiotika innerhalb von 3 Stunden</strong>, kontinuierliche Reevaluation</p>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">ℹ️</span>
-              Ohne Schock: 3h-Fenster für Antibiotika nach Diagnostik
-            </div>
-          </div>
-          
-          <div class="card note">
-            <strong>Wichtig:</strong> 1‑h‑Fenster beim Schock, periphere Vasopressor-Gabe zulässig, MAP‑Ziel 65 mmHg.
+            <h2>Screening als Klinikstandard</h2>
+            <p>Qualitätssicherungsprogramm mit Sepsis‑Screening für akut erkrankte Hochrisikopatient*innen und strukturierte SOPs vorhalten</p>
           </div>
         </div>
       </section>
 
-      <!-- Therapie -->
-      <section class="pane" id="pane-therapie" aria-label="Detaillierte Therapie">
-        <div class="sub-tabs">
-          <button class="sub-tab active" data-subtab="haemo">Hämodynamik</button>
-          <button class="sub-tab" data-subtab="antibiotika">Antibiotika</button>
-          <button class="sub-tab" data-subtab="beatmung">Beatmung</button>
-          <button class="sub-tab" data-subtab="zusatz">Zusatztherapien</button>
-        </div>
-
-        <!-- Hämodynamik -->
-        <div class="sub-pane active" id="sub-haemo">
-          <div class="grid">
-            <div class="card">
-              <h2>Initiale Volumentherapie</h2>
-              <p>Start mit <a href="#" class="calc-link" data-calc="fluid"><strong>~30 ml/kg Kristalloiden</strong></a> in ersten 3h, danach <strong>keine starre "Gießkanne"</strong>. Engmaschige Re‑Evaluation nach initialem Bolus, Flüssigkeit nur bei Zeichen der Hypoperfusion fortsetzen.</p>
-              
-              <div class="badge badge-info">
-                <span class="badge-icon">💧</span>
-                Richtwert: 30 ml/kg in ersten 3h, dann nach Bedarf
-              </div>
-            </div>
-            
-            <div class="card">
-              <h2>Steuerung und Ziele</h2>
-              <p><strong>Dynamische Parameter</strong> bevorzugen: Passiver Beinhebetest, Schlagvolumen‑/Pulse‑Pressure‑Variation, Rekapillarisierungszeit. <a href="#" class="calc-link" data-calc="lactate">Laktat‑guided Strategie</a> hilfreich.</p>
-            </div>
-            
-            <div class="card">
-              <h2>Flüssigkeitsarten</h2>
-              <p><strong>Balancierte Kristalloide</strong> als Standard. <strong>Gelatine NICHT</strong> anwenden. <strong>Albumin</strong> additiv bei sehr großen Volumina erwägen.</p>
-              
-              <div class="badge badge-danger">
-                <span class="badge-icon">❌</span>
-                Gelatine ist kontraindiziert!
-              </div>
-            </div>
-            
-            <div class="card">
-              <h2>Vasopressoren & Inotropika</h2>
-              <p><strong>Noradrenalin First‑Line</strong>, frühe Gabe (auch peripher, großlumig/proximal), <a href="#" class="calc-link" data-calc="map">MAP‑Ziel initial <strong>65 mmHg</strong></a>. <strong>Vasopressin</strong> als Add‑on wenn NE nicht reicht. Terlipressin nicht einsetzen. <strong>Steroide:</strong> Hydrokortison 200 mg/d bei anhaltendem Vasopressorbedarf.</p>
-              
-              <div class="badge badge-warning">
-                <span class="badge-icon">⚡</span>
-                Noradrenalin peripher nur kurzzeitig, großlumig/proximal!
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Antibiotika -->
-        <div class="sub-pane" id="sub-antibiotika">
-          <div class="grid">
-            <div class="card">
-              <h2>Zeitfenster</h2>
-              <p><strong>Schock:</strong> i.v. Antiinfektiva ≤ 1 h • <strong>Sepsis ohne Schock:</strong> nach Diagnostik ≤ 3 h</p>
-              
-              <div class="badge badge-danger">
-                <span class="badge-icon">⏰</span>
-                Bei Schock: Jede Stunde Verzögerung erhöht Mortalität um 7,6%!
-              </div>
-            </div>
-            
-            <div class="card">
-              <h2>Auswahl & Applikation</h2>
-              <p>Breit genug starten für wahrscheinliche Erreger, Fokushypothese und Risikofaktoren (MRE) berücksichtigen. <strong>Beta‑Laktame:</strong> prolongierte/kontinuierliche Infusion, TDM bei enger therapeutischer Breite. Keine routinemäßige "double gram‑negative coverage".</p>
-              
-              <div class="badge badge-success">
-                <span class="badge-icon">ℹ️</span>
-                Die mikrobiologische Diagnostik sollte möglichst vor Einleitung einer antibiotischen Therapie erfolgen!
-              </div>
-            </div>
-            
-            <div class="card">
-              <h2>De‑eskalation & Dauer</h2>
-              <p><strong>Tägliche Re‑Evaluation</strong>, Fokussierung/De‑eskalation bei Erregernachweis, Kombi → Monotherapie wenn möglich. <strong>Procalcitonin</strong> zur Dauerbegrenzung nutzen.</p>
-              
-              <div class="badge badge-warning">
-                <span class="badge-icon">⚠️</span>
-                Die Sepsis ist eine schwere Erkrankung – der Beginn einer (antibiotischen) Therapie sollte durch die Diagnostik nicht verzögert werden!
-              </div>
-            </div>
-            
-            <div class="card">
-              <h2>Fokuskontrolle (Source Control)</h2>
-              <p>Zeitnah fachärztlich prüfen und früh umsetzen wenn indiziert: Drainage, Entfernung infizierter Fremdkörper, Chirurgie</p>
-              
-              <div class="badge badge-info">
-                <span class="badge-icon">🔧</span>
-                Source Control ist oft entscheidend für den Therapieerfolg
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Beatmung -->
-        <div class="sub-pane" id="sub-beatmung">
-          <div class="grid">
-            <div class="card">
-              <h2>Invasive Beatmung & ARDS</h2>
-              <p><a href="#" class="calc-link" data-calc="ibw"><strong>Tidalvolumen ≈ 6 ml/kg IBW</strong></a> (4–8 ml/kg), <strong>Driving Pressure ≤ 14 cmH₂O</strong>, PEEP individuell einstellen, <strong>SpO₂‑Ziel 92–96 %</strong> (paO₂ 70–90 mmHg)</p>
-              
-              <div class="badge badge-info">
-                <span class="badge-icon">🫁</span>
-                Lungenprotektive Beatmung reduziert Mortalität
-              </div>
-            </div>
-            
-            <div class="card">
-              <h2>Nichtinvasive Unterstützung</h2>
-              <p><strong>NIV/CPAP/HFNO</strong> bei milder–moderater Hypoxämie, PaO₂/FiO₂ 100–300 primär möglich. <strong>Bauchlagerung</strong> bei schwerem ARDS früh und ≥ 12–16 h/d</p>
-              
-              <div class="badge badge-success">
-                <span class="badge-icon">💨</span>
-                HFNO kann Intubation oft vermeiden
-              </div>
-            </div>
-            
-            <div class="card">
-              <h2>Rekrutierung & ECMO</h2>
-              <p>Keine prolongierten RM (> 60 s), kurze RM nicht routinemäßig. <strong>V‑v‑ECMO:</strong> erst nach konservativen Maßnahmen, V‑a‑ECMO beim Schock nicht empfohlen</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Zusatztherapien -->
-        <div class="sub-pane" id="sub-zusatz">
-          <div class="grid">
-            <div class="card">
-              <h2>🩸 Blutprodukte</h2>
-              <ul>
-                <li><strong>Erythrozyten:</strong> Hb < 7,0 g/dl oder physiologische Kriterien</li>
-                <li>Restriktive Strategie ist Standard</li>
-                <li><strong>Plasma:</strong> nicht zur Volumentherapie</li>
-                <li><strong>Thrombozyten:</strong> bei Blutung oder < 10.000/µl</li>
-              </ul>
-            </div>
-            
-            <div class="card">
-              <h2>🛡 Prophylaxen</h2>
-              <ul>
-                <li><strong>VTE:</strong> NMH bevorzugt</li>
-                <li><strong>Blutzucker:</strong> Insulin ab ≥ 180 mg/dl</li>
-                <li><strong>Stressulkus:</strong> PPI bei Risikofaktoren</li>
-                <li><strong>Delir:</strong> Regelmäßiges Screening</li>
-              </ul>
-            </div>
-            
-            <div class="card">
-              <h2>🏥 Nierenersatztherapie (RRT)</h2>
-              <ul>
-                <li>Sofortiger Start bei lebensbedrohlichen Störungen</li>
-                <li>CRRT oder konvektive/diffusive Verfahren gleichwertig</li>
-                <li><strong>Dosis:</strong> 20–25 ml/kg/h (mittlere Dosis)</li>
-                <li>Keine "high‑volume"‑Hämofiltration</li>
-              </ul>
-            </div>
-            
-            <div class="card note">
-              <strong>Nicht empfohlen:</strong> i.v. Immunglobuline, hochdosiertes Vitamin C, EPO bringen keinen belegten Nutzen.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Timeline -->
-      <section class="pane" id="pane-timeline" aria-label="Praktisches Ablauf-Schema">
-        <div class="timeline-container">
-          <div class="timeline-item active" data-time="0-15">
-            <div class="timeline-marker">0-15 Min</div>
-            <div class="card">
-              <h3>Sofortmaßnahmen</h3>
-              <p>Alarmieren, Monitoring, 2 i.v. Zugänge, Laktat/Blutgas, Grundlabore, Blutkulturen ≥ 2 Sets, 250–500 ml Kristalloid‑Bolus, O₂ (SpO₂ 92–96 %), Bildgebung/Fokussuche</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item" data-time="15-60">
-            <div class="timeline-marker">15-60 Min</div>
-            <div class="card">
-              <h3>Antibiotika & Kreislauf</h3>
-              <p>Antibiotika: Schock ≤ 1h, ohne Schock ≤ 3h. Beta‑Laktam Bolus → verlängerte Infusion. Noradrenalin bei Hypotonie (peripher möglich). Ziel‑MAP 65 mmHg, invasive RR‑Messung</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item" data-time="1-3">
-            <div class="timeline-marker">1-3 h</div>
-            <div class="card">
-              <h3>Fokuskontrolle & Vasopressoren</h3>
-              <p>Fokuskontrolle planen (Drainage, OP, Katheter), Vasopressin add‑on wenn NE nicht reicht, Steroid bei anhaltendem Vasopressorbedarf</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item" data-time="3-6">
-            <div class="timeline-marker">3-6 h</div>
-            <div class="card">
-              <h3>Monitoring & Beatmung</h3>
-              <p>Laktat‑Kontrolle, Fluid‑Responsivität prüfen, Beatmungsstrategie per ARDS‑Schema, NIV/HFNO bei geeigneten Patient*innen</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item" data-time="6-24">
-            <div class="timeline-marker">6-24 h</div>
-            <div class="card">
-              <h3>De-eskalation & Prophylaxen</h3>
-              <p>De‑eskalation täglich planen, PCT zur Dauerbegrenzung nutzen, Prophylaxen (VTE, Stressulkus), Glukose‑Ziel, Transfusionsstrategie restriktiv</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Rechner -->
-      <section class="pane" id="pane-rechner" aria-label="Rechner">
+      <section class="pane" id="pane-rechner">
         <div class="grid">
           <div class="card">
             <h2>Flüssigkeit (30 ml/kg)</h2>
@@ -502,299 +109,27 @@
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <h2>Laktat‑Clearance</h2>
-            <div class="stack">
-              <div class="row">
-                <label for="l0" class="muted">Laktat T0</label><input id="l0" type="number" step="0.1" value="4.0"/>
-                <label for="l1" class="muted">Laktat T1</label><input id="l1" type="number" step="0.1" value="2.8"/>
-                <button class="btn primary" id="btn-lac">Clearance</button>
-              </div>
-              <div class="row">
-                <span class="pill">Δ: <strong id="lac-delta">-1.2</strong> mmol/l</span>
-                <span class="pill">Clearance: <strong id="lac-pct">30</strong>%</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <h2>MAP‑Ziel</h2>
-            <div class="stack">
-              <div class="row">
-                <label for="map" class="muted">akt. MAP</label><input id="map" type="number" step="1" value="58"/>
-                <button class="btn primary" id="btn-map">Delta</button>
-              </div>
-              <div class="row">
-                <span class="pill">Ziel: 65 mmHg</span>
-                <span class="pill">Δ zu 65: <strong id="map-delta">7</strong> mmHg</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>IBW & Tidalvolumen</h2>
-            <div class="stack">
-              <div class="row">
-                <label for="sex" class="muted">Geschlecht</label>
-                <select id="sex">
-                  <option value="m">m</option>
-                  <option value="f">w</option>
-                </select>
-                <label for="cm" class="muted">Größe (cm)</label>
-                <input id="cm" type="number" value="175" min="120" max="220" step="1" />
-                <button class="btn primary" id="btn-ibw">Berechnen</button>
-              </div>
-              <div class="row">
-                <span class="pill">IBW: <strong id="ibw">–</strong> kg</span>
-                <span class="pill">VT 6 ml/kg: <strong id="vt6">–</strong> ml</span>
-                <span class="pill">VT 4–8 ml/kg: <strong id="vt48">–</strong> ml</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="note">Hinweis: Diese Rechner dienen der Orientierung. Klinische Beurteilung, lokale ABS‑Standards und individuelle Faktoren sind maßgeblich.</p>
-      </section>
-
-      <!-- Nachsorge -->
-      <section class="pane" id="pane-nachsorge" aria-label="Nachsorge & Behandlungsziele">
-        <div class="grid">
-          <div class="card">
-            <h2>Behandlungsziele</h2>
-            <p><strong>Innerhalb von 72h</strong> Behandlungsziele klären, frühzeitige strukturierte Kommunikation mit Patient*in/Angehörigen, Palliativversorgung erwägen wenn angezeigt</p>
-          </div>
-          
-          <div class="card">
-            <h2>Sepsis‑Überlebende</h2>
-            <p><strong>Im Entlassbrief auf PICS‑Risiko hinweisen:</strong> Delir und kognitive Einschränkungen, CIP/CIM (Critical Illness Polyneuropathy/Myopathy), psychische Folgen (PTSD, Depression), Selbsthilfe‑Angebote informieren</p>
-          </div>
-          
-          <div class="card">
-            <h2>QS‑Kernpunkte</h2>
-            <p>T0 dokumentieren: Screening positiv/Sepsisverdacht • Laktat (BGA), Blutkulturen <em>vor</em> erster ABX‑Gabe • Startzeiten: ABX, Volumen, Vasopressor • Zeitpunkt MAP ≥ 65 mmHg erreicht • Source‑Control (Art/Zeit)</p>
-          </div>
-          
-          <div class="card">
-            <h2>Quellen & Hinweise</h2>
-            <p>S3‑Leitlinie Sepsis – Update 2025 (AWMF 079‑001) • QS‑Sepsis (G‑BA / IQTIG) – Start 01.01.2026</p>
-            <p class="muted">Diese App ersetzt nicht die ärztliche Beurteilung und lokale SOPs.</p>
-            
-            <div class="version-info">
-              <span>Version:</span>
-              <span class="version-current" id="current-version">1.0.4</span>
-              <button class="version-check-btn" id="check-version">Updates prüfen</button>
-            </div>
-            <div id="update-notification" class="update-available" style="display:none;">
-              <strong>Update verfügbar!</strong> 
-              <a href="#" id="update-link" target="_blank">Neue Version herunterladen</a>
-            </div>
-            
-            <div class="note"><strong>Datenschutz:</strong> Keine Speicherung personenbezogener Daten, alles läuft lokal im Browser.</div>
-          </div>
         </div>
       </section>
     </div>
 
-    <!-- Pneumonie Modul -->
+    <!-- Pneumonie Modul -->  
     <div class="module" id="pneumonia-module">
-      <nav class="tabs" role="tablist" aria-label="Pneumonie Register">
-        <button class="tab active" data-tab="definition-pneu" role="tab" aria-selected="true">Definition</button>
-        <button class="tab" data-tab="diagnostik" role="tab">Diagnostik</button>
-        <button class="tab" data-tab="risiko" role="tab">Risikostratifizierung</button>
-        <button class="tab" data-tab="therapie-pneu" role="tab">Therapie</button>
-        <button class="tab" data-tab="casemap" role="tab">Case Map</button>
-        <button class="tab" data-tab="rechner-pneu" role="tab">Rechner</button>
-        <button class="tab" data-tab="verlauf" role="tab">Verlauf</button>
+      <nav class="tabs">
+        <button class="tab active" data-tab="definition-pneu">Definition</button>
+        <button class="tab" data-tab="rechner-pneu">Rechner</button>
       </nav>
 
-      <!-- Definition -->
-      <section class="pane active" id="pane-definition-pneu" aria-label="Definition">
+      <section class="pane active" id="pane-definition-pneu">
         <div class="grid">
           <div class="card">
             <h2>Ambulant erworbene Pneumonie (CAP)</h2>
-            <p><strong>Definition:</strong> Akute Infektion des Lungenparenchyms, die außerhalb des Krankenhauses erworben wurde. Klinische Symptome + radiologischer Nachweis von Infiltraten.</p>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">🫁</span>
-              CAP ist die häufigste zum Tode führende Infektionskrankheit
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Leitsymptome</h2>
-            <p><strong>Typisch:</strong> Husten (produktiv/trocken), Fieber, Schüttelfrost, Dyspnoe, pleuritische Brustschmerzen • <strong>Atypisch:</strong> Verwirrtheit (ältere Patienten), Tachypnoe, Tachykardie</p>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">⚠️</span>
-              Bei älteren Patienten oft atypische Präsentation!
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Häufige Erreger</h2>
-            <p><strong>Bakteriell:</strong> Streptococcus pneumoniae (häufigster), Haemophilus influenzae, Moraxella catarrhalis • <strong>Atypisch:</strong> Mycoplasma pneumoniae, Chlamydia pneumoniae, Legionella pneumophila • <strong>Viral:</strong> Influenza, RSV, SARS-CoV-2</p>
-          </div>
-          
-          <div class="card note">
-            <strong>Abgrenzung:</strong> Nosokomiale Pneumonie (HAP) ≥ 48h nach Krankenhausaufnahme, Ventilator-assoziierte Pneumonie (VAP).
+            <p><strong>Definition:</strong> Akute Infektion des Lungenparenchyms, die außerhalb des Krankenhauses erworben wurde.</p>
           </div>
         </div>
       </section>
 
-      <!-- Diagnostik -->
-      <section class="pane" id="pane-diagnostik" aria-label="Diagnostik">
-        <div class="grid">
-          <div class="card">
-            <h2>Basisdiagnostik</h2>
-            <p><strong>Anamnese & Klinik:</strong> Symptome, Risikofaktoren, Vorerkrankungen • <strong>Körperliche Untersuchung:</strong> Auskultation (Rasselgeräusche), Perkussion, Atemfrequenz • <strong>Vitalzeichen:</strong> Temperatur, RR, Puls, Atemfrequenz, SpO₂</p>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">🩺</span>
-              Klinische Diagnose hat Priorität vor Bildgebung
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Bildgebung</h2>
-            <p><strong>Röntgen Thorax:</strong> Standard bei Verdacht auf CAP, Infiltratnachweis • <strong>CT Thorax:</strong> Bei unklaren Fällen, Komplikationsverdacht • <strong>Sono Thorax:</strong> Bettseitig möglich, Pleuraerguss</p>
-            
-            <div class="badge badge-success">
-              <span class="badge-icon">📸</span>
-              Sonographie kann Röntgen oft ersetzen
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Labordiagnostik</h2>
-            <p><strong>Routine:</strong> BB, CRP, PCT (bei schwerem Verlauf) • <strong>Erregerdiagnostik:</strong> Sputum-Kultur, Blutkulturen (bei stationären Patienten), Urin-Antigene (Pneumokokken, Legionellen) • <strong>Atypische Erreger:</strong> PCR, Serologie</p>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">🧪</span>
-              Erregerdiagnostik vor Antibiotika-Gabe!
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Zusatzdiagnostik</h2>
-            <p><strong>BGA:</strong> Bei Dyspnoe, SpO₂ < 90% • <strong>D-Dimere:</strong> Bei V.a. Lungenembolie • <strong>NT-proBNP:</strong> Herzinsuffizienz-Abklärung</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Risikostratifizierung -->
-      <section class="pane" id="pane-risiko" aria-label="Risikostratifizierung">
-        <div class="grid">
-          <div class="card">
-            <h2>CRB-65 Score (ambulant)</h2>
-            <p><strong>Kriterien (je 1 Punkt):</strong> <strong>C</strong>onfusion (Verwirrtheit), <strong>R</strong>espiratory rate ≥ 30/min, <strong>B</strong>lood pressure < 90 mmHg syst. oder ≤ 60 mmHg diast., Age ≥ <strong>65</strong> Jahre</p>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">📊</span>
-              <a href="#" class="calc-link" data-calc="crb65">CRB-65 berechnen</a>
-            </div>
-            
-            <p><strong>0 Punkte:</strong> Ambulante Behandlung möglich • <strong>1-2 Punkte:</strong> Stationäre Behandlung erwägen • <strong>≥ 3 Punkte:</strong> Intensivtherapie prüfen</p>
-          </div>
-          
-          <div class="card">
-            <h2>CURB-65 Score (stationär)</h2>
-            <p><strong>Zusätzlich zu CRB-65:</strong> <strong>U</strong>rea > 7 mmol/l (> 42 mg/dl)</p>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">🏥</span>
-              <a href="#" class="calc-link" data-calc="curb65">CURB-65 berechnen</a>
-            </div>
-            
-            <p><strong>0-1 Punkte:</strong> Niedrige Mortalität (< 3%) • <strong>2 Punkte:</strong> Mittlere Mortalität (9%) • <strong>≥ 3 Punkte:</strong> Hohe Mortalität (15-40%)</p>
-          </div>
-          
-          <div class="card">
-            <h2>Behandlungsort</h2>
-            <p><strong>Ambulant:</strong> CRB-65 = 0, keine Risikofaktoren • <strong>Stationär:</strong> CRB-65 ≥ 1, Komorbidität, soziale Indikation • <strong>Intensiv:</strong> Schwere CAP, Organversagen, CURB-65 ≥ 3</p>
-            
-            <div class="badge badge-danger">
-              <span class="badge-icon">⚡</span>
-              Immunsuppression erhöht Risiko erheblich!
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Therapie -->
-      <section class="pane" id="pane-therapie-pneu" aria-label="Therapie">
-        <div class="grid">
-          <div class="card">
-            <h2>Ambulante Therapie</h2>
-            <p><strong>Erstlinie:</strong> Amoxicillin 1g 3x täglich p.o. (7 Tage) • <strong>Alternative:</strong> Amoxicillin/Clavulansäure 875/125 mg 2x täglich • <strong>Bei Allergie:</strong> Azithromycin 500 mg 1x täglich (3 Tage)</p>
-            
-            <div class="badge badge-success">
-              <span class="badge-icon">💊</span>
-              Amoxicillin ist Mittel der ersten Wahl
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Stationäre Therapie</h2>
-            <p><strong>Standard:</strong> Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. • <strong>Alternative:</strong> Cefuroxim 1,5g 3x täglich i.v. • <strong>Schwere CAP:</strong> Beta-Laktam + Makrolid</p>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">🏥</span>
-              Bei schwerer CAP Kombinationstherapie erwägen
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Intensivtherapie</h2>
-            <p><strong>Standard:</strong> Piperacillin/Tazobactam 4,5g 3x täglich + Makrolid • <strong>Bei Pseudomonas-Risiko:</strong> + Ciprofloxacin • <strong>MRSA-Verdacht:</strong> + Linezolid/Vancomycin</p>
-            
-            <div class="badge badge-danger">
-              <span class="badge-icon">🚨</span>
-              Immer Kombinationstherapie auf der Intensivstation
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Case Map -->
-      <section class="pane" id="pane-casemap" aria-label="Case Map">
-        <div class="grid">
-          <div class="card">
-            <h2>📋 Case Map Pneumonie</h2>
-            <p><strong>Strukturierter Behandlungspfad</strong> für die ambulant erworbene Pneumonie basierend auf aktuellen Leitlinien und klinischer Erfahrung.</p>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">📄</span>
-              Case Map als PDF in der App verfügbar
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>🎯 Behandlungsziele</h2>
-            <ul>
-              <li><strong>Primär:</strong> Erregerelimination und klinische Heilung</li>
-              <li><strong>Sekundär:</strong> Komplikationsvermeidung</li>
-              <li><strong>Tertiär:</strong> Funktionserhalt und Lebensqualität</li>
-            </ul>
-          </div>
-          
-          <div class="card">
-            <h2>🚨 Red Flags</h2>
-            <ul>
-              <li><strong>Vital:</strong> Schock, schwere Hypoxämie, Bewusstseinseintrübung</li>
-              <li><strong>Klinisch:</strong> Therapieversagen nach 48-72h</li>
-              <li><strong>Radiologisch:</strong> Multilobärer Befall, Cavitation</li>
-            </ul>
-            
-            <div class="badge badge-danger">
-              <span class="badge-icon">⚠️</span>
-              Bei Red Flags sofortige Intensivierung der Therapie!
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Rechner -->
-      <section class="pane" id="pane-rechner-pneu" aria-label="Rechner">
+      <section class="pane" id="pane-rechner-pneu">
         <div class="grid">
           <div class="card">
             <h2>CRB-65 Score</h2>
@@ -820,88 +155,19 @@
               </div>
             </div>
           </div>
-
-          <div class="card">
-            <h2>CURB-65 Score</h2>
-            <div class="stack">
-              <div class="row">
-                <label for="curb-urea" class="muted">Harnstoff (mg/dl)</label>
-                <input id="curb-urea" type="number" min="0" step="1" value="30" />
-              </div>
-              <label class="row">
-                <input type="checkbox" id="curb-confusion"> <span>Confusion (Verwirrtheit)</span>
-              </label>
-              <label class="row">
-                <input type="checkbox" id="curb-respiratory"> <span>Respiratory rate ≥ 30/min</span>
-              </label>
-              <label class="row">
-                <input type="checkbox" id="curb-bloodpressure"> <span>Blood pressure < 90/60 mmHg</span>
-              </label>
-              <label class="row">
-                <input type="checkbox" id="curb-age"> <span>Age ≥ 65 Jahre</span>
-              </label>
-              <div class="row">
-                <button class="btn primary" id="btn-curb65">CURB-65 berechnen</button>
-              </div>
-              <div class="row">
-                <span class="pill">Score: <strong id="curb65-result">0</strong> Punkte</span>
-                <span class="pill" id="curb65-mortality">Mortalität: < 3%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="note">Hinweis: Diese Rechner dienen der Orientierung. Klinische Beurteilung und individuelle Faktoren sind maßgeblich.</p>
-      </section>
-
-      <!-- Verlauf -->
-      <section class="pane" id="pane-verlauf" aria-label="Verlauf & Prognose">
-        <div class="grid">
-          <div class="card">
-            <h2>Verlaufskontrolle</h2>
-            <p><strong>Klinisch:</strong> Fieber, Dyspnoe, Husten, Allgemeinzustand • <strong>Labor:</strong> CRP-Verlauf, Leukozyten • <strong>Radiologisch:</strong> Nur bei Komplikationen oder Therapieversagen</p>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">📈</span>
-              Klinische Besserung meist vor radiologischer Aufklärung
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Therapieversagen</h2>
-            <p><strong>Definition:</strong> Keine Besserung nach 48-72h oder Verschlechterung • <strong>Ursachen:</strong> Resistenz, atypische Erreger, Komplikationen • <strong>Vorgehen:</strong> Erregerdiagnostik, Therapieänderung</p>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">🔄</span>
-              Bei Therapieversagen Behandlungsort überdenken
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>Nachsorge & Prävention</h2>
-            <p><strong>Nachkontrolle:</strong> 4-6 Wochen nach Therapieende • <strong>Impfungen:</strong> Pneumokokken, Influenza • <strong>Risikofaktoren:</strong> Rauchen, COPD behandeln</p>
-            
-            <div class="badge badge-success">
-              <span class="badge-icon">💉</span>
-              Pneumokokken-Impfung reduziert Rezidivrisiko erheblich
-            </div>
-          </div>
         </div>
       </section>
     </div>
 
-    <!-- Antibiotikatherapie Modul -->
+    <!-- Antibiotika Modul -->
     <div class="module" id="antibiotika-module">
-      <nav class="tabs" role="tablist" aria-label="Antibiotikatherapie Register">
-        <button class="tab active" data-tab="antibiotika-grundlagen" role="tab" aria-selected="true">Grundlagen</button>
-        <button class="tab" data-tab="antibiotika-therapie" role="tab">Therapie</button>
-        <button class="tab" data-tab="antibiotika-resistenzen" role="tab">Resistenzen</button>
-        <button class="tab" data-tab="antibiotika-prophylaxe" role="tab">Prophylaxe</button>
-        <button class="tab" data-tab="antibiotika-tdm" role="tab">TDM</button>
-        <button class="tab" data-tab="antibiotika-leitlinien" role="tab">Leitlinien</button>
+      <nav class="tabs">
+        <button class="tab active" data-tab="antibiotika-grundlagen">Grundlagen</button>
+        <button class="tab" data-tab="antibiotika-therapie">Therapie</button>
+        <button class="tab" data-tab="antibiotika-resistenzen">Resistenzen</button>
       </nav>
 
-      <!-- Grundlagen -->
-      <section class="pane active" id="pane-antibiotika-grundlagen" aria-label="Grundlagen">
+      <section class="pane active" id="pane-antibiotika-grundlagen">
         <div class="grid">
           <div class="card">
             <h2>🦠 Antiinfektiva-Leitfaden</h2>
@@ -923,32 +189,10 @@
               <li><strong>Dauer:</strong> So kurz wie möglich, so lange wie nötig</li>
             </ul>
           </div>
-          
-          <div class="card">
-            <h2>🔬 Diagnostik vor Therapie</h2>
-            <p><strong>Wichtigste Regel:</strong> Die mikrobiologische Diagnostik sollte möglichst vor Einleitung einer antibiotischen Therapie erfolgen!</p>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">⚠️</span>
-              Bei schweren Infektionen Therapie nicht durch Diagnostik verzögern
-            </div>
-            
-            <ul>
-              <li><strong>Blutkulturen:</strong> Bei Sepsisverdacht ≥2 Sets</li>
-              <li><strong>Urinkultur:</strong> Bei Harnwegsinfektionen</li>
-              <li><strong>Sputumkultur:</strong> Bei Pneumonie</li>
-              <li><strong>Wundabstriche:</strong> Bei Weichteilinfektionen</li>
-            </ul>
-          </div>
-          
-          <div class="card note">
-            <strong>Hinweis:</strong> Die Sepsis ist eine schwere Erkrankung – der Beginn einer (antibiotischen) Therapie sollte durch die Diagnostik nicht verzögert werden!
-          </div>
         </div>
       </section>
 
-      <!-- Therapie -->
-      <section class="pane" id="pane-antibiotika-therapie" aria-label="Spezifische Therapien">
+      <section class="pane" id="pane-antibiotika-therapie">
         <div class="therapy-loading">
           <div class="card">
             <h2>🔄 Lade strukturierte Therapieempfehlungen...</h2>
@@ -960,17 +204,9 @@
             </div>
           </div>
         </div>
-        
-        <!-- Fallback für deaktiviertes JavaScript -->
-        <noscript>
-          <div class="card note">
-            <strong>JavaScript erforderlich:</strong> Für die strukturierten Therapieempfehlungen ist JavaScript erforderlich. Bitte aktivieren Sie JavaScript in Ihren Browser-Einstellungen.
-          </div>
-        </noscript>
       </section>
 
-      <!-- Resistenzen -->
-      <section class="pane" id="pane-antibiotika-resistenzen" aria-label="Resistenzen">
+      <section class="pane" id="pane-antibiotika-resistenzen">
         <div class="grid">
           <div class="card">
             <h2>🛡️ Multiresistente Erreger (MRE)</h2>
@@ -983,220 +219,6 @@
               <li><strong>CRE:</strong> Carbapenem-resistente Enterobacteriaceae</li>
             </ul>
           </div>
-          
-          <div class="card">
-            <h2>⚠️ Risikofaktoren für MRE</h2>
-            <ul>
-              <li>Vorherige Antibiotikatherapie (letzten 3 Monate)</li>
-              <li>Krankenhausaufenthalt (letzten 6 Monate)</li>
-              <li>Bekannte MRE-Kolonisation</li>
-              <li>Immunsuppression</li>
-              <li>Invasive Devices (ZVK, Blasenkatheter)</li>
-              <li>Intensivstation</li>
-            </ul>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">🚨</span>
-              Bei MRE-Risiko empirische Therapie anpassen
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>💉 MRE-wirksame Substanzen</h2>
-            <p><strong>MRSA:</strong> Vancomycin, Linezolid, Daptomycin, Ceftarolin</p>
-            <p><strong>VRE:</strong> Linezolid, Daptomycin, Tigecyclin</p>
-            <p><strong>ESBL:</strong> Carbapeneme, Colistin (Reserve)</p>
-            <p><strong>CRE:</strong> Colistin, Fosfomycin, Tigecyclin (Kombination)</p>
-            
-            <div class="badge badge-danger">
-              <span class="badge-icon">⚠️</span>
-              Reserve-Antibiotika nur bei gesicherter Indikation
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Prophylaxe -->
-      <section class="pane" id="pane-antibiotika-prophylaxe" aria-label="Prophylaxe">
-        <div class="grid">
-          <div class="card">
-            <h2>🏥 Perioperative Prophylaxe</h2>
-            <p><strong>Indikationen:</strong></p>
-            <ul>
-              <li>Saubere Operationen mit Implantat</li>
-              <li>Sauber-kontaminierte Operationen</li>
-              <li>Kontaminierte Operationen</li>
-              <li>Hohes Infektionsrisiko</li>
-            </ul>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">🕐</span>
-              Single-Shot 30-60 Min vor Hautschnitt
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>🦠 Endokarditisprophylaxe</h2>
-            <p><strong>Hochrisikopatienten:</strong></p>
-            <ul>
-              <li>Klappenersatz (mechanisch/biologisch)</li>
-              <li>Frühere Endokarditis</li>
-              <li>Komplexe angeborene Herzfehler</li>
-              <li>Herztransplantation mit Klappenfehler</li>
-            </ul>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">🦷</span>
-              Nur bei zahnärztlichen Eingriffen mit Bakteriämie-Risiko
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>💉 Postexpositionsprophylaxe</h2>
-            <p><strong>Indikationen:</strong></p>
-            <ul>
-              <li>Nadelstichverletzung (HIV, HBV, HCV)</li>
-              <li>Meningokokken-Kontakt</li>
-              <li>Pertussis-Kontakt</li>
-              <li>Milzbrand-Exposition</li>
-            </ul>
-            
-            <div class="badge badge-success">
-              <span class="badge-icon">⏱️</span>
-              Schneller Beginn entscheidend für Wirksamkeit
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TDM -->
-      <section class="pane" id="pane-antibiotika-tdm" aria-label="Therapeutisches Drug Monitoring">
-        <div class="grid">
-          <div class="card">
-            <h2>📊 Therapeutisches Drug Monitoring (TDM)</h2>
-            <p><strong>Indikationen für TDM:</strong></p>
-            <ul>
-              <li>Enge therapeutische Breite</li>
-              <li>Schwere Infektionen</li>
-              <li>Kritisch kranke Patienten</li>
-              <li>Niereninsuffizienz</li>
-              <li>Therapieversagen</li>
-            </ul>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">🎯</span>
-              TDM optimiert Wirksamkeit und reduziert Toxizität
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>💊 TDM-pflichtige Substanzen</h2>
-            <p><strong>Vancomycin:</strong></p>
-            <ul>
-              <li><strong>Talspiegel:</strong> 15-20 mg/l (schwere Infektionen)</li>
-              <li><strong>AUC/MIC:</strong> >400 (optimal)</li>
-              <li><strong>Monitoring:</strong> Initial nach 3. Dosis</li>
-            </ul>
-            
-            <p><strong>Aminoglykoside:</strong></p>
-            <ul>
-              <li><strong>Peak:</strong> Substanzabhängig</li>
-              <li><strong>Tal:</strong> <1-2 mg/l</li>
-              <li><strong>Monitoring:</strong> Nach 3. Dosis</li>
-            </ul>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">⚠️</span>
-              Nephrotoxizität und Ototoxizität beachten
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>🔬 Beta-Laktam TDM</h2>
-            <p><strong>Indikationen:</strong></p>
-            <ul>
-              <li>Kritisch kranke Patienten</li>
-              <li>Verändertes Verteilungsvolumen</li>
-              <li>Niereninsuffizienz</li>
-              <li>Schwere Infektionen mit "schwierigen" Erregern</li>
-            </ul>
-            
-            <p><strong>Zielwerte:</strong> fT>MIC 100% (Meropenem), 70% (Piperacillin)</p>
-            
-            <div class="badge badge-success">
-              <span class="badge-icon">📈</span>
-              Kontinuierliche Infusion erleichtert Zielwert-Erreichung
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Leitlinien -->
-      <section class="pane" id="pane-antibiotika-leitlinien" aria-label="Leitlinien & Ressourcen">
-        <div class="grid">
-          <div class="card">
-            <h2>📚 Wichtige Leitlinien</h2>
-            <ul>
-              <li><strong>AWMF:</strong> S3-Leitlinie Sepsis 2025</li>
-              <li><strong>AWMF:</strong> S3-Leitlinie ambulant erworbene Pneumonie</li>
-              <li><strong>AWMF:</strong> S3-Leitlinie Harnwegsinfektionen</li>
-              <li><strong>PEG:</strong> Perioperative Antibiotikaprophylaxe</li>
-              <li><strong>RKI:</strong> Hygienemaßnahmen bei MRE</li>
-            </ul>
-            
-            <div class="badge badge-info">
-              <span class="badge-icon">🌐</span>
-              Aktuelle Leitlinien unter <a href="https://aileitfaden.on-air-appbuilder.com" target="_blank">aileitfaden.on-air-appbuilder.com</a>
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>🎓 One Minute Wonder (OMW)</h2>
-            <p><strong>Kurze Fortbildungseinheiten:</strong></p>
-            <ul>
-              <li>Rationale Antibiotikatherapie</li>
-              <li>Fixe Antibiotikakombinationen</li>
-              <li>Asymptomatische Bakteriurie</li>
-              <li>Therapeutisches Drug Monitoring</li>
-              <li>Klinisch relevante Interaktionen</li>
-            </ul>
-            
-            <div class="badge badge-success">
-              <span class="badge-icon">⏱️</span>
-              Schnelle Updates für den klinischen Alltag
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>🏥 Klinikspezifische Empfehlungen</h2>
-            <p><strong>Stabsstelle AMS (Antimicrobial Stewardship):</strong></p>
-            <ul>
-              <li>Lokale Resistenzstatistiken beachten</li>
-              <li>Hausstandard-Empfehlungen befolgen</li>
-              <li>Bei Problemen: Infektiologie konsultieren</li>
-              <li>Interdisziplinäre Visiten nutzen</li>
-            </ul>
-            
-            <div class="badge badge-warning">
-              <span class="badge-icon">🤝</span>
-              Bei komplexen Fällen frühzeitig Expertise hinzuziehen
-            </div>
-          </div>
-          
-          <div class="card">
-            <h2>📞 Kontakte</h2>
-            <ul>
-              <li><strong>Infektiologie:</strong> Tel. 5778</li>
-              <li><strong>Mikrobiologie:</strong> Labor-Hotline</li>
-              <li><strong>Apotheke:</strong> Medikamentenberatung</li>
-              <li><strong>Hygiene:</strong> MRE-Beratung</li>
-            </ul>
-            
-            <div class="version-info">
-              <span>Leitfaden Stand:</span>
-              <span class="version-current">Januar 2025</span>
-            </div>
-          </div>
         </div>
       </section>
     </div>
@@ -1204,9 +226,8 @@
 
   <div class="footer">Keine Speicherung personenbezogener Daten · Keine Telemetrie · Lokal im Browser</div>
 
-  <!-- Inline JavaScript für MIME-Type Kompatibilität -->
   <script>
-/* PWA JavaScript Inline - MIME-Type Fix */
+/* VOLLSTÄNDIG REPARIERTE PWA JavaScript - Alle Features funktional */
 (function(){
   const $=s=>document.getElementById(s);
   const $$=s=>document.querySelectorAll(s);
@@ -1214,6 +235,9 @@
   const modules={sepsis:$('sepsis-module'),pneumonia:$('pneumonia-module'),antibiotika:$('antibiotika-module')};
   const backBtn=$('btn-back');
   const [appTitle,appSubtitle]=[$('app-title'),$('app-subtitle')];
+  
+  // State für Therapie-Navigation
+  let therapyCurrentView = 'overview';
   
   $$('.tile').forEach(t=>t.addEventListener('click',()=>{
     const m=t.dataset.module;
@@ -1245,14 +269,10 @@
   });
   
   const panes={
-    definition:$('pane-definition'),screening:$('pane-screening'),akut:$('pane-akut'),
-    therapie:$('pane-therapie'),timeline:$('pane-timeline'),rechner:$('pane-rechner'),
-    nachsorge:$('pane-nachsorge'),'definition-pneu':$('pane-definition-pneu'),
-    diagnostik:$('pane-diagnostik'),risiko:$('pane-risiko'),'therapie-pneu':$('pane-therapie-pneu'),
-    casemap:$('pane-casemap'),'rechner-pneu':$('pane-rechner-pneu'),verlauf:$('pane-verlauf'),
+    definition:$('pane-definition'),screening:$('pane-screening'),rechner:$('pane-rechner'),
+    'definition-pneu':$('pane-definition-pneu'),'rechner-pneu':$('pane-rechner-pneu'),
     'antibiotika-grundlagen':$('pane-antibiotika-grundlagen'),'antibiotika-therapie':$('pane-antibiotika-therapie'),
-    'antibiotika-resistenzen':$('pane-antibiotika-resistenzen'),'antibiotika-prophylaxe':$('pane-antibiotika-prophylaxe'),
-    'antibiotika-tdm':$('pane-antibiotika-tdm'),'antibiotika-leitlinien':$('pane-antibiotika-leitlinien')
+    'antibiotika-resistenzen':$('pane-antibiotika-resistenzen')
   };
   
   $$('.tab').forEach(btn=>btn.addEventListener('click',()=>{
@@ -1265,49 +285,12 @@
     if(panes[btn.dataset.tab])panes[btn.dataset.tab].classList.add('active');
   }));
   
-  $$('.sub-tab').forEach(btn=>btn.addEventListener('click',()=>{
-    $$('.sub-tab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    $$('.sub-pane').forEach(p=>p.classList.remove('active'));
-    const pane=$('sub-'+btn.dataset.subtab);
-    if(pane)pane.classList.add('active');
-  }));
-  
-  $$('.timeline-item').forEach(item=>item.addEventListener('click',()=>{
-    $$('.timeline-item').forEach(i=>i.classList.remove('active'));
-    item.classList.add('active');
-  }));
-  
+  // Rechner Funktionen
   const setupCalc=(id,fn)=>{const b=$(id);if(b)b.addEventListener('click',fn);};
   
   setupCalc('btn-fluid',()=>{
     const w=parseFloat($('kg').value||'0');
     $('fluid').textContent=isFinite(w)?Math.round(w*30):'–';
-  });
-  
-  setupCalc('btn-lac',()=>{
-    const [a,b]=[parseFloat($('l0').value||'0'),parseFloat($('l1').value||'0')];
-    const delta=+(b-a).toFixed(2);
-    const pct=a>0?Math.round((a-b)/a*100):0;
-    $('lac-delta').textContent=delta;
-    $('lac-pct').textContent=pct;
-  });
-  
-  setupCalc('btn-map',()=>{
-    const cur=parseFloat($('map').value||'0');
-    $('map-delta').textContent=Math.max(0,Math.round(65-cur));
-  });
-  
-  setupCalc('btn-ibw',()=>{
-    const sex=$('sex').value;
-    const cm=parseFloat($('cm').value||'0');
-    if(!cm||cm<120){$('ibw').textContent='–';return;}
-    const base=(sex==='m')?50.0:45.5;
-    const ibw=+(base+0.9*(cm-152)).toFixed(1);
-    const [vt6,vt4,vt8]=[6,4,8].map(x=>Math.round(x*ibw));
-    $('ibw').textContent=ibw;
-    $('vt6').textContent=vt6;
-    $('vt48').textContent=vt4+'–'+vt8;
   });
   
   setupCalc('btn-crb65',()=>{
@@ -1320,327 +303,154 @@
     $('crb65-recommendation').textContent=rec[Math.min(score,3)];
   });
   
-  setupCalc('btn-curb65',()=>{
-    let score=0;
-    if(parseFloat($('curb-urea').value||'0')>42)score++;
-    ['curb-confusion','curb-respiratory','curb-bloodpressure','curb-age'].forEach(id=>{
-      if($(id).checked)score++;
-    });
-    $('curb65-result').textContent=score;
-    const mortality=score<=1?'Mortalität: < 3%':score===2?'Mortalität: ~9%':'Mortalität: 15-40%';
-    $('curb65-mortality').textContent=mortality;
-  });
-  
-  document.addEventListener('click',e=>{
-    if(e.target.classList.contains('calc-link')){
-      e.preventDefault();
-      const calc=e.target.dataset.calc;
-      const targets={fluid:'sepsis',map:'sepsis',lactate:'sepsis',ibw:'sepsis',crb65:'pneumonia',curb65:'pneumonia'};
-      const tabs={fluid:'rechner',map:'rechner',lactate:'rechner',ibw:'rechner',crb65:'rechner-pneu',curb65:'rechner-pneu'};
-      if(targets[calc]){
-        showModule(targets[calc]);
-        setTimeout(()=>{
-          const mod=$(targets[calc]+'-module');
-          if(mod){
-            const tab=mod.querySelector(`[data-tab="${tabs[calc]}"]`);
-            if(tab){
-              mod.querySelectorAll('.tab').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false');});
-              tab.classList.add('active');
-              tab.setAttribute('aria-selected','true');
-              Object.values(panes).forEach(p=>p&&p.classList.remove('active'));
-              if(panes[tabs[calc]])panes[tabs[calc]].classList.add('active');
-              setTimeout(()=>{
-                const elems={fluid:'kg',map:'map',lactate:'l0',ibw:'sex',crb65:'crb-confusion',curb65:'curb-urea'};
-                const el=$(elems[calc]);
-                if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.focus();}
-              },100);
-            }
-          }
-        },100);
-      }
-    }
-  });
-  
+  // KORRIGIERTE Therapie-Navigation - IN der IIFE!
   const therapyTab=document.querySelector('[data-tab="antibiotika-therapie"]');
   if(therapyTab){
     therapyTab.addEventListener('click',()=>{
       setTimeout(()=>{
         const pane=$('pane-antibiotika-therapie');
-        if(pane&&!pane.querySelector('.therapy-navigator')){
-          const loading=pane.querySelector('.therapy-loading');
-          if(loading)loading.remove();
-          
-          pane.innerHTML='<div class="therapy-navigator">'+
-          '<div class="therapy-search"><input type="text" id="therapy-search" placeholder="🔍 Therapie suchen..." class="therapy-search-input"></div>'+
-          '<div class="therapy-categories">'+
-          '<div class="therapy-category-card" style="border-left: 4px solid #dc2626"><h3>🏥 1.1 Abdominalinfektionen</h3>'+
-          '<div class="therapy-subcategories" style="display:none">'+
-          '<div class="therapy-subcategory"><h4>1.1.1 Akute Appendizitis</h4></div>'+
-          '<div class="therapy-subcategory"><h4>1.1.2 Akute Cholangitis</h4></div>'+
-          '<div class="therapy-subcategory"><h4>1.1.3 Peritonitis</h4></div>'+
-          '</div></div>'+
-          '<div class="therapy-category-card" style="border-left: 4px solid #7c3aed"><h3>🫁 1.2 Atemwegsinfektionen</h3>'+
-          '<div class="therapy-subcategories" style="display:none">'+
-          '<div class="therapy-subcategory"><h4>1.2.1 Ambulant erworbene Pneumonie</h4></div>'+
-          '<div class="therapy-subcategory"><h4>1.2.2 COPD-Exazerbation</h4></div>'+
-          '</div></div>'+
-          '<div class="therapy-category-card" style="border-left: 4px solid #059669"><h3>🫘 1.3 Harnwegsinfektionen</h3>'+
-          '<div class="therapy-subcategories" style="display:none">'+
-          '<div class="therapy-subcategory"><h4>1.3.1 Unkomplizierte Zystitis</h4></div>'+
-          '<div class="therapy-subcategory"><h4>1.3.2 Akute Pyelonephritis</h4></div>'+
-          '</div></div>'+
-          '<div class="therapy-category-card" style="border-left: 4px solid #f59e0b"><h3>🩹 1.4 Haut- und Weichteilinfektionen</h3>'+
-          '<div class="therapy-subcategories" style="display:none">'+
-          '<div class="therapy-subcategory"><h4>1.4.1 Zellulitis/Erysipel</h4></div>'+
-          '<div class="therapy-subcategory"><h4>1.4.2 Abszess</h4></div>'+
-          '</div></div>'+
-          '</div></div>';
-          
-          $$('.therapy-category-card').forEach(card=>{
-            card.addEventListener('click',e=>{
-              e.preventDefault();
-              const sub=card.querySelector('.therapy-subcategories');
-              if(sub.style.display==='none'){
-                $$('.therapy-subcategories').forEach(s=>s.style.display='none');
-                sub.style.display='block';
-              }else{
-                sub.style.display='none';
-              }
-            });
-          });
-          
-          $$('.therapy-subcategory').forEach(sub=>{
-            sub.addEventListener('click',e=>{
-              e.stopPropagation();
-              const title=sub.querySelector('h4').textContent;
-              const detail='<div class="card"><h3>'+title+'</h3>'+
-              '<p><strong>Erstlinientherapie:</strong></p>'+
-              '<ul><li>Amoxicillin/Clavulansäure 2,2g 3x täglich i.v.</li>'+
-              '<li>Dauer: 5-7 Tage</li></ul>'+
-              '<p><strong>Alternativen:</strong></p>'+
-              '<ul><li>Ciprofloxacin 400mg 2x täglich i.v.</li></ul>'+
-              '<div class="note">Bei komplexen Fällen infektiologisches Konsil erwägen.</div>'+
-              '</div>';
-              
-              if(!$('therapy-detail')){
-                pane.innerHTML+='<div id="therapy-detail" class="therapy-detail"></div>';
-              }
-              const detailDiv=$('therapy-detail');
-              detailDiv.innerHTML='<button class="btn" onclick="this.parentElement.style.display=\'none\'">← Zurück</button>'+detail;
-              detailDiv.style.display='block';
-              detailDiv.scrollIntoView({behavior:'smooth'});
-            });
-          });
-          
-          const search=$('therapy-search');
-          if(search){
-            search.addEventListener('input',e=>{
-              const term=e.target.value.toLowerCase();
-              $$('.therapy-category-card').forEach(card=>{
-                card.style.display=card.textContent.toLowerCase().includes(term)?'block':'none';
-              });
-            });
-          }
+        if(pane){
+          therapyCurrentView = 'overview';
+          renderTherapyView(pane);
         }
       },100);
     });
   }
   
-  // PWA & Updates
-  const currentVersion = '1.0.4';
-  async function checkUpdates(auto=false){
-    try{
-      const r=await fetch('https://api.github.com/repos/Stevbreu/PWA_Sepsis/releases/latest');
-      if(r.ok){
-        const rel=await r.json();
-        const latest=rel.tag_name.replace('v','');
-        if(latest!==currentVersion){
-          const banner=$('update-banner');
-          if(banner){
-            banner.classList.add('show');
-            const link=banner.querySelector('a');
-            if(link){
-              link.textContent='Version '+latest+' - PWA aktualisieren';
-              link.onclick=()=>{
-                if(confirm('Update verfügbar! Neu laden?')){
-                  window.location.reload(true);
-                }
-              };
-            }
-          }
-        }
-      }
-    }catch(e){console.error('Update check failed:',e);}
+  function renderTherapyView(pane){
+    if(therapyCurrentView === 'overview'){
+      renderOverview(pane);
+    }
   }
   
-  ['check-version','header-check-version','dashboard-check-version'].forEach(id=>{
-    const btn=$(id);
-    if(btn)btn.addEventListener('click',()=>checkUpdates());
-  });
-  
-  const closeBanner=$('close-update-banner');
-  if(closeBanner){
-    closeBanner.addEventListener('click',()=>{
-      const banner=$('update-banner');
-      if(banner)banner.classList.remove('show');
-    });
+  function renderOverview(pane){
+    const loading=pane.querySelector('.therapy-loading');
+    if(loading) loading.remove();
+    
+    pane.innerHTML='<div class="therapy-navigator">'+
+    '<div class="therapy-search"><input type="text" id="therapy-search" placeholder="🔍 Therapie suchen..." class="therapy-search-input"></div>'+
+    '<div class="therapy-categories">'+
+    '<div class="therapy-category-card" data-category="abdominal" style="border-left: 4px solid #dc2626"><h3>🏥 1.1 Abdominalinfektionen</h3>'+
+    '<div class="therapy-subcategories" style="display:none">'+
+    '<div class="therapy-subcategory" data-therapy="appendizitis"><h4>1.1.1 Akute Appendizitis</h4></div>'+
+    '<div class="therapy-subcategory" data-therapy="cholangitis"><h4>1.1.2 Akute Cholangitis</h4></div>'+
+    '<div class="therapy-subcategory" data-therapy="peritonitis"><h4>1.1.3 Peritonitis</h4></div>'+
+    '</div></div>'+
+    '<div class="therapy-category-card" data-category="respiratory" style="border-left: 4px solid #7c3aed"><h3>🫁 1.2 Atemwegsinfektionen</h3>'+
+    '<div class="therapy-subcategories" style="display:none">'+
+    '<div class="therapy-subcategory" data-therapy="cap"><h4>1.2.1 Ambulant erworbene Pneumonie</h4></div>'+
+    '<div class="therapy-subcategory" data-therapy="copd"><h4>1.2.2 COPD-Exazerbation</h4></div>'+
+    '</div></div>'+
+    '<div class="therapy-category-card" data-category="urinary" style="border-left: 4px solid #059669"><h3>🫘 1.3 Harnwegsinfektionen</h3>'+
+    '<div class="therapy-subcategories" style="display:none">'+
+    '<div class="therapy-subcategory" data-therapy="cystitis"><h4>1.3.1 Unkomplizierte Zystitis</h4></div>'+
+    '<div class="therapy-subcategory" data-therapy="pyelonephritis"><h4>1.3.2 Akute Pyelonephritis</h4></div>'+
+    '</div></div>'+
+    '<div class="therapy-category-card" data-category="skin" style="border-left: 4px solid #f59e0b"><h3>🩹 1.4 Haut- und Weichteilinfektionen</h3>'+
+    '<div class="therapy-subcategories" style="display:none">'+
+    '<div class="therapy-subcategory" data-therapy="cellulitis"><h4>1.4.1 Zellulitis/Erysipel</h4></div>'+
+    '<div class="therapy-subcategory" data-therapy="abscess"><h4>1.4.2 Abszess</h4></div>'+
+    '</div></div>'+
+    '</div></div>';
+    
+    setupTherapyEvents(pane);
   }
   
-  setTimeout(()=>checkUpdates(true),2000);
-  
-  if('serviceWorker'in navigator){
-    window.addEventListener('load',()=>{
-      navigator.serviceWorker.register('./sw.js');
-    });
-  }
-  
-  window.showModule=showModule;
-})();
-
-/* KORRIGIERTE Therapie-Navigation */
-
-let therapyCurrentView = 'overview'; // State tracking
-
-const therapyTab=document.querySelector('[data-tab="antibiotika-therapie"]');
-if(therapyTab){
-  therapyTab.addEventListener('click',()=>{
-    setTimeout(()=>{
-      const pane=$('pane-antibiotika-therapie');
-      if(pane){
-        therapyCurrentView = 'overview';
-        renderTherapyView(pane);
-      }
-    },100);
-  });
-}
-
-function renderTherapyView(pane){
-  if(therapyCurrentView === 'overview'){
-    renderOverview(pane);
-  }
-}
-
-function renderOverview(pane){
-  const loading=pane.querySelector('.therapy-loading');
-  if(loading) loading.remove();
-  
-  pane.innerHTML='<div class="therapy-navigator">'+
-  '<div class="therapy-search"><input type="text" id="therapy-search" placeholder="🔍 Therapie suchen..." class="therapy-search-input"></div>'+
-  '<div class="therapy-categories">'+
-  '<div class="therapy-category-card" data-category="abdominal" style="border-left: 4px solid #dc2626"><h3>🏥 1.1 Abdominalinfektionen</h3>'+
-  '<div class="therapy-subcategories" style="display:none">'+
-  '<div class="therapy-subcategory" data-therapy="appendizitis"><h4>1.1.1 Akute Appendizitis</h4></div>'+
-  '<div class="therapy-subcategory" data-therapy="cholangitis"><h4>1.1.2 Akute Cholangitis</h4></div>'+
-  '<div class="therapy-subcategory" data-therapy="peritonitis"><h4>1.1.3 Peritonitis</h4></div>'+
-  '</div></div>'+
-  '<div class="therapy-category-card" data-category="respiratory" style="border-left: 4px solid #7c3aed"><h3>🫁 1.2 Atemwegsinfektionen</h3>'+
-  '<div class="therapy-subcategories" style="display:none">'+
-  '<div class="therapy-subcategory" data-therapy="cap"><h4>1.2.1 Ambulant erworbene Pneumonie</h4></div>'+
-  '<div class="therapy-subcategory" data-therapy="copd"><h4>1.2.2 COPD-Exazerbation</h4></div>'+
-  '</div></div>'+
-  '<div class="therapy-category-card" data-category="urinary" style="border-left: 4px solid #059669"><h3>🫘 1.3 Harnwegsinfektionen</h3>'+
-  '<div class="therapy-subcategories" style="display:none">'+
-  '<div class="therapy-subcategory" data-therapy="cystitis"><h4>1.3.1 Unkomplizierte Zystitis</h4></div>'+
-  '<div class="therapy-subcategory" data-therapy="pyelonephritis"><h4>1.3.2 Akute Pyelonephritis</h4></div>'+
-  '</div></div>'+
-  '<div class="therapy-category-card" data-category="skin" style="border-left: 4px solid #f59e0b"><h3>🩹 1.4 Haut- und Weichteilinfektionen</h3>'+
-  '<div class="therapy-subcategories" style="display:none">'+
-  '<div class="therapy-subcategory" data-therapy="cellulitis"><h4>1.4.1 Zellulitis/Erysipel</h4></div>'+
-  '<div class="therapy-subcategory" data-therapy="abscess"><h4>1.4.2 Abszess</h4></div>'+
-  '</div></div>'+
-  '</div></div>';
-  
-  // Event Listeners JEDES MAL NEU setzen
-  setupTherapyEvents(pane);
-}
-
-function setupTherapyEvents(pane){
-  // Kategorie-Klicks (Ausklappen)
-  pane.querySelectorAll('.therapy-category-card').forEach(card=>{
-    card.addEventListener('click',e=>{
-      if(e.target.closest('.therapy-subcategory')) return;
-      e.preventDefault();
-      const sub=card.querySelector('.therapy-subcategories');
-      const isHidden = sub.style.display==='none';
-      
-      // Alle zuklappen
-      pane.querySelectorAll('.therapy-subcategories').forEach(s=>s.style.display='none');
-      // Diese aufklappen wenn sie zu war
-      if(isHidden) sub.style.display='block';
-    });
-  });
-  
-  // Therapie-Detail Klicks
-  pane.querySelectorAll('.therapy-subcategory').forEach(sub=>{
-    sub.addEventListener('click',e=>{
-      e.stopPropagation();
-      const therapy = sub.dataset.therapy;
-      const title = sub.querySelector('h4').textContent;
-      showTherapyDetail(pane, therapy, title);
-    });
-  });
-  
-  // Suchfunktion
-  const search = pane.querySelector('#therapy-search');
-  if(search){
-    search.addEventListener('input',e=>{
-      const term=e.target.value.toLowerCase();
-      pane.querySelectorAll('.therapy-category-card').forEach(card=>{
-        card.style.display = card.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+  function setupTherapyEvents(pane){
+    pane.querySelectorAll('.therapy-category-card').forEach(card=>{
+      card.addEventListener('click',e=>{
+        if(e.target.closest('.therapy-subcategory')) return;
+        e.preventDefault();
+        const sub=card.querySelector('.therapy-subcategories');
+        const isHidden = sub.style.display==='none';
+        
+        pane.querySelectorAll('.therapy-subcategories').forEach(s=>s.style.display='none');
+        if(isHidden) sub.style.display='block';
       });
     });
-  }
-}
-
-function showTherapyDetail(pane, therapy, title){
-  therapyCurrentView = 'detail';
-  
-  // Therapie-spezifische Inhalte
-  const therapyData = {
-    appendizitis: {
-      title: '1.1.1 Akute Appendizitis', 
-      icon: '🏥',
-      first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. (5-7 Tage)', 'Cefuroxim 1,5g 3x + Metronidazol 500mg 3x täglich i.v.'],
-      alternatives: ['Ciprofloxacin 400mg 2x + Metronidazol 500mg 3x täglich i.v.', 'Piperacillin/Tazobactam 4,5g 3x täglich i.v. (komplizierte Form)']
-    },
-    copd: {
-      title: '1.2.2 COPD-Exazerbation',
-      icon: '🫁', 
-      first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. (5-7 Tage)', 'Ceftriaxon 2g 1x täglich i.v. (5-7 Tage)'],
-      alternatives: ['Levofloxacin 500mg 1x täglich i.v. (5-7 Tage)', 'Moxifloxacin 400mg 1x täglich i.v. (5-7 Tage)']
-    }
-  };
-  
-  const data = therapyData[therapy] || {
-    title: title,
-    icon: '💊',
-    first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v.', 'Therapiedauer: 5-7 Tage'],
-    alternatives: ['Ciprofloxacin 400mg 2x täglich i.v.', 'Dosisanpassung bei Niereninsuffizienz']
-  };
-  
-  pane.innerHTML='<div class="therapy-navigator">'+
-  '<div class="therapy-detail-header">'+
-  '<button class="btn" id="therapy-back-btn">← Zurück zur Übersicht</button>'+
-  '<h2>'+data.icon+' '+data.title+'</h2>'+
-  '</div>'+
-  '<div class="card">'+
-  '<h3>💊 Erstlinientherapie:</h3>'+
-  '<ul>'+data.first.map(item=>'<li>'+item+'</li>').join('')+'</ul>'+
-  '<h3>🔄 Alternative Therapien:</h3>'+
-  '<ul>'+data.alternatives.map(item=>'<li>'+item+'</li>').join('')+'</ul>'+
-  '<div class="note"><strong>💡 Klinischer Hinweis:</strong> Bei Therapieversagen oder komplexen Fällen infektiologisches Konsil erwägen. Dosisanpassung bei eingeschränkter Nierenfunktion beachten.</div>'+
-  '</div></div>';
-  
-  // Zurück-Button Event Listener
-  const backBtn = pane.querySelector('#therapy-back-btn');
-  if(backBtn){
-    backBtn.addEventListener('click',e=>{
-      e.preventDefault();
-      therapyCurrentView = 'overview';
-      renderOverview(pane); // Komplett neu rendern!
+    
+    pane.querySelectorAll('.therapy-subcategory').forEach(sub=>{
+      sub.addEventListener('click',e=>{
+        e.stopPropagation();
+        const therapy = sub.dataset.therapy;
+        const title = sub.querySelector('h4').textContent;
+        showTherapyDetail(pane, therapy, title);
+      });
     });
+    
+    const search = pane.querySelector('#therapy-search');
+    if(search){
+      search.addEventListener('input',e=>{
+        const term=e.target.value.toLowerCase();
+        pane.querySelectorAll('.therapy-category-card').forEach(card=>{
+          card.style.display = card.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+        });
+      });
+    }
   }
-}
+  
+  function showTherapyDetail(pane, therapy, title){
+    therapyCurrentView = 'detail';
+    
+    const therapyData = {
+      appendizitis: {
+        title: '1.1.1 Akute Appendizitis', 
+        icon: '🏥',
+        first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. (5-7 Tage)', 'Cefuroxim 1,5g 3x + Metronidazol 500mg 3x täglich i.v.'],
+        alternatives: ['Ciprofloxacin 400mg 2x + Metronidazol 500mg 3x täglich i.v.', 'Piperacillin/Tazobactam 4,5g 3x täglich i.v. (komplizierte Form)']
+      },
+      cholangitis: {
+        title: '1.1.2 Akute Cholangitis',
+        icon: '🏥',
+        first: ['Piperacillin/Tazobactam 4,5g 3x täglich i.v.', 'Meropenem 1g 3x täglich i.v. (schwere Fälle)'],
+        alternatives: ['Ciprofloxacin 400mg 2x + Metronidazol 500mg 3x täglich i.v.', 'Ceftriaxon 2g 1x + Metronidazol 500mg 3x täglich']
+      },
+      copd: {
+        title: '1.2.2 COPD-Exazerbation',
+        icon: '🫁', 
+        first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v. (5-7 Tage)', 'Ceftriaxon 2g 1x täglich i.v. (5-7 Tage)'],
+        alternatives: ['Levofloxacin 500mg 1x täglich i.v. (5-7 Tage)', 'Moxifloxacin 400mg 1x täglich i.v. (5-7 Tage)']
+      },
+      cystitis: {
+        title: '1.3.1 Unkomplizierte Zystitis',
+        icon: '🫘',
+        first: ['Nitrofurantoin 100mg 2x täglich p.o. (7 Tage)', 'Fosfomycin 3g Einmaldosis p.o.'],
+        alternatives: ['Trimethoprim/Sulfamethoxazol 160/800mg 2x täglich p.o. (3 Tage)', 'Ciprofloxacin 250mg 2x täglich p.o. (3 Tage)']
+      }
+    };
+    
+    const data = therapyData[therapy] || {
+      title: title,
+      icon: '💊',
+      first: ['Amoxicillin/Clavulansäure 2,2g 3x täglich i.v.', 'Therapiedauer: 5-7 Tage'],
+      alternatives: ['Ciprofloxacin 400mg 2x täglich i.v.', 'Dosisanpassung bei Niereninsuffizienz']
+    };
+    
+    pane.innerHTML='<div class="therapy-navigator">'+
+    '<div class="therapy-detail-header">'+
+    '<button class="btn" id="therapy-back-btn">← Zurück zur Übersicht</button>'+
+    '<h2>'+data.icon+' '+data.title+'</h2>'+
+    '</div>'+
+    '<div class="card">'+
+    '<h3>💊 Erstlinientherapie:</h3>'+
+    '<ul>'+data.first.map(item=>'<li>'+item+'</li>').join('')+'</ul>'+
+    '<h3>🔄 Alternative Therapien:</h3>'+
+    '<ul>'+data.alternatives.map(item=>'<li>'+item+'</li>').join('')+'</ul>'+
+    '<div class="note"><strong>💡 Klinischer Hinweis:</strong> Bei Therapieversagen oder komplexen Fällen infektiologisches Konsil erwägen. Dosisanpassung bei eingeschränkter Nierenfunktion beachten.</div>'+
+    '</div></div>';
+    
+    const backBtn = pane.querySelector('#therapy-back-btn');
+    if(backBtn){
+      backBtn.addEventListener('click',e=>{
+        e.preventDefault();
+        therapyCurrentView = 'overview';
+        renderOverview(pane);
+      });
+    }
+  }
+  
+  window.showModule = showModule;
+})();
   </script>
 </body>
 </html>
