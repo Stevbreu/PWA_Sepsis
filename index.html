@@ -866,13 +866,17 @@
 
     <!-- Antibiotika Modul -->
     <div class="module" id="antibiotika-module">
-      <nav class="tabs">
-        <button class="tab active" data-tab="antibiotika-grundlagen">Grundlagen</button>
-        <button class="tab" data-tab="antibiotika-therapie">Therapie</button>
-        <button class="tab" data-tab="antibiotika-resistenzen">Resistenzen</button>
+      <nav class="tabs" role="tablist" aria-label="Antibiotika Register">
+        <button class="tab active" data-tab="antibiotika-grundlagen" role="tab" aria-selected="true">Grundlagen</button>
+        <button class="tab" data-tab="antibiotika-therapie" role="tab">Therapie</button>
+        <button class="tab" data-tab="antibiotika-resistenzen" role="tab">Resistenzen</button>
+        <button class="tab" data-tab="antibiotika-prophylaxe" role="tab">Prophylaxe</button>
+        <button class="tab" data-tab="antibiotika-tdm" role="tab">TDM</button>
+        <button class="tab" data-tab="antibiotika-leitlinien" role="tab">Leitlinien</button>
       </nav>
 
-      <section class="pane active" id="pane-antibiotika-grundlagen">
+      <!-- Grundlagen -->
+      <section class="pane active" id="pane-antibiotika-grundlagen" aria-label="Grundlagen">
         <div class="grid">
           <div class="card">
             <h2>🦠 Antiinfektiva-Leitfaden</h2>
@@ -894,10 +898,31 @@
               <li><strong>Dauer:</strong> So kurz wie möglich, so lange wie nötig</li>
             </ul>
           </div>
+          
+          <div class="card">
+            <h2>🎯 Dosierungsprinzipien</h2>
+            <ul>
+              <li><strong>Zeitabhängig:</strong> Beta-Laktame - Hohe Frequenz/kontinuierlich</li>
+              <li><strong>Konzentrationsabhängig:</strong> Aminoglykoside, Fluorchinolone - Hohe Einzeldosis</li>
+              <li><strong>AUC-abhängig:</strong> Vancomycin, Lincomycin - Ziel-AUC erreichen</li>
+              <li><strong>Gewebepenetration:</strong> Liquor, Knochen, Prostata beachten</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>📊 Antibiogramm-Interpretation</h2>
+            <p><strong>S:</strong> Sensibel/empfindlich • <strong>I:</strong> Intermediär/mäßig empfindlich • <strong>R:</strong> Resistent</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">⚠️</span>
+              Bei "I" erhöhte Dosierung oder alternative Substanz erwägen
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="pane" id="pane-antibiotika-therapie">
+      <!-- Therapie -->
+      <section class="pane" id="pane-antibiotika-therapie" aria-label="Strukturierte Therapieempfehlungen">
         <div class="therapy-loading">
           <div class="card">
             <h2>🔄 Lade strukturierte Therapieempfehlungen...</h2>
@@ -911,18 +936,190 @@
         </div>
       </section>
 
-      <section class="pane" id="pane-antibiotika-resistenzen">
+      <!-- Resistenzen -->
+      <section class="pane" id="pane-antibiotika-resistenzen" aria-label="Resistenzen & MRE">
         <div class="grid">
           <div class="card">
             <h2>🛡️ Multiresistente Erreger (MRE)</h2>
             <p><strong>Häufige MRE:</strong></p>
             <ul>
-              <li><strong>MRSA:</strong> Methicillin-resistenter Staph. aureus</li>
-              <li><strong>VRE:</strong> Vancomycin-resistente Enterokokken</li>
-              <li><strong>ESBL:</strong> Extended Spectrum Beta-Lactamase</li>
+              <li><strong>MRSA:</strong> Methicillin-resistenter Staph. aureus ➜ Vancomycin, Linezolid</li>
+              <li><strong>VRE:</strong> Vancomycin-resistente Enterokokken ➜ Linezolid, Daptomycin</li>
+              <li><strong>ESBL:</strong> Extended Spectrum Beta-Lactamase ➜ Carbapeneme</li>
               <li><strong>3MRGN/4MRGN:</strong> Multiresistente gramnegative Bakterien</li>
-              <li><strong>CRE:</strong> Carbapenem-resistente Enterobacteriaceae</li>
+              <li><strong>CRE:</strong> Carbapenem-resistente Enterobacteriaceae ➜ Polymyxin, Tigecyclin</li>
             </ul>
+            
+            <div class="badge badge-danger">
+              <span class="badge-icon">🚨</span>
+              Bei MRE-Verdacht sofort Hygienemaßnahmen und Infektiologie konsultieren
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🔬 Resistenzmechanismen</h2>
+            <ul>
+              <li><strong>Beta-Laktamasen:</strong> Spaltung von Penicillinen/Cephalosporinen</li>
+              <li><strong>Efflux-Pumpen:</strong> Aktiver Transport aus der Zelle</li>
+              <li><strong>Target-Modifikation:</strong> Veränderung der Zielstruktur</li>
+              <li><strong>Permeabilitätsverlust:</strong> Verminderte Aufnahme</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>🏥 Krankenhaushygiene</h2>
+            <ul>
+              <li><strong>Isolierung:</strong> Kontakt-/Tröpfchenisolierung bei MRE</li>
+              <li><strong>Händedesinfektion:</strong> Wichtigste Maßnahme zur Übertragungsprävention</li>
+              <li><strong>Screening:</strong> Aufnahme-Screening bei Risikopatienten</li>
+              <li><strong>Antibiotic Stewardship:</strong> Rational use of antibiotics</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prophylaxe -->
+      <section class="pane" id="pane-antibiotika-prophylaxe" aria-label="Antibiotikaprophylaxe">
+        <div class="grid">
+          <div class="card">
+            <h2>🔪 Perioperative Prophylaxe</h2>
+            <p><strong>Ziel:</strong> Prävention postoperativer Wundinfektionen</p>
+            <ul>
+              <li><strong>Timing:</strong> 30-60 Min vor Hautschnitt</li>
+              <li><strong>Dauer:</strong> Meist Einmalgabe, max. 24h</li>
+              <li><strong>Standard:</strong> Cefazolin 2g i.v. (bei Allergie: Clindamycin)</li>
+              <li><strong>MRSA-Risiko:</strong> + Vancomycin erwägen</li>
+            </ul>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">⏰</span>
+              Wiederholung bei langen Eingriffen (> 2x Halbwertszeit)
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>🫀 Endokarditisprophylaxe</h2>
+            <p><strong>Nur bei Hochrisikopatienten:</strong></p>
+            <ul>
+              <li>Kunstklappenträger</li>
+              <li>Endokarditis in der Anamnese</li>
+              <li>Angeborene zyanotische Herzfehler</li>
+              <li>Herztransplantation mit Klappeninsuffizienz</li>
+            </ul>
+            <p><strong>Standard:</strong> Amoxicillin 2g p.o. 1h vor Eingriff</p>
+          </div>
+          
+          <div class="card">
+            <h2>🦴 Gelenkprothesen-Prophylaxe</h2>
+            <p><strong>Empfohlen bei:</strong> Zahnärztlichen Eingriffen in den ersten 2 Jahren nach Implantation</p>
+            <ul>
+              <li><strong>Standard:</strong> Amoxicillin/Clavulansäure 2,2g p.o.</li>
+              <li><strong>Bei Allergie:</strong> Clindamycin 600mg p.o.</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>🩺 Weitere Prophylaxen</h2>
+            <ul>
+              <li><strong>Reiseprophylaxe:</strong> Malaria, Traveler's Diarrhea</li>
+              <li><strong>Pneumocystis:</strong> Trimethoprim/Sulfamethoxazol bei Immunsuppression</li>
+              <li><strong>Meningokokken:</strong> Nach Exposition (Rifampicin, Ciprofloxacin)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TDM -->
+      <section class="pane" id="pane-antibiotika-tdm" aria-label="Therapeutic Drug Monitoring">
+        <div class="grid">
+          <div class="card">
+            <h2>📈 Therapeutic Drug Monitoring (TDM)</h2>
+            <p><strong>Ziel:</strong> Optimierung der Wirksamkeit bei minimalen Nebenwirkungen</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">🎯</span>
+              TDM besonders wichtig bei enger therapeutischer Breite
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>💊 TDM-pflichtige Antibiotika</h2>
+            <ul>
+              <li><strong>Vancomycin:</strong> Talspiegel 15-20 mg/l (schwere Infektionen)</li>
+              <li><strong>Aminoglykoside:</strong> Einmalspiegelkonzept</li>
+              <li><strong>Linezolid:</strong> Talspiegel 2-7 mg/l</li>
+              <li><strong>Voriconazol:</strong> Talspiegel 1-5,5 mg/l</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>⏱️ Abnahmezeitpunkte</h2>
+            <ul>
+              <li><strong>Talspiegel:</strong> Unmittelbar vor nächster Gabe</li>
+              <li><strong>Spitzenspiegel:</strong> 1h nach Ende der Infusion</li>
+              <li><strong>Steady State:</strong> Nach 5 Halbwertszeiten erreicht</li>
+              <li><strong>Kontrolle:</strong> Bei Dosisänderung, Nieren-/Leberfunktionsstörung</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>⚠️ Dosisanpassung</h2>
+            <p><strong>Niereninsuffizienz:</strong> Meist Dosisreduktion oder Intervallverlängerung erforderlich</p>
+            <p><strong>Leberinsuffizienz:</strong> Bei hepatischer Elimination reduzieren</p>
+            
+            <div class="badge badge-warning">
+              <span class="badge-icon">📞</span>
+              Bei komplexen Fällen Pharmakologen/Infektiologen konsultieren
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leitlinien -->
+      <section class="pane" id="pane-antibiotika-leitlinien" aria-label="Leitlinien & Evidenz">
+        <div class="grid">
+          <div class="card">
+            <h2>📚 Wichtige Leitlinien</h2>
+            <ul>
+              <li><strong>AWMF:</strong> Deutsche Leitlinien (S1-S3)</li>
+              <li><strong>IDSA:</strong> Infectious Diseases Society of America</li>
+              <li><strong>ESCMID:</strong> European Society of Clinical Microbiology</li>
+              <li><strong>Paul-Ehrlich-Gesellschaft:</strong> Deutsche Gesellschaft für Infektionstherapie</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>🏥 Institutional Guidelines</h2>
+            <ul>
+              <li><strong>Lokale ABS-Programme:</strong> Antibiotic Stewardship</li>
+              <li><strong>Krankenhaus-Antibiogramm:</strong> Resistenzstatistiken</li>
+              <li><strong>SOPs:</strong> Standard Operating Procedures</li>
+              <li><strong>Konsiliardienst:</strong> Infektiologie bei komplexen Fällen</li>
+            </ul>
+            
+            <div class="badge badge-success">
+              <span class="badge-icon">🤝</span>
+              Enge Zusammenarbeit mit Mikrobiologie und Infektiologie
+            </div>
+          </div>
+          
+          <div class="card">
+            <h2>📊 Evidenzgrade</h2>
+            <ul>
+              <li><strong>Grad A:</strong> Starke Empfehlung (RCTs, Metaanalysen)</li>
+              <li><strong>Grad B:</strong> Empfehlung (gut durchgeführte Studien)</li>
+              <li><strong>Grad C:</strong> Schwache Empfehlung (Expertenmeinung)</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h2>🔄 Updates & Revision</h2>
+            <p><strong>Regelmäßige Überprüfung:</strong> Leitlinien werden kontinuierlich an neue Evidenz angepasst</p>
+            
+            <div class="badge badge-info">
+              <span class="badge-icon">📅</span>
+              Immer aktuelle Version der Leitlinien verwenden
+            </div>
           </div>
         </div>
       </section>
@@ -940,9 +1137,6 @@
   const modules={sepsis:$('sepsis-module'),pneumonia:$('pneumonia-module'),antibiotika:$('antibiotika-module')};
   const backBtn=$('btn-back');
   const [appTitle,appSubtitle]=[$('app-title'),$('app-subtitle')];
-  
-  // State für Therapie-Navigation
-  let therapyCurrentView = 'overview';
   
   $$('.tile').forEach(t=>t.addEventListener('click',()=>{
     const m=t.dataset.module;
