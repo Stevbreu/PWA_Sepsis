@@ -205,7 +205,7 @@
   });
 
   // Version checking
-  const currentVersion = '1.0.4';
+  const currentVersion = '1.0.5';
   const githubRepo = 'Stevbreu/PWA_Sepsis'; // Ersetze mit deinem GitHub Repository
   
   async function checkForUpdates(isAutomatic = false) {

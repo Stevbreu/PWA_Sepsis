@@ -967,7 +967,7 @@
 })();
 // PWA-Funktionen und Versionsverwaltung
 (function() {
-  const currentVersion = '1.0.4'; // Erhöht für die neue Struktur
+  const currentVersion = '1.0.5'; // Erhöht für die neue Struktur
   const githubRepo = 'Stevbreu/PWA_Sepsis';
   
   // Version checking
